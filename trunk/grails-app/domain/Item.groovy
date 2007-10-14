@@ -4,23 +4,17 @@ class Item {
     Address address
     SellerContactInfo contactInfo
 
-    String name, description, imageURL, imageThumbURL
+    String imageURL, imageThumbURL
     Double price
     Integer totalScore = 0, numberOfVotes = 0, disabled = 0
 
     static hasMany = [tags : Tag]
 
-    // TODO: cascade validation to contactInfo and address
+    // TODO: cascade validation to contactInfo and address, regexp matching does not work
     static constraints = {
-        name(blank:false)
-        description(blank:false, validator: {
-            it.indexOf("<script") < 0 &&
-            it.indexOf("<link") < 0
-        })
         price(min:0.0d)
-        //imageURL(matches:"[jpg|gif|png]\$")
-        //imageThumbURL(matches:"[jpg|gif|png]\$")
-        product(nullable:true)
+        imageURL(matches:"[jpg|gif|png]\$")
+        imageThumbURL(matches:"[jpg|gif|png]\$")
     }
 
     /* Business Methods */
