@@ -15,7 +15,7 @@ class ItemController {
     }
 
     def save = {
-        def item = new Item(address:new Address(), contactInfo:new SellerContactInfo())
+        def item = new Item(address:new Address(), contactInfo:new SellerContactInfo(),product:new Product())
         item.properties = params
 
         def uploaded = request.getFile("file")
@@ -43,11 +43,7 @@ class ItemController {
             flash.message = "Saved item with id = " + item.id + ", properties: " + item.properties
             redirect(action:show,id:item.id)
         } else {
-            println item.properties
-            item.errors.allErrors.each {
-                println it
-            }
-            render(view:"edit",item:item)
+            render(view:"edit", model:[item:item])
         }
     }
 
