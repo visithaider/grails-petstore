@@ -4,7 +4,7 @@ class Item {
     Address address
     SellerContactInfo contactInfo
 
-    String imageURL, imageThumbURL
+    String imageURL
     Double price
     Integer totalScore = 0, numberOfVotes = 0, disabled = 0
 
@@ -13,8 +13,7 @@ class Item {
     // TODO: cascade validation to contactInfo and address, regexp matching does not work
     static constraints = {
         price(min:0.0d)
-        imageURL(matches:"[jpg|gif|png]\$")
-        imageThumbURL(matches:"[jpg|gif|png]\$")
+        imageURL(matches:".*[jpeg|jpg|gif|png]")
     }
 
     /* Business Methods */

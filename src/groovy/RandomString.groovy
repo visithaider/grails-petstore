@@ -24,10 +24,10 @@ class RandomString {
                 count++
             }
         }
-        buf.toString()
+        return buf.toString()
     }
 
-    String getStringfromLong() {
+    String getStringFromLong() {
         Long.toString(Math.abs(rd.nextLong()), 36)
     }
 

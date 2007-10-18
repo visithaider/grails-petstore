@@ -16,7 +16,7 @@ class RandomStringTest extends GroovyTestCase {
 
     void testGetStringFromLong() {
         def rs = new RandomString()
-        def s = rs.getStringfromLong()
+        def s = rs.getStringFromLong()
         assert s != null
         assert s.length() > 0
     }

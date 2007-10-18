@@ -103,7 +103,7 @@
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'></td>
-                        <td valign='top' class='value'><input type="text" id='captcha' name='captcha'/></td>
+                        <td valign='top' class='value'><input type="text" id='captcha' name='captchaString'/></td>
                     </tr>
                 </tbody>
             </table>

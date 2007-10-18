@@ -30,14 +30,14 @@
                         <tr class="prop">
                             <td valign="top" class="name">Name:</td>
                             
-                            <td valign="top" class="value">${item.name}</td>
+                            <td valign="top" class="value">${item?.product?.name}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Description:</td>
                             
-                            <td valign="top" class="value">${item.description}</td>
+                            <td valign="top" class="value">${item?.product?.description}</td>
                             
                         </tr>
                     
@@ -49,16 +49,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Image URL:</td>
-                            
-                            <td valign="top" class="value">${item.imageURL}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Image Thumb URL:</td>
-                            
-                            <td valign="top" class="value">${item.imageThumbURL}</td>
+                            <td valign="top" class="name">Image:</td>
+
+                            <td valign="top" class="value"><img src="/grails-petstore/images/scaled/${item.imageURL}" alt=""/></td>
                             
                         </tr>
                     

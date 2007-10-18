@@ -19,37 +19,21 @@
                 <table>
                     <thead>
                         <tr>
-                        
-                   	        <g:sortableColumn property="id" title="Id" />
-                        
-                   	        <g:sortableColumn property="name" title="Name" />
-                        
-                   	        <g:sortableColumn property="description" title="Description" />
-                        
-                   	        <g:sortableColumn property="price" title="Price" />
-                        
-                   	        <g:sortableColumn property="imageURL" title="Image URL" />
-                        
-                   	        <g:sortableColumn property="imageThumbURL" title="Image Thumb URL" />
-                        
+                            <g:sortableColumn property="imageURL" title="Image URL" />
+                            <g:sortableColumn property="id" title="Id" />
+                            <g:sortableColumn property="name" title="Name" />
+                            <g:sortableColumn property="description" title="Description" />
+                            <g:sortableColumn property="price" title="Price" />
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${itemList}" status="i" var="item">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
+                            <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL?.encodeAsHTML())}" alt="" /></td>
                             <td><g:link action="show" id="${item.id}">${item.id?.encodeAsHTML()}</g:link></td>
-                        
-                            <td>${item.name?.encodeAsHTML()}</td>
-                        
-                            <td>${item.description?.encodeAsHTML()}</td>
-                        
-                            <td>${item.price?.encodeAsHTML()}</td>
-                        
-                            <td>${item.imageURL?.encodeAsHTML()}</td>
-                        
-                            <td>${item.imageThumbURL?.encodeAsHTML()}</td>
-                        
+                            <td>${item?.product?.name?.encodeAsHTML()}</td>
+                            <td>${item?.product?.description?.encodeAsHTML()}</td>
+                            <td>$ ${item.price?.encodeAsHTML()}</td>
                         </tr>
                     </g:each>
                     </tbody>
