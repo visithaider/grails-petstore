@@ -33,8 +33,4 @@ class ItemTests extends GroovyTestCase {
   */
     }
 
-    void testApa() {
-        assert "/tmp/1nharl242svhz.jpg" =~ "[jpg|gif|png]\$"
-    }
-
 }
