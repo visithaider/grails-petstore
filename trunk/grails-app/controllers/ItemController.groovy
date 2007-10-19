@@ -22,8 +22,6 @@ class ItemController {
     }
 
     def edit = {
-        println "Editing!"
-        
         setCaptcha()
         [item:Item.get(params.id)]
     }
@@ -72,6 +70,16 @@ class ItemController {
         } else {
             render(view:"edit", model:[item:item])
         }
+    }
+
+    def delete = {
+        Item item = Item.get(params.id)
+        if (item) {
+            item.delete()
+            imageStorageService.deleteImage(item.imageURL)
+        }
+        flash.message = "Item ${item.id} deleted."
+        redirect(action:list)
     }
 
 }
