@@ -13,22 +13,53 @@ class ItemController {
     def scaffold = Item
     def defaultAction = "create"
 
-    def create = {
+    def setCaptcha() {
         session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
+    }
+
+    def unsetCaptcha() {
+        session.removeAttribute(CAPTCHA_ATTR)
+    }
+
+    def edit = {
+        println "Editing!"
+        
+        setCaptcha()
+        [item:Item.get(params.id)]
+    }
+
+    def create = {
+        setCaptcha()
         render(view:"edit", model:[item:new Item()])
     }
 
     def save = {
-        if (params[CAPTCHA_ATTR] != session[CAPTCHA_ATTR]) {
-            // TODO: add error
-        }
-
         def item = new Item(address:new Address(), contactInfo:new SellerContactInfo(),product:new Product())
         item.properties = params
+
         // TODO: need Grails 1.0 to bind more than one level deep (which sucks)
+        ["city","state","street1","street2","zip"].each {
+            item.address.setProperty(it, params["address." + it])
+        }
+
+        ["name","description"].each {
+            item.product.setProperty(it, params["product." + it])
+        }
+        item.product.category = Category.get(params["product.category.id"])
+
+        ["firstName","lastName","email"].each {
+            item.contactInfo.setProperty(it, params["contactInfo." + it])
+        }
+
+        if (params[CAPTCHA_ATTR] != session[CAPTCHA_ATTR]) {
+            item.errors.reject("captcha.mismatch")
+            //assert !item.validate()
+        }
+        unsetCaptcha()
 
         def uploaded = request.getFile("file")
         if (!uploaded.empty) {
+            imageStorageService.deleteImage(item.imageURL)
             item.imageURL = imageStorageService.storeUploadedImage(uploaded)
         }
 

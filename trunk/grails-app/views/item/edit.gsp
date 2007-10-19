@@ -93,6 +93,12 @@
                         <td valign='top' class='value'><input type="text" id='email' name='contactInfo.email'
                                                               value="${item?.contactInfo?.email?.encodeAsHTML()}"/></td>
                     </tr>
+
+                    <tr>
+                        <td><input type="hidden" name="imageURL" value="${item?.imageURL}"/></td>
+                        <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL?.encodeAsHTML())}" alt=""/></td>
+                    </tr>
+
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='file'>File:</label></td>
                         <td valign='top' class='value'><input type="file" id='file' name='file'/></td>

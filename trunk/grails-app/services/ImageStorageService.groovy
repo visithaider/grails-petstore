@@ -6,6 +6,12 @@ class ImageStorageService {
     static String uploadedDir = "web-app/images/uploaded/"
     static String thumbnailDir = "web-app/images/scaled/"
 
+    void deleteImage(String path) {
+        [uploadedDir,thumbnailDir].each {
+            new File(it + path).delete()
+        }
+    }
+
     String storeUploadedImage(MultipartFile file) {
 
         // Deduce suffix from content type

@@ -19,8 +19,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <g:sortableColumn property="imageURL" title="Image URL" />
                             <g:sortableColumn property="id" title="Id" />
+                            <g:sortableColumn property="imageURL" title="Image URL" />
                             <g:sortableColumn property="name" title="Name" />
                             <g:sortableColumn property="description" title="Description" />
                             <g:sortableColumn property="price" title="Price" />
@@ -29,10 +29,10 @@
                     <tbody>
                     <g:each in="${itemList}" status="i" var="item">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                            <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL?.encodeAsHTML())}" alt="" /></td>
                             <td><g:link action="show" id="${item.id}">${item.id?.encodeAsHTML()}</g:link></td>
-                            <td>${item?.product?.name?.encodeAsHTML()}</td>
-                            <td>${item?.product?.description?.encodeAsHTML()}</td>
+                            <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL?.encodeAsHTML())}" alt="" /></td>
+                            <td>${item.product?.name?.encodeAsHTML()}</td>
+                            <td>${item.product?.description?.encodeAsHTML()}</td>
                             <td>$ ${item.price?.encodeAsHTML()}</td>
                         </tr>
                     </g:each>
