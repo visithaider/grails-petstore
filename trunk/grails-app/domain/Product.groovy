@@ -11,4 +11,10 @@ class Product {
         })
     }
 
+    static belongsTo = Item
+
+    String toString() {
+        "$name: $description [$category]"   
+    }
+
 }
