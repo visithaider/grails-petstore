@@ -17,7 +17,7 @@
     </g:if>
 
     <% item.errors.allErrors.each { %>
-        <p>${it.defaultMessage}</p>
+        <p>${it.code}: ${it.defaultMessage}</p>
     <% } %>
 
     <g:form action="save" method="post" enctype="multipart/form-data">

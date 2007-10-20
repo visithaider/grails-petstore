@@ -9,7 +9,6 @@ class Item {
 
     static hasMany = [tags : Tag]
 
-    // TODO: cascade validation to contactInfo and address
     static constraints = {
         price(min:0)
         imageURL(matches:".*[jpeg|jpg|gif|png]\$")
