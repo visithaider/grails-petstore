@@ -16,11 +16,9 @@
         <div class="message">${flash.message}</div>
     </g:if>
 
-    <g:hasErrors bean="${item}">
-    <div class="errors">
-        <g:renderErrors bean="${item}" as="list" />
-    </div>
-    </g:hasErrors>
+    <% item.errors.allErrors.each { %>
+        <p>${it.defaultMessage}</p>
+    <% } %>
 
     <g:form action="save" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${item?.id}"/>
@@ -46,6 +44,13 @@
                                                               value="${item?.product?.description?.encodeAsHTML()}"/>
                         </td>
                     </tr>
+
+                    <tr class='prop'>
+                        <td valign='top' class='name'><label for='tagNames'>Tags:</label></td>
+                        <td valign='top' class='value'><input type='text' id='tagNames' name='tagNames'
+                                                              value="${item?.tagsAsString()}"/></td>
+                    </tr>
+
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='price'>Price:</label></td>
                         <td valign='top' class='value'><input type='text' id='price' name='price'

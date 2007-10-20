@@ -70,13 +70,6 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Disabled:</td>
-                            
-                            <td valign="top" class="value">${item.disabled}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
                             <td valign="top" class="name">Number Of Votes:</td>
                             
                             <td valign="top" class="value">${item.numberOfVotes}</td>

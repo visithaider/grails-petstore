@@ -1,9 +1,15 @@
-class Tag {
+class Tag implements Comparable {
 
     String tag
-    Integer refCount = 0
 
     static hasMany = [items : Item]
     static belongsTo = Item
 
+    String toString() {
+        "Tag: " + tag
+    }
+
+    int compareTo(otherTag) {
+        return tag.compareTo(otherTag.tag)
+    }
 }

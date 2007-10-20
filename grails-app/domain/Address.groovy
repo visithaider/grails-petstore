@@ -7,10 +7,12 @@ class Address {
         street1(blank:false)
         city(blank:false)
         state(blank:false)
-        zip(blank:false)
+        zip(blank:false,matches:"[0-9]{5}")
         latitude(nullable:true)
         longitude(nullable:true)
     }
+
+    static belongsTo = Item
 
     String toString () {
         "$street1 $street2, $city, $state, $zip"

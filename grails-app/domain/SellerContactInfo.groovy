@@ -8,4 +8,9 @@ class SellerContactInfo {
         email(email:true)
     }
 
+    static belongsTo = Item
+
+    String toString() {
+        "$firstName $lastName <$email>"
+    }
 }
