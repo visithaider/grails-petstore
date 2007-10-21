@@ -28,8 +28,8 @@ class ScalableImageTest extends GroovyTestCase {
 
     void testResizeWithAffineTransform() {
         img.resizeWithAffineTransform(to, 0.5d)
-        // Original image is 640x480
-        assertImage(240, 320)
+        // Original image is 512x384
+        assertImage(192, 256)
     }
 
     void testResizeWithScaledInstance() {

@@ -11,7 +11,7 @@ class ItemController {
     static final String CAPTCHA_ATTR = "captchaString"
 
     def scaffold = Item
-    def defaultAction = "create"
+    def defaultAction = "list"
 
     def setCaptcha() {
         session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
@@ -40,6 +40,9 @@ class ItemController {
         }
         if (params.price) {
             item.price = params.price.toInteger()
+        }
+        if (params.imageURL) {
+            item.imageURL = params.imageURL
         }
 
         // TODO: need Grails 1.0 to bind more than one level deep

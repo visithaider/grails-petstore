@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <g:sortableColumn property="id" title="Id" />
-                            <g:sortableColumn property="imageURL" title="Image URL" />
+                            <g:sortableColumn property="imageURL" title="Image" />
                             <g:sortableColumn property="name" title="Name" />
                             <g:sortableColumn property="description" title="Description" />
                             <g:sortableColumn property="price" title="Price" />

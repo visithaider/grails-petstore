@@ -5,6 +5,7 @@ class Address {
 
     static constraints = {
         street1(blank:false)
+        street2(nullable:true)
         city(blank:false)
         state(blank:false)
         zip(blank:false,matches:"[0-9]{5}")

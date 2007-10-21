@@ -1,4 +1,4 @@
-class Item {
+class Item {              
 
     Product product
     Address address
@@ -16,12 +16,12 @@ class Item {
 
     /* Business Methods */
 
-    void addRating(int score){
+    void addRating(Integer score){
         totalScore += score
         numberOfVotes += 1
     }
 
-    int checkAverageRating(){
+    Double checkAverageRating(){
         totalScore > 0 ? totalScore/numberOfVotes : 0
     }
 

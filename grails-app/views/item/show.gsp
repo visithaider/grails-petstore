@@ -19,84 +19,53 @@
             <div class="dialog">
                 <table>
                     <tbody>
-                    
                         <tr class="prop">
-                            <td valign="top" class="name">Id:</td>
-                            
-                            <td valign="top" class="value">${item.id}</td>
-                            
+                            <td valign="top" class="name" colspan="2"><h1>Pet</h1></td>
                         </tr>
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Name:</td>
-                            
-                            <td valign="top" class="value">${item?.product?.name}</td>
-                            
+                            <td valign="top" class="value">${item.product?.name}</td>
                         </tr>
-                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Category:</td>
+                            <td valign="top" class="value">${item.product?.category?.name}</td>
+                        </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Description:</td>
-                            
-                            <td valign="top" class="value">${item?.product?.description}</td>
-                            
+                            <td valign="top" class="value">${item.product?.description}</td>
                         </tr>
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Price:</td>
-                            
                             <td valign="top" class="value">${item.price}</td>
-                            
                         </tr>
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Image:</td>
-
-                            <td valign="top" class="value"><img src="/grails-petstore/images/scaled/${item.imageURL}" alt=""/></td>
-                            
+                            <td valign="top" class="value"><img src="/grails-petstore/images/uploaded/${item.imageURL}" alt=""/></td>
                         </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Address:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="address" action="show" id="${item?.address?.id}">${item?.address}</g:link></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Contact Info:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="sellerContactInfo" action="show" id="${item?.contactInfo?.id}">${item?.contactInfo}</g:link></td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Number Of Votes:</td>
-                            
-                            <td valign="top" class="value">${item.numberOfVotes}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Product:</td>
-                            
-                            <td valign="top" class="value"><g:link controller="product" action="show" id="${item?.product?.id}">${item?.product}</g:link></td>
-                            
-                        </tr>
-                    
                         <tr class="prop">
                             <td valign="top" class="name">Tags:</td>
-                            
-                            <td valign="top" class="value">${item.tags}</td>
-                            
+                            <td valign="top" class="value">${item.tagsAsString()}</td>
                         </tr>
-                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Number Of Votes:</td>
+                            <td valign="top" class="value">${item.numberOfVotes}</td>
+                        </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Total Score:</td>
-                            
                             <td valign="top" class="value">${item.totalScore}</td>
-                            
                         </tr>
-                    
+
+                        <tr class="prop">
+                            <td valign="top" class="name" colspan="2"><h1>Seller</h1></td>
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Address:</td>
+                            <td valign="top" class="value">${item.address?.encodeAsHTML()}</td>
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Contact Info:</td>
+                            <td valign="top" class="value">${item?.contactInfo?.encodeAsHTML()}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
