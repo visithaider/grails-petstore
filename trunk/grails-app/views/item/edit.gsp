@@ -16,6 +16,8 @@
         <div class="message">${flash.message}</div>
     </g:if>
 
+    <!-- TODO: g:errors doesn't work more than one level deep in 0.6 -->
+
     <% item.errors.allErrors.each { %>
         <p>${it.code}: ${it.defaultMessage}</p>
     <% } %>

@@ -3,8 +3,6 @@ class AddressTests extends GroovyTestCase {
   public void testSave() {
       Address address = new Address()
 
-      assert !address.save()
-
       address.street1 = "Address 1"
       address.city = "City"
       address.state = "State"

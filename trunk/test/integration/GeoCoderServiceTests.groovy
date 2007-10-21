@@ -8,8 +8,6 @@ class GeoCoderServiceTests extends GroovyTestCase {
 
 		GeoPoint gp = result[0]
 
-		println gp.properties
-
 		assert gp.address == "1600 Pennsylvania Ave NW"
 	    assert gp.latitude == 38.89859
         assert gp.longitude == -77.036473
