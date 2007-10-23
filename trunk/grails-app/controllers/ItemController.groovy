@@ -85,7 +85,7 @@ class ItemController {
 
         item.validate()
         if (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR]) {
-            item.errors.reject("captchaMismatch")
+            //item.errors.reject("captchaMismatch")
         }
         if (!item.errors.hasErrors() && item.save()) {
             flash.message = "Saved item with id = " + item.id
