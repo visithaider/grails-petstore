@@ -3,6 +3,8 @@ class Product {
     Category category
     String name, description
 
+    static searchable = true
+
     static constraints = {
         name(blank:false)
         description(blank:false, validator: {

@@ -3,6 +3,8 @@ class Address {
     String street1, street2, city, state, zip
     Double latitude, longitude
 
+    static searchable = true
+
     static constraints = {
         street1(blank:false)
         street2(nullable:true)
