@@ -13,11 +13,11 @@ class ItemController {
     def scaffold = Item
     def defaultAction = "list"
 
-    def setCaptcha() {
+    def setCaptcha = {
         session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
     }
 
-    def unsetCaptcha() {
+    def unsetCaptcha = {
         session.removeAttribute(CAPTCHA_ATTR)
     }
 
@@ -79,9 +79,6 @@ class ItemController {
             imageStorageService.deleteImage(item.imageURL)
             item.imageURL = imageStorageService.storeUploadedImage(uploaded)
         }
-
-        // TODO: set latitude & longitude
-        //List gp = geoCoderService.geoCode(item.toString())
 
         item.validate()
         if (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR]) {

@@ -2,25 +2,26 @@ import org.springframework.web.multipart.MultipartFile
 
 class ImageStorageService {
 
-    List imageSuffixes = ["jpeg","jpg","png","gif"]
+    List allowedImageFormats = ["jpeg","jpg","png","gif"]
     static String uploadedDir = "web-app/images/uploaded/"
     static String thumbnailDir = "web-app/images/scaled/"
 
-    void deleteImage(String path) {
-        [uploadedDir,thumbnailDir].each {
+    boolean deleteImage(String path) {
+        [uploadedDir, thumbnailDir].every {
             new File(it + path).delete()
         }
     }
 
     String storeUploadedImage(MultipartFile file) {
+        assert file != null
 
         // Deduce suffix from content type
         String ct = file.contentType.minus("image/").toLowerCase()
         String suffix
-        if (ct in imageSuffixes) {
+        if (ct in allowedImageFormats) {
             suffix = "." + ct
         } else {
-            throw new IllegalArgumentException("Content type " + ct + " is not supported")
+            throw new IllegalArgumentException("Content type " + ct + " is not supported, only " + allowedImageFormats)
         }
 
         // Store under new, random name
@@ -28,7 +29,8 @@ class ImageStorageService {
 
         // Store the uploaded image
         String uploadedPath = uploadedDir + newName
-        file.transferTo(new File(uploadedPath))
+        File uploadedFile = new File(uploadedPath)
+        file.transferTo(uploadedFile)
 
         // Scale and store thumbnail
         String thumbnailPath = thumbnailDir + newName
@@ -36,9 +38,8 @@ class ImageStorageService {
         scaled.keepAspect()
         scaled.resizeWithGraphics(thumbnailPath)
 
-        File f = new File(uploadedPath)
-        println "Stored images at " + f.absolutePath
-        assert f.exists() 
+        assert uploadedFile.exists()
+        assert scaled.file.exists()
 
         return newName
     }

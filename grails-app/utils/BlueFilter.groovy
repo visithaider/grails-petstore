@@ -6,7 +6,7 @@ class BlueFilter extends RGBImageFilter {
         canFilterIndexColorModel = true
     }
 
-    @Override
+    @Override   
     int filterRGB(int x, int y, int rgb) {
         return Integer.valueOf(rgb | 0x000000FF)
     }
