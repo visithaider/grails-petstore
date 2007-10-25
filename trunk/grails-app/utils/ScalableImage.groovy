@@ -28,6 +28,7 @@ class ScalableImage {
     int thumbWidth = 133, thumbHeight = 100
     String format = "jpg"
     BufferedImage image
+    File file
 
     ScalableImage(String imagePath) {
         image = ImageIO.read(new File(imagePath))
@@ -57,7 +58,8 @@ class ScalableImage {
         bThumb.graphics.drawImage(
             image.getScaledInstance(thumbWidth, thumbHeight, Image.SCALE_AREA_AVERAGING),
             0, 0, thumbWidth, thumbHeight, null)
-        ImageIO.write(bThumb, format, new File(to))
+        file = new File(to)
+        ImageIO.write(bThumb, format, file)
     }
 
     void resizeWithGraphics(String to) {
@@ -75,7 +77,8 @@ class ScalableImage {
         g2d.setRenderingHint(KEY_TEXT_ANTIALIASING, VALUE_TEXT_ANTIALIAS_ON)
         */
         g2d.drawImage(image, 0, 0, thumbWidth, thumbHeight, null)
-        ImageIO.write(th, format, new File(to))
+        file = new File(to)
+        ImageIO.write(th, format, file)
     }
 
     void resizeWithAffineTransform(String to, double power) {
@@ -87,7 +90,8 @@ class ScalableImage {
             AffineTransform.getScaleInstance(powerW, powerH),
             AffineTransformOp.TYPE_BILINEAR);
         op.filter(image, th)
-        ImageIO.write(th, format, new File(to))
+        file = new File(to)
+        ImageIO.write(th, format, file)
     }
 
 }

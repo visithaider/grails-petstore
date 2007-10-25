@@ -6,7 +6,7 @@ class GeoCoderServiceTests extends GroovyTestCase {
 		def result = gs.geoCode("1600 Pennsylvania Avenue, Washington D.C.")
 		assert result.size() == 1
 
-		GeoPoint gp = result[0]
+		GeoPoint gp = result.getAt(0)
 
 		assert gp.address == "1600 Pennsylvania Ave NW"
 	    assert gp.latitude == 38.89859
@@ -19,13 +19,4 @@ class GeoCoderServiceTests extends GroovyTestCase {
         assert gs.geoCode(null).size() == 0
 	}
 
-	void testSetApplicationId() {
-        try {
-            gs.applicationId = null
-            fail "Should not accept null id"
-        } catch (Throwable t) { /* Expected */ }
-
-        gs.applicationId = "value"
-        assert gs.applicationId == "value"
-    }
 }

@@ -5,11 +5,6 @@
     <title>Edit Item</title>
 </head>
 <body>
-<div class="nav">
-    <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-    <span class="menuButton"><g:link class="list" action="list">Item List</g:link></span>
-    <span class="menuButton"><g:link class="create" action="create">New Item</g:link></span>
-</div>
 <div class="body">
     <h1>Edit Item</h1>
     <g:if test="${flash.message}">
@@ -32,6 +27,7 @@
                         <td valign='top' class='name'><label for='product.category'>Category:</label></td>
                         <td valign='top' class='value'><g:select optionKey="id" from="${Category.list()}"
                                                                  name='product.category.id'
+                                                                 optionValue="name"
                                                                  value="${item?.product?.category?.id}"></g:select></td>
                     </tr>
                     <tr class='prop'>
@@ -101,10 +97,12 @@
                                                               value="${item?.contactInfo?.email?.encodeAsHTML()}"/></td>
                     </tr>
 
+                    <g:if test="${item?.imageURL}">
                     <tr>
-                        <td><input type="hidden" name="imageURL" value="${item?.imageURL}"/></td>
-                        <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL?.encodeAsHTML())}" alt=""/></td>
+                    <td><input type="hidden" name="imageURL" value="${item.imageURL}"/></td>
+                        <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL.encodeAsHTML())}" alt="item.imageURL.encodeAsHTML()"/></td>
                     </tr>
+                    </g:if>
 
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='file'>File:</label></td>

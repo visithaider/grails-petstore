@@ -6,10 +6,6 @@
         <title>Item List</title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="create" action="create">New Item</g:link></span>
-        </div>
         <div class="body">
             <h1>Item List</h1>
             <g:if test="${flash.message}">
@@ -21,8 +17,9 @@
                         <tr>
                             <g:sortableColumn property="id" title="Id" />
                             <g:sortableColumn property="imageURL" title="Image" />
-                            <g:sortableColumn property="name" title="Name" />
-                            <g:sortableColumn property="description" title="Description" />
+                            <g:sortableColumn property="product.category.name" title="Category" />
+                            <g:sortableColumn property="product.name" title="Name" />
+                            <g:sortableColumn property="product.description" title="Description" />
                             <g:sortableColumn property="price" title="Price" />
                         </tr>
                     </thead>
@@ -31,6 +28,7 @@
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                             <td><g:link action="show" id="${item.id}">${item.id?.encodeAsHTML()}</g:link></td>
                             <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL?.encodeAsHTML())}" alt="" /></td>
+                            <td>${item.product?.category?.name?.encodeAsHTML()}</td>
                             <td>${item.product?.name?.encodeAsHTML()}</td>
                             <td>${item.product?.description?.encodeAsHTML()}</td>
                             <td>$ ${item.price?.encodeAsHTML()}</td>

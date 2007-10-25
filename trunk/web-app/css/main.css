@@ -67,7 +67,7 @@ input:focus, select:focus, textarea:focus {
     border: 1px solid #ccc;
     border-style: solid none solid none;	
     margin-top: 5px;
-    padding: 7px 12px;
+    padding: 10px 12px;
 }
 
 .menuButton {
@@ -263,4 +263,11 @@ th.desc a {
 .buttons input.save {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;
+}
+
+
+/*Search form */
+#searchableForm {
+    float: right;
+    margin: 10px 15px;
 }

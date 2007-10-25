@@ -1,29 +1,17 @@
-import org.apache.log4j.Logger
-
 class GeoCoderService {
 	
 	boolean transactional = false
     String proxyHost
     int proxyPort = 0
-    boolean proxySet = false
+    boolean proxySet = true
 
-    static final String applicationId = "org.grails.petstore.geocoder"
-    static final String SERVICE_URL = "http://api.local.yahoo.com/MapsService/V1/geocode"
-    static final Logger logger = Logger.getLogger(GeoCoderService)
+    private static final String APPLICATION_ID = "org.grails.petstore.geocoder"
+    private static final String SERVICE_URL = "http://api.local.yahoo.com/MapsService/V1/geocode"
 
-    void setApplicationId(String applicationId) {
-        assert applicationId != null
-        this.applicationId = applicationId
-    }
-
-    void setProxyHost(String proxyHost) {
-        this.proxyHost = proxyHost
-        this.proxySet = false
-    }
-
-    void setProxyPort(int proxyPort) {
-        this.proxyPort = proxyPort
-        this.proxySet = false
+    void setProxy(String host, int port) {
+        this.proxyHost = host
+        this.proxyPort = port
+        proxySet = false
     }
 
     List<GeoPoint> geoCode(String location) {
@@ -37,7 +25,7 @@ class GeoCoderService {
         }
 
         location = URLEncoder.encode(location, "ISO-8859-1")
-        String url = SERVICE_URL + "?appid=" + applicationId + "&location=" + location
+        String url = SERVICE_URL + "?appid=" + APPLICATION_ID + "&location=" + location
 
         def doc = new XmlSlurper().parse(new URL(url).openStream())
         assert doc.name() == "ResultSet"
@@ -59,13 +47,14 @@ class GeoCoderService {
 
     private synchronized void setProxyConfiguration() {
         if ((proxyHost == null) || (proxyPort == 0)) {
+            log.warn "Proxy configuration $proxyHost:$proxyPort is not valid"
             return
         }
         try {
             System.setProperty("http.proxyHost", proxyHost)
             System.setProperty("http.proxyPort", "" + proxyPort)
         } catch (SecurityException e) {
-            logger.warn("geoCoder.setProxy", e)
+            log.warn("geoCoder.setProxy", e)
         }
     }
 
