@@ -3,7 +3,9 @@ class Product {
     Category category
     String name, description
 
-    static searchable = true
+    static searchable = {
+        category(component:true)
+    }
 
     static constraints = {
         name(blank:false)
@@ -13,7 +15,7 @@ class Product {
         })
     }
 
-    static belongsTo = Item
+    //static belongsTo = Item
 
     String toString() {
         "$name: $description [$category]"   

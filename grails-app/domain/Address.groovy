@@ -12,7 +12,7 @@ class Address {
         zip(blank:false,matches:"[0-9]{5}")
     }
 
-    static belongsTo = Item
+    //static belongsTo = Item
 
     String toString () {
         [street1, street2, city, state, zip].findAll { it }.join(", ").trim()

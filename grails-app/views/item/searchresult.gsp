@@ -50,7 +50,7 @@
     </script>
   </head>
   <body onload="focusQueryInput();">
-  <div id="main">
+  <div id="main" class="body">
     <g:set var="haveQuery" value="${params.q?.trim()}" />
     <g:set var="haveResults" value="${searchResult?.results}" />
     <div class="title">

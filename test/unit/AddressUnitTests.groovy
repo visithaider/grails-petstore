@@ -1,4 +1,4 @@
-class AddressTests extends GroovyTestCase {
+class AddressUnitTests extends GroovyTestCase {
 
     void testToString() {
         Address address = new Address()

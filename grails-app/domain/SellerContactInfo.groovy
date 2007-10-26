@@ -10,7 +10,7 @@ class SellerContactInfo {
         email(email:true)
     }
 
-    static belongsTo = Item
+    //static belongsTo = Item
 
     String toString() {
         "$firstName $lastName <$email>"

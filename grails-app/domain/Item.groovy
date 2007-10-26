@@ -7,10 +7,9 @@ class Item {
     String imageURL
     Integer price, totalScore = 0, numberOfVotes = 0
 
+    static embedded = ["product", "address", "contactInfo"]
+
     static searchable = {
-        product(component:true)
-        address(component:true)
-        contactInfo(component:true)
         tags(component:true)
     }
     

@@ -104,4 +104,15 @@ class ItemController {
         redirect(action:list)
     }
 
+    def voteFor = {
+        if (params.id && params.rating) {
+            def item = Item.get(params.id)
+            item.addRating(Integer.valueOf(params.rating))
+            item.save()
+            flash.message = "You rated ${item.product.name} as ${params.rating}"
+            redirect(action:show,id:params.id)
+        } else {
+            redirect(action:list)
+        }
+    }
 }
