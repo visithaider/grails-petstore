@@ -11,13 +11,11 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <img src="/grails-petstore/images/uploaded/${item.imageURL}" alt="" style="float: right; margin: 10px"/>
             <div class="dialog">
                 <table>
-                    <tbody>
-                        <tr class="prop">
-                            <td valign="top" class="name" colspan="2"><h1>Pet</h1></td>
-                        </tr>
-                        <tr class="prop">
+                    <tbody>                                         
+                        <tr class="prop">                                                                
                             <td valign="top" class="name">Name:</td>
                             <td valign="top" class="value">${item.product?.name}</td>
                         </tr>
@@ -31,23 +29,33 @@
                         </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Price:</td>
-                            <td valign="top" class="value">${item.price}</td>
-                        </tr>
-                        <tr class="prop">
-                            <td valign="top" class="name">Image:</td>
-                            <td valign="top" class="value"><img src="/grails-petstore/images/uploaded/${item.imageURL}" alt=""/></td>
+                            <td valign="top" class="value">$ ${item.price}</td>
                         </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Tags:</td>
-                            <td valign="top" class="value">${item.tagsAsString()}</td>
+                            <td valign="top" class="value">
+                                <g:each in="${item.tags}" var="t">
+                                    <g:link controller="tag" action="show" id="${t.id}">${t.tag}</g:link>&nbsp;
+                                </g:each>
+                            </td>
+                        </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">Vote for me:</td>
+                            <td valign="top" class="value">
+                                <g:each in="[1,2,3,4,5]" var="rating">
+                                    <g:link action="voteFor" id="${item.id}" params="[rating:rating]"><button>${rating}</button></g:link>
+                                </g:each>
+                            </td>
                         </tr>
                         <tr class="prop">
                             <td valign="top" class="name">Number Of Votes:</td>
-                            <td valign="top" class="value">${item.numberOfVotes}</td>
+                            <td valign="top" class="value">
+                                ${item.numberOfVotes}
+                            </td>
                         </tr>
                         <tr class="prop">
-                            <td valign="top" class="name">Total Score:</td>
-                            <td valign="top" class="value">${item.totalScore}</td>
+                            <td valign="top" class="name">Score:</td>
+                            <td valign="top" class="value">Total: ${item.totalScore}, Average: ${item.checkAverageRating()}</td>
                         </tr>
 
                         <tr class="prop">
@@ -63,6 +71,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <div style="clear: both"/>
             </div>
             <div class="buttons">
                 <g:form controller="item">
