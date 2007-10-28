@@ -1,7 +1,10 @@
 class Product {
 
     Category category
+    Item item
     String name, description
+
+    static belongsTo = Item
 
     static searchable = {
         category(component:true)
@@ -14,8 +17,6 @@ class Product {
             it.indexOf("<link") < 0
         })
     }
-
-    //static belongsTo = Item
 
     String toString() {
         "$name: $description [$category]"   

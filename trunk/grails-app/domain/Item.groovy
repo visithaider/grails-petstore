@@ -10,6 +10,7 @@ class Item {
     static embedded = ["product", "address", "contactInfo"]
 
     static searchable = {
+        except = ["imageURL", "version"]
         tags(component:true)
     }
     

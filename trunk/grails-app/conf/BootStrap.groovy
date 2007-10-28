@@ -7,7 +7,7 @@ class BootStrap {
             "Hairy Cat","Groomed Cat", "Medium Dogs", "Small Dogs", "Parrot",
             "Exotic","Small Fish", "Large Fish", "Slithering Reptiles", "Crawling Reptiles"]
         categoryNames.each {
-            new Category(name:it,description:it,imageURL:"").save()
+            new Category(name:it,description:"$it fall into this category",imageURL:"bullet.gif").save()
         }
 
         // Create image upload directories

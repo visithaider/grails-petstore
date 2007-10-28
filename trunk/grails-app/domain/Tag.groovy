@@ -8,7 +8,7 @@ class Tag implements Comparable {
     static belongsTo = Item
 
     String toString() {
-        "Tag: " + tag
+        tag
     }
 
     int compareTo(otherTag) {
