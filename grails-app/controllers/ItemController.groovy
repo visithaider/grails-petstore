@@ -56,7 +56,10 @@ class ItemController {
         ["name","description"].each {
             product.setProperty(it, params["product." + it])
         }
-        product.category = Category.get(params["product.category.id"])
+        def category = Category.get(params["product.category.id"])
+        category.addToProducts(product)
+        product.item = item
+
         item.product = product
 
         SellerContactInfo contactInfo = new SellerContactInfo()
@@ -81,8 +84,8 @@ class ItemController {
         }
 
         item.validate()
-        if (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR]) {
-            //item.errors.reject("captchaMismatch")
+        if (session[CAPTCHA_ATTR] && (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])) {
+            item.errors.reject("captchaMismatch")
         }
         if (!item.errors.hasErrors() && item.save()) {
             flash.message = "Saved item with id = " + item.id
@@ -107,7 +110,7 @@ class ItemController {
     def voteFor = {
         if (params.id && params.rating) {
             def item = Item.get(params.id)
-            item.addRating(Integer.valueOf(params.rating))
+            item.addRating(params.rating.toInteger())
             item.save()
             flash.message = "You rated ${item.product.name} as ${params.rating}"
             redirect(action:show,id:params.id)
