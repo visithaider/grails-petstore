@@ -3,7 +3,8 @@ import java.awt.image.RGBImageFilter;
 class BlueFilter extends RGBImageFilter {
 
     BlueFilter() {
-        canFilterIndexColorModel = true
+        // TODO: this fails sometimes, complaining that it can't cast Boolean to RGBImageFilter
+        //canFilterIndexColorModel = true
     }
 
     @Override   

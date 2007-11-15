@@ -13,7 +13,7 @@ import java.awt.image.ImageProducer
 
 class CaptchaService {
 
-    boolean transactional = false
+    static transactional = false
 
     Random rd = new Random()
     static final int WIDTH = 200

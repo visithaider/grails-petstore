@@ -6,6 +6,8 @@ class ImageStorageService {
     static String uploadedDir = "web-app/images/uploaded/"
     static String thumbnailDir = "web-app/images/scaled/"
 
+    static transactional = false
+
     boolean deleteImage(String path) {
         [uploadedDir, thumbnailDir].every {
             new File(it + path).delete()

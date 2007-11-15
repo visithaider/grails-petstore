@@ -18,7 +18,7 @@ class Item {
 
     static constraints = {
         price(min:0)
-        imageURL(matches:".*[jpeg|jpg|gif|png]\$")
+        imageURL(nullable:true, matches:".*[jpeg|jpg|gif|png]\$")
     }
 
     /* Business Methods */
