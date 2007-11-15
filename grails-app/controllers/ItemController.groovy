@@ -21,6 +21,24 @@ class ItemController {
         session.removeAttribute(CAPTCHA_ATTR)
     }
 
+    /**
+     * RSS feed.
+     */
+    def feed = {
+        def path = servletContext.contextPath + controllerUri + "/"
+        render(feedType:"rss", feedVersion:"2.0") {
+            title = "Latest Pets"
+            link = path + actionName
+            description = "The ten latest pets from the Grails Pet Store"
+            Item.list().each { item ->
+                entry(item.product.name) {
+                    link = path + "show/" + item.id
+                    // TODO: content
+                }
+            }
+        }
+    }
+
     def edit = {
         setCaptcha()
         [item:Item.get(params.id)]
@@ -32,12 +50,13 @@ class ItemController {
     }
 
     def save = {
-        Item item
+        def item
         if (params.id) {
             item = Item.get(params.id)
         } else {
             item = new Item()
         }
+
         if (params.price) {
             item.price = params.price.toInteger()
         }
@@ -79,7 +98,9 @@ class ItemController {
 
         def uploaded = request.getFile("file")
         if (!uploaded.empty) {
-            imageStorageService.deleteImage(item.imageURL)
+            if (item.imageURL) {
+                imageStorageService.deleteImage(item.imageURL)
+            }
             item.imageURL = imageStorageService.storeUploadedImage(uploaded)
         }
 
@@ -87,6 +108,7 @@ class ItemController {
         if (session[CAPTCHA_ATTR] && (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])) {
             item.errors.reject("captchaMismatch")
         }
+
         if (!item.errors.hasErrors() && item.save()) {
             flash.message = "Saved item with id = " + item.id
             unsetCaptcha()

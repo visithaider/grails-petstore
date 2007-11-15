@@ -1,6 +1,7 @@
 class GeoCoderService {
 	
-	boolean transactional = false
+	static transactional = false
+	
     String proxyHost
     int proxyPort = 0
     boolean proxySet = true

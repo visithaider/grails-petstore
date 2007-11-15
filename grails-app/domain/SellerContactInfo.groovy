@@ -7,7 +7,7 @@ class SellerContactInfo {
     static constraints = {
         firstName(blank:false)
         lastName(blank:false)
-        email(email:true)
+        email(blank:false,email:true)
     }
 
     String toString() {
