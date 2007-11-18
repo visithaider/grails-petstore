@@ -4,17 +4,19 @@ class Product {
     Item item
     String name, description
 
-    static belongsTo = Item
+    static belongsTo = [Item, Category]
 
+/*
     static searchable = {
         category(component:true)
     }
+*/
 
     static constraints = {
         name(blank:false)
         description(blank:false, validator: {
-            it.indexOf("<script") < 0 &&
-            it.indexOf("<link") < 0
+            it?.indexOf("<script") < 0 &&
+            it?.indexOf("<link") < 0
         })
     }
 

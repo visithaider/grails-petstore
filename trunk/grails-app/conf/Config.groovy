@@ -14,9 +14,9 @@ log4j {
         	codehaus.groovy.grails."web.mapping"="info,stdout" // URL mapping
             codehaus.groovy.grails.commons="info,stdout" // core / classloading
             codehaus.groovy.grails.plugins="info,stdout" // plugins
-            codehaus.groovy.grails.orm.hibernate="info,stdout" // hibernate integration
+            codehaus.groovy.grails.orm.hibernate="debug,stdout" // hibernate integration
             springframework="off,stdout"
-            hibernate="off,stdout"
+            hibernate.SQL="on,stdout"
         }
     }
 	additivity.'default' = false
