@@ -7,12 +7,14 @@ class Item {
     String imageURL
     Integer price, totalScore = 0, numberOfVotes = 0
 
-    static embedded = ["product", "address", "contactInfo"]
+    //static embedded = ["product", "address", "contactInfo"]
 
+    /*
     static searchable = {
         except = ["imageURL", "version"]
         tags(component:true)
     }
+    */
     
     static hasMany = [tags : Tag]
 
@@ -33,11 +35,7 @@ class Item {
     }
 
     String tagsAsString() {
-        String s = ""
-        tags.each { t ->
-            s += "${t.tag} "
-        }
-        s.trim();
+        tags.join(" ")
     }
 
     Boolean containsTag(String sxTag) {

@@ -1,7 +1,14 @@
 class TagController {
 
-    def scaffold = Tag
     def defaultAction = "list"
+
+    def list = {
+        [tagList:Tag.listOrderByTag()]
+    }
+
+    def show = {
+        [tag:Tag.get(params.id)]
+    }
 
     def showByName = {
         def tag = Tag.findByTag(params.id)

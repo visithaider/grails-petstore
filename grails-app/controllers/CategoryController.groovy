@@ -1,4 +1,12 @@
             
 class CategoryController {
-    def scaffold = Category
+
+    def list = {
+        [categoryList:Category.listOrderByName()]
+    }
+
+    def show = {
+        [category:Category.get(params.id)]
+    }
+
 }
