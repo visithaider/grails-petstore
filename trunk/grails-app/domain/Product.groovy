@@ -1,16 +1,12 @@
 class Product {
 
-    Category category
-    Item item
     String name, description
 
-    static belongsTo = [Item, Category]
+    static belongsTo = [item:Item, category:Category]
 
-/*
     static searchable = {
         category(component:true)
     }
-*/
 
     static constraints = {
         name(blank:false)

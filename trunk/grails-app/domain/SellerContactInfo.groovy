@@ -2,7 +2,9 @@ class SellerContactInfo {
 
     String firstName, lastName, email
 
-    //static searchable = true
+    static belongsTo = [item:Item]
+
+    static searchable = true
 
     static constraints = {
         firstName(blank:false)
