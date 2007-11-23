@@ -2,7 +2,7 @@ class Category {
 
     String name, description, imageURL
 
-    //static searchable = true
+    static searchable = true
 
     static constraints = {
         name(blank:false)
