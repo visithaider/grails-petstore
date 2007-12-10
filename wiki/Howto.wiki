@@ -1,0 +1,15 @@
+#summary How to get going
+
+= Introduction =
+
+  * Get Groovy 1.5
+  * Get Grails 1.0
+  * Get Grails Feed pluigin:
+
+    grails install-plugin feed
+
+  * Get Searchable plugin:
+
+    grails install-plugin searchable
+
+  * Go!
