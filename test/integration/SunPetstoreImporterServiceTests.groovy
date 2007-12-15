@@ -4,4 +4,10 @@ class SunPetstoreImporterServiceTests extends GroovyTestCase {
         SunPetstoreImporterService service = new SunPetstoreImporterService()
         service.importProductsAndCategories()
     }
+
+    void testImportItems() {
+        SunPetstoreImporterService service = new SunPetstoreImporterService()
+        service.importItems()
+    }
+
 }

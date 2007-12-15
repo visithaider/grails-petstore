@@ -19,7 +19,7 @@ class SunPetstoreImporterService {
                     description:c.description.text(),
                     imageUrl:c.imageurl.text()
                 )
-                println "Stored category $cName"
+                log.debug "Stored category $cName"
             }
 
             c.products.product.each { p ->
@@ -33,13 +33,16 @@ class SunPetstoreImporterService {
                     )
                 }
                 category.addToProducts(product)
-                println "Added product $pName to category $cName"
+                log.debug "Added product $pName to category $cName"
             }
             assert category.save()
         }
 
-        println "Imported categories: " + Category.count()
-        println "Imported products: " + Product.count()
+        log.info "Imported ${Category.count()} categories and ${Product.count()} products"
+    }
+
+    def importItems() {
+        def petstore = new XmlSlurper().parse(exportFileName)
 
         println "About to import ${petstore.items.item.size()} items"
 
@@ -81,11 +84,12 @@ class SunPetstoreImporterService {
             )
             request.addFile(mpFile)
 
-            println "Parameters: " + request.parameterMap
-            println "Files: " + request.fileMap
+            //println "Parameters: " + request.parameterMap
+            //println "Files: " + request.fileMap
 
-            // TODO: dispatch request to controller  
+            // TODO: dispatch request to controller
         }
+
     }
 
 }
