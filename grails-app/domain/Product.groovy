@@ -1,6 +1,6 @@
 class Product {
 
-    String name, description
+    String name, description, imageUrl
 
     static belongsTo = [item:Item, category:Category]
 
@@ -9,11 +9,13 @@ class Product {
     }
 
     static constraints = {
-        name(blank:false)
+        name(blank:false, unique:true)
         description(blank:false, validator: {
             it?.indexOf("<script") < 0 &&
             it?.indexOf("<link") < 0
         })
+        imageUrl(blank:false)
+        item(nullable:true)
     }
 
     String toString() {

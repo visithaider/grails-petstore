@@ -23,7 +23,7 @@
                     <tbody>
                     <g:each in="${categoryList}" status="i" var="category">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                            <td><img src="${category.imageURL?.encodeAsHTML()}" alt=""/></td>
+                            <td><img src="${category.setImageUrl?.encodeAsHTML()}" alt=""/></td>
                             <td><g:link action="show" id="${category.id}">${category.name?.encodeAsHTML()}</g:link></td>
                             <td>${category.description?.encodeAsHTML()}</td>
                         </tr>

@@ -39,7 +39,7 @@
                         <tr class="prop">
                             <td valign="top" class="name">Image URL:</td>
                             
-                            <td valign="top" class="value">${category.imageURL}</td>
+                            <td valign="top" class="value">${category.setImageUrl}</td>
                             
                         </tr>
                     

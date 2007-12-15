@@ -1,13 +1,13 @@
 class Category {
 
-    String name, description, imageURL
+    String name, description, imageUrl
 
     static searchable = true
 
     static constraints = {
-        name(blank:false)
+        name(blank:false, unique:true)
         description(nullable:true)
-        imageURL(nullable:true)
+        imageUrl(blank:false)
     }
 
     static hasMany = [products:Product]
