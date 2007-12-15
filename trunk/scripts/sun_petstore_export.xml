@@ -1,0 +1,2475 @@
+<petstore>
+  <categories>
+    <category>
+      <name>Cats</name>
+      <description>Loving and finicky friends</description>
+      <imageurl>images/cats_icon.gif</imageurl>
+      <products>
+        <product>
+          <name>Hairy Cat</name>
+          <description>Great for reducing mouse populations</description>
+          <imageurl>images/cat1.gif</imageurl>
+        </product>
+        <product>
+          <name>Groomed Cat</name>
+          <description>Friendly house cat keeps you away from the vacuum</description>
+          <imageurl>images/cat2.gif</imageurl>
+        </product>
+      </products>
+    </category>
+    <category>
+      <name>Dogs</name>
+      <description>Loving and furry friends</description>
+      <imageurl>images/dogs_icon.gif</imageurl>
+      <products>
+        <product>
+          <name>Medium Dogs</name>
+          <description>Friendly dog from England</description>
+          <imageurl>images/dog1.gif</imageurl>
+        </product>
+        <product>
+          <name>Small Dogs</name>
+          <description>Great companion dog to sit on your lap</description>
+          <imageurl>images/dog2.gif</imageurl>
+        </product>
+      </products>
+    </category>
+    <category>
+      <name>Birds</name>
+      <description>Loving and feathery friends</description>
+      <imageurl>images/birds_icon.gif</imageurl>
+      <products>
+        <product>
+          <name>Parrot</name>
+          <description>Friend for a lifetime.</description>
+          <imageurl>images/bird1.gif</imageurl>
+        </product>
+        <product>
+          <name>Exotic</name>
+          <description>Impress your friends with your colorful friend.</description>
+          <imageurl>images/bird2.gif</imageurl>
+        </product>
+      </products>
+    </category>
+    <category>
+      <name>Reptiles</name>
+      <description>Loving and scaly friends</description>
+      <imageurl>images/reptiles_icon.gif</imageurl>
+      <products>
+        <product>
+          <name>Slithering Reptiles</name>
+          <description>Slides across the floor.</description>
+          <imageurl>images/lizard1.gif</imageurl>
+        </product>
+        <product>
+          <name>Crawling Reptiles</name>
+          <description>Uses legs to move fast.</description>
+          <imageurl>images/lizard2.gif</imageurl>
+        </product>
+      </products>
+    </category>
+    <category>
+      <name>Fish</name>
+      <description>Loving aquatic friends</description>
+      <imageurl>images/fish_icon.gif</imageurl>
+      <products>
+        <product>
+          <name>Small Fish</name>
+          <description>Fits nicely in a small aquarium.</description>
+          <imageurl>images/fish2.gif</imageurl>
+        </product>
+        <product>
+          <name>Large Fish</name>
+          <description>Need a large aquarium.</description>
+          <imageurl>images/fish3.gif</imageurl>
+        </product>
+      </products>
+    </category>
+  </categories>
+  <items>
+    <item>
+      <name>Friendly Cat</name>
+      <description>This black and white colored cat is super friendly. Anyone passing by your front yard will find him puring at their feet and trying to make a new friend. His name is Anthony, but I call him Ant as a nickname since he loves to eat ants and other insects.</description>
+      <image>images/anthony.jpg</image>
+      <price>307.10</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstName>Sean</firstName>
+        <lastName>Brydon</lastName>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>W el Camino Real &amp; Castro St</street1>
+        <street2></street2>
+        <city>Mountain View</city>
+        <zip>94040</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>awesome</tag>
+        <tag>interesting</tag>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Fluffy Cat</name>
+      <description>A great pet for a hair stylist! Have fun combing Bailey's silver mane. Maybe trim his whiskers? He is very patient and loves to be pampered.</description>
+      <image>images/bailey.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Shell Blvd &amp; Beach Park Blvd</street1>
+        <street2></street2>
+        <city>Foster City</city>
+        <zip>94404</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>awesome</tag>
+        <tag>interesting</tag>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Sneaky Cat</name>
+      <description>My cat is so sneaky. He is so curious that he just has to poke his nose into everything going on in the house. Everytime I turn around, BAM, he is in the room peaking at what I am doing. Nothing escapes his keen eye. He should be a spy in the CIA!</description>
+      <image>images/bob.jpg</image>
+      <price>307.20</price>
+      <score>15</score>
+      <votes>7</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>awesome</tag>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Lazy Cat</name>
+      <description>A great pet to lounge on the sofa with. If you want a friend to watch TV with, this is the cat for you. Plus, she wont even ask for the remote! Really, could you ask for a better friend to lounge with?</description>
+      <image>images/chantelle.jpg</image>
+      <price>307.30</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>S 1st St &amp; W Santa Clara St</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95113</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>awesome</tag>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Old Cat</name>
+      <description>A great old pet retired from duty in the circus. This fully-trained tiger is looking for a place to retire. Loves to roam free and loves to eat other animals.</description>
+      <image>images/charlie.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>1st St &amp; Market St </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94105</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>awesome</tag>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Young Female cat</name>
+      <description>A great young pet to chase around. Loves to play with a ball of string. Bring some instant energy into your home.</description>
+      <image>images/elkie.jpg</image>
+      <price>307.40</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Paseo Padre Pky &amp; Fremont Blvd</street1>
+        <street2></street2>
+        <city>Fremont</city>
+        <zip>94555</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Playful Female Cat</name>
+      <description>A needy pet. This cat refuses to grow up. Do you like playful spirits? I need lots of attention. Please do not leave me alone, not even for a minute.</description>
+      <image>images/faith.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>W el Camino Real &amp; S Mary Ave</street1>
+        <street2></street2>
+        <city>Sunnyvale</city>
+        <zip>94087</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>cool</tag>
+      </tags>
+    </item>
+    <item>
+      <name>White Fluffy Cat</name>
+      <description>This fluffy white cat looks like a snowball. Plus, she likes playing outside in the snow and it looks really cool to see this snowball cat run around on the ski slopes. I hope you have white carpet as this cat sheds lots of hair.</description>
+      <image>images/gaetano.jpg</image>
+      <price>307.50</price>
+      <score>15</score>
+      <votes>15</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Bay Street and Columbus Ave </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94133</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>cool</tag>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Tiger Stripe Cat</name>
+      <description>This little tiger thinks it has big teeth. A great wild pet for an adventurous person. May eat your other pets so be careful- just kidding. This little tiger is affectionate.</description>
+      <image>images/harmony.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>El Camino Real &amp; Scott Blvd</street1>
+        <street2></street2>
+        <city>Santa Clara</city>
+        <zip>95050</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>cool</tag>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Alley Cat</name>
+      <description>Meow Meow in the back alley cat fights! This cat keeps the racoons away, but still has class.</description>
+      <image>images/katzen.jpg</image>
+      <price>307.60</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>W el Camino Real &amp; Hollenbeck Ave</street1>
+        <street2></street2>
+        <city>Sunnyvale</city>
+        <zip>94087</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>cool</tag>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Speedy Cat</name>
+      <description>Fastest and coolest cat in town. If you always wanted to own a cheetah, this cat is even faster and better looking. No dog could ever catch this bolt of lightening.</description>
+      <image>images/mario.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>10</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>S Main St &amp; Serra Way</street1>
+        <street2></street2>
+        <city>Milpitas</city>
+        <zip>95035</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Stylish Cat</name>
+      <description>A high maintenance cat for an owner with time. This cat needs pampering: comb it hair, brush its teeth, wash its fur, paint its claws. For all you debutantes, let the world know you have arrived in style with this snooty cat in your purse!</description>
+      <image>images/mimi.jpg</image>
+      <price>307.70</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Great Mall Pky &amp; S Main St</street1>
+        <street2></street2>
+        <city>Milpitas</city>
+        <zip>95035</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Smelly Cat</name>
+      <description>A great pet with its own song to sing with your fiends. "Smelly cat, Smelly cat ..." Need an excuse for that funky odor in your house? Smelly cat is the answer.</description>
+      <image>images/monique.jpg</image>
+      <price>307.80</price>
+      <score>15</score>
+      <votes>8</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Valencia St &amp;  16th St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94103</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Saber Cat</name>
+      <description>A great watch pet. Want to keep your roommates from stealing the beer from your refrigerator? This big-toothed crazy cat is better than a watchdog. Just place him on top of the refrigerator and watch him pounce when so-called friends try to sneak a beer. This cat is great fun at parties.</description>
+      <image>images/olie.jpg</image>
+      <price>307.90</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>S 1st St &amp; W Santa Clara St</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95113</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Sophisticated Cat</name>
+      <description>This cat is from Paris. It has a very distinguished history and is looking for a castle to play in. This sophisticated cat has class and taste. No chasing on string, no catnip habits. Only the habits of royalty in this cats blood.</description>
+      <image>images/paris.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Bay Street and Columbus Ave </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94133</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Princess cat</name>
+      <description>Just beauty and elegance. She will charm you from the moment she enters the room.</description>
+      <image>images/princess.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>El Camino Real &amp; Scott Blvd</street1>
+        <street2></street2>
+        <city>Santa Clara</city>
+        <zip>95050</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Lazy cat</name>
+      <description>Wow! This cat is cool. It has a beautiful tan coat. I wish I could get a sun tan of that color.</description>
+      <image>images/simba.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Millbrae Ave &amp;  Willow Ave</street1>
+        <street2></street2>
+        <city>Millbrae </city>
+        <zip>94030</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Scapper male cat</name>
+      <description>A scappy cat that likes to cause trouble. If you are looking for a challenge to your cat training skills, this scapper is the test!</description>
+      <image>images/thaicat.jpg</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Leavesley Rd &amp; Monterey Rd</street1>
+        <street2></street2>
+        <city>Gilroy</city>
+        <zip>95020</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Lazy cat</name>
+      <description>Buy me please. I love to sleep.</description>
+      <image>images/cat1.gif</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>6</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>S Main St &amp; Serra Way</street1>
+        <street2></street2>
+        <city>Milpitas</city>
+        <zip>95035</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Old Cat</name>
+      <description>A great old pet retired from duty in the circus. This fully-trained tiger is looking for a place to retire. Loves to roam free and loves to eat other animals.</description>
+      <image>images/cat2.gif</image>
+      <price>200.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>24th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Young Cat</name>
+      <description>A great young pet to chase around. Loves to play with a ball of string.</description>
+      <image>images/cat3.gif</image>
+      <price>350.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Great Mall Pky &amp; S Main St</street1>
+        <street2></street2>
+        <city>Milpitas</city>
+        <zip>95035</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Scrappy Cat</name>
+      <description>A real trouble-maker in the neighborhood. Looking for some T.L.C</description>
+      <image>images/cat4.gif</image>
+      <price>417.00</price>
+      <score>15</score>
+      <votes>9</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Grant Rd &amp; South Dr </street1>
+        <street2></street2>
+        <city>Mountain view</city>
+        <zip>94040</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Alley Cat</name>
+      <description>Loves to play in the alley outside my apartment, but looking for a warmer and safer place to spend its nights.</description>
+      <image>images/cat5.gif</image>
+      <price>307.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Hairy Cat</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>25th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Playful Cat</name>
+      <description>Come play with me. I am looking for fun.</description>
+      <image>images/cat7.gif</image>
+      <price>190.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Ellis St &amp; National Ave</street1>
+        <street2></street2>
+        <city>Mountain view</city>
+        <zip>94043</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Long Haired Cat</name>
+      <description>Buy this fancy cat.</description>
+      <image>images/cat8.gif</image>
+      <price>199.00</price>
+      <score>15</score>
+      <votes>8</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>1st St &amp; Market St </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94105</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Fresh Cat</name>
+      <description>Just need a nice bath and i will be fresh as a kitten.</description>
+      <image>images/cat9.gif</image>
+      <price>303.00</price>
+      <score>15</score>
+      <votes>14</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>San Antonio Rd &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94303</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Wild Cat</name>
+      <description>This wild tiger loves to play.</description>
+      <image>images/cat10.gif</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>14</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>excellent</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Saber Cat</name>
+      <description>Buy me</description>
+      <image>images/cat11.gif</image>
+      <price>237.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Snappy Cat</name>
+      <description>Buy Me.</description>
+      <image>images/cat12.gif</image>
+      <price>337.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Groomed Cat</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Pretty Dog</name>
+      <description>Just like a statue or work of art she is so pretty. If you are an artist this dog is a perfect subject for your portraits. She is such a poser! She belongs in Hollywood with her own star on the wlak of fame.</description>
+      <image>images/biscuit.jpg</image>
+      <price>100.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Leavesley Rd &amp; Monterey Rd</street1>
+        <street2></street2>
+        <city>Gilroy</city>
+        <zip>95020</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Beach Dog</name>
+      <description>A great dog to lay in the Sun with, chases a frisbee like a champ, and can swim like a shark. Heck, he can ride a surfboard if you dont mind sharing.</description>
+      <image>images/harrison.jpg</image>
+      <price>250.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Scrapper Dog</name>
+      <description>This scrapy woofer needs some clean up and some lessons. Help him out and take him home.</description>
+      <image>images/honey.jpg</image>
+      <price>257.00</price>
+      <score>20</score>
+      <votes>5</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Millbrae Ave &amp;  Willow Ave</street1>
+        <street2></street2>
+        <city>Millbrae </city>
+        <zip>94030</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Intense Worker Dog</name>
+      <description>My dog is full on energy and intensity. He needs a constant challenge to keep him happy. Great for a farm or house in the country. Bring him to work with you.</description>
+      <image>images/hunter.jpg</image>
+      <price>500.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Cesar Chavez St &amp; Sanchez</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94131</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Old Dog</name>
+      <description>This old geezer just wants to sleep at your feet. Slip him some food under the table and watch him wag his tail. Great dog for someone who retired before the dot-com bubble burst. A partner to loaf with.</description>
+      <image>images/jack.jpg</image>
+      <price>215.00</price>
+      <score>15</score>
+      <votes>7</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Female Huskie</name>
+      <description>Live in a cold area? This dog has her own winter jacket. She loves the snow. She even loves to eat the snow. One time, I saw her eat a whole snowman ...it was crazy fun to watch.</description>
+      <image>images/lady.jpg</image>
+      <price>2000.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Bay Street and Columbus Ave </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94133</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Rasta Dog</name>
+      <description>Hey mon! Want a dog to chill with. This dog wants the rasta life. You can see it in her eyes. The ocean, the sunshine, all you need is this dog to be complete.</description>
+      <image>images/maggie.jpg</image>
+      <price>400.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Telegraph Ave &amp; Bancroft Way</street1>
+        <street2></street2>
+        <city>Berkeley</city>
+        <zip>94704</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Tough Dog</name>
+      <description>Need a guard dog? An excellent guard dog that would love to sit next to you and watch reruns of police shows on TV. And loves kids. Its like having a trusted babysitter to watch your kids and home.</description>
+      <image>images/marianna.jpg</image>
+      <price>500.00</price>
+      <score>15</score>
+      <votes>7</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>1st St &amp; Market St </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94105</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Sad Puppy</name>
+      <description>Help to put a smile on the face of this puppy. What? You did not know dogs could smile? Well, see what happens when you drop some steak on the floor!</description>
+      <image>images/puppup.jpg</image>
+      <price>99.00</price>
+      <score>15</score>
+      <votes>6</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>San Antonio Rd &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94303</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Speedy Dog</name>
+      <description>A great runner for a fast owner. This is the fastest dog I have ever seen. Its naturally fast and does not take steroids to improve its performance.</description>
+      <image>images/rita.jpg</image>
+      <price>25.00</price>
+      <score>15</score>
+      <votes>9</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Young Dog</name>
+      <description>Ready to play! This young dog is eager to learn new tricks. Bring me home.</description>
+      <image>images/sabrina.jpg</image>
+      <price>79.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Sleepy Dog</name>
+      <description>This sleepy dog is perfect for a relaxed home. Plus she just seems to love old music. Anytime she is near an elevator, she just wags her tail waiting to hear that old music.</description>
+      <image>images/thaidog.jpg</image>
+      <price>1000.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Lazy Dog</name>
+      <description>OK, I can not get this dog to fetch the newspaper. Not even for a doggy biscuit. His name is "Rhymes". He is so lazy, it drives me crazy.</description>
+      <image>images/dog1.gif</image>
+      <price>200.00</price>
+      <score>15</score>
+      <votes>9</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>4th St &amp; Howard St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94103</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Old Dog</name>
+      <description>This old geezer just wants to sleep at your feet. Slip him some food under the table and watch him wag his tail.</description>
+      <image>images/dog2.gif</image>
+      <price>70.00</price>
+      <score>15</score>
+      <votes>11</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Young Dog</name>
+      <description>A great young pet in need of training.</description>
+      <image>images/dog3.gif</image>
+      <price>301.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Medium Dogs</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Campbell St &amp; Riverside Ave</street1>
+        <street2></street2>
+        <city>Santa Cruz</city>
+        <zip>95060</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Scrapper Dog</name>
+      <description>This scrapy woofer needs some clean up and some lessons. Help him out and take him home.</description>
+      <image>images/dog4.gif</image>
+      <price>410.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Cesar Chavez St &amp; Sanchez</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94131</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Grey Hound</name>
+      <description>A great runner for a fast owner. This is the fastest dog I have ever seen. Its naturally fast and does not take steroids to improve its performance.</description>
+      <image>images/dog5.gif</image>
+      <price>200.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Beach Dog</name>
+      <description>A great dog to lay in the Sun with, chases a frisbee like a champ, and can swim like a shark. Heck, he can ride a surfboard if you dont mind sharing.</description>
+      <image>images/dog6.gif</image>
+      <price>200.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Dogs</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>W el Camino Real &amp; S Mary Ave</street1>
+        <street2></street2>
+        <city>Sunnyvale</city>
+        <zip>94087</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>fun</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Sweet Parrot</name>
+      <description>This young little parrot is a great pet. It loves to sit on your finger, so you can where it just like a ring, but so much more exotic than a simple diamond.</description>
+      <image>images/parrot-popcorn.jpg</image>
+      <price>250.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Parrot</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Telegraph Ave &amp; Bancroft Way</street1>
+        <street2></street2>
+        <city>Berkeley</city>
+        <zip>94704</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Female Eclectus Parrot</name>
+      <description>This bird really loves apples. She is a great companion and is quite beautiful. Just look at those colors. The read and blue makes her look like superman! And she can fly too!</description>
+      <image>images/eclectus-female-med.jpg</image>
+      <price>250.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Parrot</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>1st St &amp; Market St </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94105</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Galah Parrot</name>
+      <description>My Galah Parrot needs a new home. This new home should have lots of trees and absolutely NO cats. I dont say that because the cats might eat the bird. Rather, I say this Galah needs to stay away from cats so that the cats don't get hurt. This Galah loves the taste of cat meat.</description>
+      <image>images/galah-parrot-med.jpg</image>
+      <price>900.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Parrot</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>San Antonio Rd &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94303</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Kookaburra Bird</name>
+      <description>Little Kookaburra for sale. This Kookaburra is tame and likes to just sit to tree branches. A very easy to care for pet.</description>
+      <image>images/kookaburra-med.jpg</image>
+      <price>100.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Orange LoveBird</name>
+      <description>Can this love bird bring you some love? I believe this orange lovebird will bring good luck to your life, and for just a small fee it can be yours.</description>
+      <image>images/lovebird-med.jpg</image>
+      <price>75.00</price>
+      <score>15</score>
+      <votes>7</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Blue Peacock</name>
+      <description>Buy a blue peacock and be the envy of all your neighbors! Guaranteed to turn heads. You will meet everyone in your neighborhood as they come by to see this beauty.</description>
+      <image>images/peacock-blue-med.jpg</image>
+      <price>55.00</price>
+      <score>15</score>
+      <votes>10</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Wild Peacock</name>
+      <description>OK, this peacock is wild. And I dont mean that it is not tame. I mean this thing really likes to party! Its the best dancer I have ever seen. Trust me on this.</description>
+      <image>images/peacock-med.jpg</image>
+      <price>65.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>4th St &amp; Howard St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94103</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>White Peacock</name>
+      <description>My white peacock is like a work of art. Its beauty is refreshing. Consider this an investment, just like buying a painting.</description>
+      <image>images/peakcock-white-med.jpg</image>
+      <price>195.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Rainbow Lorikeet</name>
+      <description>Color! Color! Color! The rainbow lorikeet is a beautiful bird.</description>
+      <image>images/rainbow-lorikeet-med.jpg</image>
+      <price>299.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>W el Camino Real &amp; S Mary Ave</street1>
+        <street2></street2>
+        <city>Sunnyvale</city>
+        <zip>94087</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Stone Eagle</name>
+      <description>My eagle is really tough. He is like a rock! In fact he is made of stone. Ok, he may not have a heart and maybe he can not fly, but he needs no food and is so easy to care for. And he has a great temperament, and in fact we have never had any disagreements at all.</description>
+      <image>images/eagle-stone-med.jpg</image>
+      <price>800.00</price>
+      <score>15</score>
+      <votes>10</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Campbell St &amp; Riverside Ave</street1>
+        <street2></street2>
+        <city>Santa Cruz</city>
+        <zip>95060</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Red Macaw</name>
+      <description>Look at this majestic beauty! The colors of this macaw are breath-taking. In fact, the colors are so strong you should make sure the furniture in your home matches this bird, as this will be the center-piece of your lovely home.</description>
+      <image>images/macaw.jpg</image>
+      <price>1800.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Squaky Bird</name>
+      <description>A great noisy bird to drive your parents crazy. If you think playing a stereo loud will test your parents patience, wait till you try this screeching bird. It will fly around and cause a commotion that will have you laughing for days. This is a sure-fire way to get your parents to get you your own apartment.</description>
+      <image>images/CIMG9127.jpg</image>
+      <price>303.00</price>
+      <score>15</score>
+      <votes>7</votes>
+      <product>Parrot</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Bay Street and Columbus Ave </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94133</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Pink Bird</name>
+      <description>A beautiful pink bird. Its not white. Its not red. Its pink.</description>
+      <image>images/CIMG9104.jpg</image>
+      <price>3003.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Parrot</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Telegraph Ave &amp; Bancroft Way</street1>
+        <street2></street2>
+        <city>Berkeley</city>
+        <zip>94704</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Wild Bird</name>
+      <description>A wild bird. This little rebel thinks its not a house pet, but really it is as tame as a lap dog. It just looks so wild and impresses your friends. Owning this wild bird is cooler than getting a tatoo and hurts less!</description>
+      <image>images/CIMG9109.jpg</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>7</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>San Antonio Rd &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94303</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Really Wild Bird</name>
+      <description>A really wild pet. This thing is like a zombie in a horror movie it is so wild. I tried for 2 years to tame this beast and all that happened was I got peck marks all over my hands. Maybe you are a former circus trainer looking for a challenge? If so this birdy needs a home.</description>
+      <image>images/CIMG9109.jpg</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Crazy Bird</name>
+      <description>This crazy bird once flew over the cukoos nest. Some people say that I am crazy. Well, you should meet my bird if you want to meet crazy. This bird is plain looney.</description>
+      <image>images/CIMG9109.jpg</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Smart Bird</name>
+      <description>A great smart pet. Perfect for an engineer. This pet is so smart it can do your coding for you. Just dont tell your boss!</description>
+      <image>images/CIMG9084.jpg</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Funny Bird</name>
+      <description>A great funny pet. Ever hear the joke about a bird, a hacker, and Java book? Well, this bird can tell it to you. It will make you laugh until you cry. Plus, it can teach you jokes which you can use at parties to impress your friends. That is right sir, this bird will make even you funny!</description>
+      <image>images/CIMG9109.jpg</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>W el Camino Real &amp; S Mary Ave</street1>
+        <street2></street2>
+        <city>Sunnyvale</city>
+        <zip>94087</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Active Bird</name>
+      <description>A great active pet. This bird once flew a marathon with me and did not get tired. It can fly along while you jog on the trails. Just make sure the hawks do not swoop down and eat it.</description>
+      <image>images/CIMG9088.jpg</image>
+      <price>527.00</price>
+      <score>15</score>
+      <votes>10</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Curious Bird</name>
+      <description>A great curious birdy. Everything will pique this birds interest. It will investigate every new thing it sees.</description>
+      <image>images/CIMG9138.jpg</image>
+      <price>1527.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Millbrae Ave &amp;  Willow Ave</street1>
+        <street2></street2>
+        <city>Millbrae </city>
+        <zip>94030</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Itchy Bird</name>
+      <description>This bird needs some attention. I think he has dandruff in his feathers. He is always scratching so I knick-named him "Itchy". I wish I had claws like that to scratch MY head. Maybe if you are a good trainer, you can teach him to scratch your back nicely with those talons.</description>
+      <image>images/CIMG9129.jpg</image>
+      <price>200.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Exotic</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Cesar Chavez St &amp; Sanchez</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94131</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Spotted JellyFish</name>
+      <description>Buy Me.</description>
+      <image>images/spotted-jellyfish-med.jpg</image>
+      <price>55.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Small Sea Nettle JellyFish</name>
+      <description>Buy Me.</description>
+      <image>images/sea-nettle-jellyfish-med.jpg</image>
+      <price>75.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Fish</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Bay Street and Columbus Ave </street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94133</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>RockFish</name>
+      <description>Buy Me.</description>
+      <image>images/rockfish-med.jpg</image>
+      <price>125.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Leavesley Rd &amp; Monterey Rd</street1>
+        <street2></street2>
+        <city>Gilroy</city>
+        <zip>95020</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Purple JellyFish</name>
+      <description>Buy Me.</description>
+      <image>images/purple-jellyfish-med.jpg</image>
+      <price>225.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Campbell St &amp; Riverside Ave</street1>
+        <street2></street2>
+        <city>Santa Cruz</city>
+        <zip>95060</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>White Octopus</name>
+      <description>Buy Me.</description>
+      <image>images/octopus-white-med.jpg</image>
+      <price>2000.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Red Octopus</name>
+      <description>Buy Me.</description>
+      <image>images/octopus-red-med.jpg</image>
+      <price>2000.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Koi</name>
+      <description>I love this fish. But my new roommate has a cat, and the cat just so does not seem to get along with the  fish. At first, I thought the cat was trying to just play with the fish, or maybe learn to swim. And then I remembered that show where they explained that Tuna is the chicken of the sea, but that does not mean its chicken. Not, its fish. And cats love tuna, so then I got scared and realized my fish is in danger. Help me! Buy my little chicken of the sea.</description>
+      <image>images/koi-med.jpg</image>
+      <price>150.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>GlassFish</name>
+      <description>FREE! And open source! The best open source Java EE 5 application server project.</description>
+      <image>images/glassfish-colored-med.jpg</image>
+      <price>0.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>4th St &amp; Howard St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94103</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>CuttleFish</name>
+      <description>This rare and spooky looking fish is the talk of town where I live!</description>
+      <image>images/cuttlefish-med.jpg</image>
+      <price>900.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Fish</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Silver Carp Car</name>
+      <description>You will never believe the fish I caught! This is the ultimate fishing stories... seriously! I pulled this baby out of the forbidden lake behind the nuclear power plant.</description>
+      <image>images/carp-car-med.jpg</image>
+      <price>500.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Fish</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Millbrae Ave &amp;  Willow Ave</street1>
+        <street2></street2>
+        <city>Millbrae </city>
+        <zip>94030</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Moon JellyFish</name>
+      <description>Buy Me.</description>
+      <image>images/moon-jelly-med.jpg</image>
+      <price>1225.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Campbell St &amp; Riverside Ave</street1>
+        <street2></street2>
+        <city>Santa Cruz</city>
+        <zip>95060</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Sea Anemone</name>
+      <description>This colorful sea anemone will really brighten up your aquarium.</description>
+      <image>images/sea-anemone-med.jpg</image>
+      <price>112.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Fish</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Gold Fish</name>
+      <description>Perfect for a first fish for a child. This fish is not good in the same tank as some bigger fish as they see this little gold fish as a snack.</description>
+      <image>images/fish2.gif</image>
+      <price>2.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Fish</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Grant Rd &amp; South Dr </street1>
+        <street2></street2>
+        <city>Mountain view</city>
+        <zip>94040</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Angel Fish</name>
+      <description>I love this fish. But my new roommate has a cat, and the cat just so does not seem to get along with the  fish. At first, I thought the cat was trying to just play with the fish, or maybe learn to swim. And then I remembered that show where they explained that Tuna is the chicken of the sea, but that does not mean its chicken. Not, its fish. And cats love tuna, so then I got scared and realized my fish is in danger. Help me! Buy my little chicken of the sea.</description>
+      <image>images/fish3.gif</image>
+      <price>100.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Small Fish</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Telegraph Ave &amp; Bancroft Way</street1>
+        <street2></street2>
+        <city>Berkeley</city>
+        <zip>94704</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Striped Tropical</name>
+      <description>This large fish needs plenty of room to swim. Either a big aquarium or your bath tub.</description>
+      <image>images/fish4.gif</image>
+      <price>20.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Large Fish</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>San Antonio Rd &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94303</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+    <item>
+      <name>Hawaiian Green Gecko</name>
+      <description>Oloha Wahine! I am from Hawaii. I like to hang out on leaves and just kick back at the beach. You know you can not resist my shiny green skin. So what do you say, want to come visit me?</description>
+      <image>images/hawaiian-lizard-med.jpg</image>
+      <price>110.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>worthless</tag>
+      </tags>
+    </item>
+    <item>
+      <name>African Spurred Tortoise</name>
+      <description>Many people get this as a pet, not realizing it will grow over time to be as large as an ottoman. I must confess, that I am one of those people. Which is why I am now trying to sell this tortoise -it is getting big and starting to scare me. Only homes with lots of room please. </description>
+      <image>images/african-spurred-tortoise.jpg</image>
+      <price>300.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>worthless</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Small Box Turtle</name>
+      <description>Cute little turtle for sale. This box turtle is easy to care for and just needs a good home.</description>
+      <image>images/box-turtle.jpg</image>
+      <price>5000.00</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>worthless</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Mexican Redkneed Tarantula</name>
+      <description>No, I am not reptile food! But if you like exotic reptiles, well maybe you would like me too? I promise not to bite you and turn you into spiderman, unless that is what you want. Perhaps you want to climb walls with me?</description>
+      <image>images/mexican-redkneed-tarantula.jpg</image>
+      <price>530.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>4th St &amp; Howard St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94103</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>worthless</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Large Box Turtle</name>
+      <description>Turtles are very nice creatures. This large Box Turtle is super fast. Well, compared to other turtles in the neighborhood, this is the Cheetah of turtles.</description>
+      <image>images/box-turtle2.jpg</image>
+      <price>5000.00</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>California Desert Tortoise</name>
+      <description>An endangered tortoise. We are lookng for a zoo to house this beautiful creature. It has a quite nice disposition and will let children pet its shell to discover the mysteries of biology.</description>
+      <image>images/california-desert-tortoise.jpg</image>
+      <price>599.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Millbrae Ave &amp;  Willow Ave</street1>
+        <street2></street2>
+        <city>Millbrae </city>
+        <zip>94030</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Florida King Snake</name>
+      <description>This Florida King Snake is really nice. It may look spooky and scare your friends at first, but eventually they will learn to love this slippery snake.</description>
+      <image>images/florida-king-snake.jpg</image>
+      <price>150.00</price>
+      <score>15</score>
+      <votes>6</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Paseo Padre Pky &amp; Fremont Blvd</street1>
+        <street2></street2>
+        <city>Fremont</city>
+        <zip>94555</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Leopard Gecko</name>
+      <description>My little leopard gecko needs a new home. If you are interested in purchasing this gecko, I advise you to hurry as it is bound to sell fast.</description>
+      <image>images/leopard-gecko.jpg</image>
+      <price>700.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Prehensile Tailed Skink</name>
+      <description>Long Tailed Prehensile Tailed Skink for sale. This is the longest tail I have ever seen on a lizard. It goes on for days. Notice the gloves? Be aware of the sharp claws when holding this lizard, even though she is very nice.</description>
+      <image>images/prehensile-tailed-skink.jpg</image>
+      <price>800.00</price>
+      <score>15</score>
+      <votes>6</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>El Camino Real &amp; Scott Blvd</street1>
+        <street2></street2>
+        <city>Santa Clara</city>
+        <zip>95050</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>African Spurred Tortoise</name>
+      <description>This is not a turtle, it is an African Spurred Tortoise. It grows to get really large. Maybe you have a big yard and can really care for this tortoise? If so, now is your chance to buy it.</description>
+      <image>images/african-spurred-tortoise2.jpg</image>
+      <price>125.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Mark</firstname>
+        <lastname>Basler</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Telegraph Ave &amp; Bancroft Way</street1>
+        <street2></street2>
+        <city>Berkeley</city>
+        <zip>94704</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Box Turtle</name>
+      <description>This box turtle needs a new home. I am moving and unfortunately must sell all my animals.</description>
+      <image>images/box-turtle3.jpg</image>
+      <price>900.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Yutaka</firstname>
+        <lastname>Yoshida</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>San Antonio Rd &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94303</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Prehensile Tailed Skink</name>
+      <description>My lizard is really cool and all my school friends are really impressed when I bring it to show-and-tell. But, the other day at home, he escaped from his cage and it REALLY freaked my mom out. Now she is mad at me. Sigh, since I can not sell my Mom, please buy my lizard.</description>
+      <image>images/prehensile-tailed-skink2.jpg</image>
+      <price>5000.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Smitha</firstname>
+        <lastname>Kangath</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>20th St &amp;  Dolores St</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94114</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Leopard Gecko</name>
+      <description>Are you seeing spots in front of your eyes? No you are not sleepy. That is just the affect of my gecko and his beautiful spotted skin.</description>
+      <image>images/leopard-gecko2.jpg</image>
+      <price>1200.00</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Larry</firstname>
+        <lastname>Freeman</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>River Oaks Pky &amp; Village Center Dr</street1>
+        <street2></street2>
+        <city>San Jose</city>
+        <zip>95134</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Guinea Pig</name>
+      <description>Oh no! I dont like snakes at all. Why am I here in this list surrounded by serpents? Help save me! Take me home to a nice warm cage with fresh newspaper. </description>
+      <image>images/guinea-pig.jpg</image>
+      <price>1000.00</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Jeet</firstname>
+        <lastname>Kaul</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Dolores St &amp;  San Jose Ave</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94110</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>superior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Iron Dragon</name>
+      <description>Just look at this fierce beast. This is so tough its like a secret military weapon.</description>
+      <image>images/dragon-iron-med.jpg</image>
+      <price>500.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Ed</firstname>
+        <lastname>Burns</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Campbell St &amp; Riverside Ave</street1>
+        <street2></street2>
+        <city>Santa Cruz</city>
+        <zip>95060</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>inferior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Green slider</name>
+      <description>This snake looks like a lizard! It must be rare since I have never seen one like it.</description>
+      <image>images/lizard3.gif</image>
+      <price>10.00</price>
+      <score>15</score>
+      <votes>4</votes>
+      <product>Slithering Reptiles</product>
+      <contactinfo>
+        <firstname>Craig</firstname>
+        <lastname>McClanahan</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Palm Dr &amp; Arboretum Rd</street1>
+        <street2></street2>
+        <city>Stanford</city>
+        <zip>94305</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>inferior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Green Iguana</name>
+      <description>This is one proud and tough lizard. He holds his head high in any circumstance.</description>
+      <image>images/lizard1.gif</image>
+      <price>2100.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Greg</firstname>
+        <lastname>Murray</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Leavesley Rd &amp; Monterey Rd</street1>
+        <street2></street2>
+        <city>Gilroy</city>
+        <zip>95020</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>inferior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Iguana</name>
+      <description>My iguana needs a home. His tail is really long. He is very nice.</description>
+      <image>images/lizard2.gif</image>
+      <price>500.00</price>
+      <score>15</score>
+      <votes>5</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>Cesar Chavez St &amp; Sanchez</street1>
+        <street2></street2>
+        <city>San Francisco</city>
+        <zip>94131</zip>
+        <state>CA</state>
+      </address>
+      <tags>
+        <tag>inferior</tag>
+      </tags>
+    </item>
+    <item>
+      <name>Frog</name>
+      <description>This little green frog was rescued from the chef in the kitchen of a french restaurant. If I had not acted quickly, his legs would have been appetizers. Now for just a small fee you can buy him as your pet.</description>
+      <image>images/frog1.gif</image>
+      <price>1500.00</price>
+      <score>15</score>
+      <votes>3</votes>
+      <product>Crawling Reptiles</product>
+      <contactinfo>
+        <firstname>Inderjeet</firstname>
+        <lastname>Singh</lastname>
+        <email>abc@abc.xyz</email>
+      </contactinfo>
+      <address>
+        <street1>University Ave &amp; Middlefield Rd</street1>
+        <street2></street2>
+        <city>Palo Alto</city>
+        <zip>94301</zip>
+        <state>CA</state>
+      </address>
+      <tags />
+    </item>
+  </items>
+</petstore>

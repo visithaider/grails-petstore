@@ -6,8 +6,7 @@ class ItemTests extends GroovyTestCase {
         item.addToTags(new Tag(tag:"t2"))
         item.addToTags(new Tag(tag:"t3"))
 
-        // TODO: addToTags does not work when tags is a SortedSet, bug in Grails 0.6
-        //assert item.tagsAsString() == "t1 t2 t3"
+        assert item.tagsAsString() == "t1 t2 t3"
     }
 
     void testValidate() {
@@ -29,13 +28,18 @@ class ItemTests extends GroovyTestCase {
             product:new Product(),
             contactInfo:new SellerContactInfo()
         )
+        assert !item.vaidate()
+
+        item.name = "An item"
+        item.description = "A test item"
         item.price = 500
-        item.imageURL = "test.jpg"
+        item.imageUrl = "test.jpg"
         item.totalScore = 10
         item.numberOfVotes = 20
 
         item.product.name = "Name"
         item.product.description = "Description"
+        item.product.imageUrl = "test_product.jpg"
         item.addToTags(new Tag(tag:"foo"))
         item.addToTags(new Tag(tag:"bar"))
 
@@ -52,9 +56,12 @@ class ItemTests extends GroovyTestCase {
         item.contactInfo.lastName = "Backlund"
         item.contactInfo.email = "foo@bar.com"
 
-        assert item.validate()
-        item.save()
+        assert item.save()
 
-        assert Item.get(item.id) != null
+
+        assert item.id != null
+        assert item.address.id != null
+        assert item.product.id != null
+        assert item.contactInfo.id != null
     }
 }

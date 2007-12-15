@@ -11,11 +11,9 @@
         <div class="message">${flash.message}</div>
     </g:if>
 
-    <!-- TODO: g:errors doesn't work more than one level deep in 0.6 -->
-
-    <% item.errors.allErrors.each { %>
-        <p>${it.code}: ${it.defaultMessage}</p>
-    <% } %>
+    <g:eachError bean="${item}">
+        <g:message error="${it}" default=""/><br/>
+    </g:eachError>
 
     <g:form action="save" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${item?.id}"/>
@@ -97,10 +95,10 @@
                                                               value="${item?.contactInfo?.email?.encodeAsHTML()}"/></td>
                     </tr>
 
-                    <g:if test="${item?.imageURL}">
+                    <g:if test="${item?.setImageUrl}">
                     <tr>
-                    <td><input type="hidden" name="imageURL" value="${item.imageURL}"/></td>
-                        <td><img src="${createLinkTo(dir:'images/scaled', file:item.imageURL.encodeAsHTML())}" alt="item.imageURL.encodeAsHTML()"/></td>
+                    <td><input type="hidden" name="imageURL" value="${item.setImageUrl}"/></td>
+                        <td><img src="${createLinkTo(dir:'images/scaled', file:item.setImageUrl.encodeAsHTML())}" alt="item.imageURL.encodeAsHTML()"/></td>
                     </tr>
                     </g:if>
 

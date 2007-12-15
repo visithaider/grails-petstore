@@ -1,11 +1,11 @@
-import org.compass.core.engine.SearchEngineQueryParseException
+//import org.compass.core.engine.SearchEngineQueryParseException
 
 class ItemController {
 
     GeoCoderService geoCoderService
     CaptchaService captchaService
     ImageStorageService imageStorageService
-    SearchableService searchableService
+    //SearchableService searchableService
 
     static final String CAPTCHA_ATTR = "captchaString"
 
@@ -42,17 +42,17 @@ class ItemController {
      * Indexed search.
      */
     def search = {
-        if (!params.q?.trim()) {
-            render (model:[:], view:"searchresult")
-        }
-        try {
-            render (
-                model:[searchResult: searchableService.search(params.q, params)],
-                view:"searchresult"
-            )
-        } catch (SearchEngineQueryParseException ex) {
-            return [parseException: true]
-        }
+//        if (!params.q?.trim()) {
+//            render (model:[:], view:"searchresult")
+//        }
+//        try {
+//            render (
+//                model:[searchResult: searchableService.search(params.q, params)],
+//                view:"searchresult"
+//            )
+//        } catch (SearchEngineQueryParseException ex) {
+//            return [parseException: true]
+//        }
     }
 
     def edit = {
@@ -80,8 +80,8 @@ class ItemController {
         if (params.price) {
             item.price = params.price.toInteger()
         }
-        if (params.imageURL) {
-            item.imageURL = params.imageURL
+        if (params.setImageUrl) {
+            item.imageUrl = params.setImageUrl
         }
 
         bindData(item.address, params, "address")
@@ -99,15 +99,15 @@ class ItemController {
 
         def uploaded = request.getFile("file")
         if (!uploaded.empty) {
-            if (item.imageURL) {
-                imageStorageService.deleteImage(item.imageURL)
+            if (item.imageUrl) {
+                imageStorageService.deleteImage(item.imageUrl)
             }
-            item.imageURL = imageStorageService.storeUploadedImage(uploaded)
+            item.imageUrl = imageStorageService.storeUploadedImage(uploaded)
         }
 
         item.validate()
         if (session[CAPTCHA_ATTR] && (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])) {
-            item.errors.reject("captchaMismatch")
+            //item.errors.reject("captchaMismatch")
         }
 
         if (!item.errors.hasErrors() && item.save()) {
@@ -125,7 +125,7 @@ class ItemController {
         Item item = Item.get(params.id)
         if (item) {
             item.delete()
-            imageStorageService.deleteImage(item.imageURL)
+            imageStorageService.deleteImage(item.imageUrl)
         }
         flash.message = "Item ${item.id} deleted."
         redirect(action:list)

@@ -4,10 +4,11 @@ class Item {
     Address address
     SellerContactInfo contactInfo
 
-    String imageURL
+    String name, description, imageUrl
     Integer price, totalScore = 0, numberOfVotes = 0
 
-    static embedded = ["product", "address", "contactInfo"]
+    // TODO: embedding breaks cascading in 1.0-RC2 and earlier
+    //static embedded = ["product", "address", "contactInfo"]
 
     static searchable = {
         except = ["imageURL", "version"]
@@ -17,8 +18,9 @@ class Item {
     static hasMany = [tags : Tag]
 
     static constraints = {
+        name(blank:false)
         price(min:0)
-        imageURL(nullable:true, matches:".*[jpeg|jpg|gif|png]\$")
+        imageUrl(nullable:true, matches:".*[jpeg|jpg|gif|png]\$")
     }
 
     /* Business Methods */

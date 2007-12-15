@@ -55,6 +55,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Derby" level="project" />
     <orderEntryProperties />
   </component>
 </module>
