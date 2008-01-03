@@ -34,6 +34,20 @@ class Item {
         totalScore > 0 ? totalScore/numberOfVotes : 0
     }
 
+    void tag(List<String> tags) {
+        def unique = new HashSet(tags)
+        synchronized (Item) {
+            unique.each {
+                Tag tag = Tag.findByTag(it)
+                if (!tag) {
+                    tag = new Tag(tag: it)
+                    tag.save(flush:true)
+                }
+                addToTags(tag)
+            }
+        }
+    }
+
     String tagsAsString() {
         tags?.join(" ")
     }

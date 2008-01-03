@@ -1,11 +1,9 @@
-import org.springframework.mock.web.MockMultipartFile
-import org.springframework.mock.web.MockMultipartHttpServletRequest
-
 class SunPetstoreImporterService {
 
     static transactional = true
     def exportFileName = new File("scripts/sun_petstore_export.xml")
-    def imageDirectory = "../../javapetstore-2.0-ea5/web/"
+    def imageDirectory = "../javapetstore-2.0-ea5/web/"
+    def imageStorageService
 
     def importProductsAndCategories() {
         def petstore = new XmlSlurper().parse(exportFileName)
@@ -14,11 +12,19 @@ class SunPetstoreImporterService {
             def cName = c.name.text()
             def category = Category.findByName(cName)
             if (!category) {
+                def imageUrl = c.imageurl.text()
+                def format = imageUrl.substring(imageUrl.lastIndexOf('.') + 1)
+                def image = new File(imageDirectory, imageUrl)
+                assert image.exists()
+
+                imageStorageService.storeCategoryImage(cName, format, image.readBytes())
+
                 category = new Category(
                     name:cName,
                     description:c.description.text(),
-                    imageUrl:c.imageurl.text()
+                    imageUrl:image.name
                 )
+
                 log.debug "Stored category $cName"
             }
 
@@ -26,10 +32,17 @@ class SunPetstoreImporterService {
                 def pName = p.name.text()
                 def product = Product.findByName(pName)
                 if (!product) {
+                    def imageUrl = p.imageurl.text()
+                    def format = imageUrl.substring(imageUrl.lastIndexOf('.') + 1)
+                    def image = new File(imageDirectory, imageUrl)
+                    assert image.exists()
+
+                    imageStorageService.storeProductImage(pName, format, image.readBytes())
+
                     product = new Product(
                             name:pName,
                             description:p.description.text(),
-                            imageUrl:p.imageurl.text(),
+                            imageUrl:image.name,
                     )
                 }
                 category.addToProducts(product)
@@ -44,51 +57,53 @@ class SunPetstoreImporterService {
     def importItems() {
         def petstore = new XmlSlurper().parse(exportFileName)
 
-        println "About to import ${petstore.items.item.size()} items"
+        log.info "About to import ${petstore.items.item.size()} items"
 
         assert new File(imageDirectory).exists()
 
-        def requests = []
-        petstore.items.item.each { i ->
-            def product = Product.findByName(i.product.name.text())
-            def request = new MockMultipartHttpServletRequest()
-
-            // Item properties
-            i.children().findAll {
-                it.name() in ["name","description","price","totalScore","numberOfVotes"] }.each {
-
-                request.addParameter(it.name(), it.text())
-            }
-            // Product
-            request.addParameter(
-                "product.id",
-                Product.findByName(i.product.text()).id.toString()
+        petstore.items.item.each { itemTag ->
+            // Item
+            def item = new Item(
+                name:itemTag.name.text(),
+                description:itemTag.description.text(),
+                price:Float.valueOf(itemTag.price.text()).intValue(),
+                totalScore:Integer.valueOf(itemTag.score.text()),
+                numberOfVotes:Integer.valueOf(itemTag.votes.text())
             )
+            
+            // Product
+            item.product = Product.findByName(itemTag.product.text())
+
             // Contact info
-            i.contactinfo.children().each {
-                request.addParameter("contactInfo." + it.name(), it.text())
-            }
+            item.contactInfo = new SellerContactInfo()
+            def ci = itemTag.contactinfo
+            item.contactInfo.firstName =  ci.firstname
+            item.contactInfo.lastName = ci.lastname
+            item.contactInfo.email = ci.email
+
             // Address
-            i.address.children().each {
-                request.addParameter("address." + it.name(), it.text())
-            }
+            item.address = new Address()
+            def adr = itemTag.address
+            item.address.street1 = adr.street1
+            item.address.street2 = adr.street2
+            item.address.city = adr.city
+            item.address.state = adr.state
+            item.address.zip = adr.zip
+
             // Tags
-            request.addParameter("tags", i.tags.tag.collect{ it.text() }.join(" "))
+            def tagStrings = itemTag.tags.tag.collect { it.text() }
+            item.tag(tagStrings)
+
             // Image
-            def image = i.image.text()
+            def image = itemTag.image.text()
             def imageFile = new File(imageDirectory, image)
             assert imageFile.exists()
-            def mpFile = new MockMultipartFile(
-                image.substring("images/".length()),
-                imageFile.readBytes()
-            )
-            request.addFile(mpFile)
+            imageStorageService.storeUploadedImage(imageFile.readBytes(), "image/jpeg")
 
-            //println "Parameters: " + request.parameterMap
-            //println "Files: " + request.fileMap
-
-            // TODO: dispatch request to controller
+            assert item.save()
+            log.debug "Saved item " + item.id
         }
+        log.info "Imported ${petstore.items.item.size()} items!"
 
     }
 

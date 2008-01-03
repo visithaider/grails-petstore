@@ -1,13 +1,17 @@
 class SunPetstoreImporterServiceTests extends GroovyTestCase {
 
-    void testImportProductsAndCategories() {
-        SunPetstoreImporterService service = new SunPetstoreImporterService()
-        service.importProductsAndCategories()
-    }
+    def sunPetstoreImporterService 
 
-    void testImportItems() {
-        SunPetstoreImporterService service = new SunPetstoreImporterService()
-        service.importItems()
+    void testImport() {
+        sunPetstoreImporterService.importProductsAndCategories()
+        assert Category.count() == 5
+        assert Product.count() == 10
+
+        sunPetstoreImporterService.importItems()
+        def itemCount = 102
+        assert Item.count() == itemCount
+        assert Address.count() == itemCount
+        assert SellerContactInfo.count() == itemCount
     }
 
 }

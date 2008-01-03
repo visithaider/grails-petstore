@@ -24,14 +24,26 @@ import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 
 class ScalableImage {
-	
+
+    String name
     int thumbWidth = 133, thumbHeight = 100
-    String format = "jpg"
+    String suffix = ".jpg"
     BufferedImage image
     File file
+    static allowedImageFormats = ["jpeg","jpg","png","gif"].asImmutable()
+
+    ScalableImage(byte[] imageData) {
+        image = ImageIO.read(new ByteArrayInputStream(imageData))
+    }
 
     ScalableImage(String imagePath) {
         image = ImageIO.read(new File(imagePath))
+    }
+
+    ScalableImage(int width, int height, byte[] imageData) {
+        this(imageData)
+        this.thumbWidth = width
+        this.thumbHeight = height
     }
 
     ScalableImage(int width, int height, String imagePath) {
@@ -40,9 +52,13 @@ class ScalableImage {
         this.thumbHeight = height
     }
 
-    void keepAspect() {
-        keepAspectWithWidth()
-        keepAspectWithHeight()
+    void setContentType(String contentType) {
+        String format = contentType.minus("image/").toLowerCase()
+        if (format in allowedImageFormats) {
+            suffix = "." + format
+        } else {
+            throw new IllegalArgumentException("Content type " + format + " is not supported, only " + allowedImageFormats)
+        }
     }
 
     void keepAspectWithWidth() {
@@ -59,7 +75,7 @@ class ScalableImage {
             image.getScaledInstance(thumbWidth, thumbHeight, Image.SCALE_AREA_AVERAGING),
             0, 0, thumbWidth, thumbHeight, null)
         file = new File(to)
-        ImageIO.write(bThumb, format, file)
+        ImageIO.write(bThumb, suffix, file)
     }
 
     void resizeWithGraphics(String to) {
@@ -78,7 +94,10 @@ class ScalableImage {
         */
         g2d.drawImage(image, 0, 0, thumbWidth, thumbHeight, null)
         file = new File(to)
-        ImageIO.write(th, format, file)
+        println "File at " + file.absolutePath
+
+        ImageIO.write(th, suffix, file)
+        assert file.exists()
     }
 
     void resizeWithAffineTransform(String to, double power) {
@@ -91,7 +110,7 @@ class ScalableImage {
             AffineTransformOp.TYPE_BILINEAR);
         op.filter(image, th)
         file = new File(to)
-        ImageIO.write(th, format, file)
+        ImageIO.write(th, suffix, file)
     }
 
 }

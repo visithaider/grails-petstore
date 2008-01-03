@@ -2,15 +2,15 @@
 
 class ItemController {
 
-    GeoCoderService geoCoderService
-    CaptchaService captchaService
-    ImageStorageService imageStorageService
-    //SearchableService searchableService
-
-    static final String CAPTCHA_ATTR = "captchaString"
+    def geoCoderService
+    def captchaService
+    def imageStorageService
+    //def searchableService
 
     def scaffold = Item
     def defaultAction = "list"
+
+    static final String CAPTCHA_ATTR = "captchaString"
 
     private void setCaptcha() {
         session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
@@ -66,7 +66,7 @@ class ItemController {
     }
 
     def save = {
-        Item item
+        def item
         if (params.id) {
             item = Item.get(params.id)
         } else {
@@ -77,9 +77,9 @@ class ItemController {
             )
         }
 
-        if (params.price) {
-            item.price = params.price.toInteger()
-        }
+        item.properties = params
+        item.tag(params.tagNames?.split("\\s"))
+
         if (params.setImageUrl) {
             item.imageUrl = params.setImageUrl
         }
@@ -88,21 +88,15 @@ class ItemController {
         bindData(item.product, params, "product")
         bindData(item.contactInfo, params, "contactInfo")
 
-        params.tagNames?.split("\\s").each {
-            Tag tag = Tag.findByTag(it)
-            if (tag) {
-                item.addToTags(tag)
-            } else {
-                item.addToTags(new Tag(tag:it))
-            }
-        }
 
         def uploaded = request.getFile("file")
         if (!uploaded.empty) {
             if (item.imageUrl) {
                 imageStorageService.deleteImage(item.imageUrl)
             }
-            item.imageUrl = imageStorageService.storeUploadedImage(uploaded)
+            ScalableImage image = new ScalableImage(uploaded.bytes)
+            image.contentType = uploaded.contentType
+            item.imageUrl = imageStorageService.storeUploadedImage(image)
         }
 
         item.validate()
