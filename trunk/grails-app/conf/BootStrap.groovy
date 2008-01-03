@@ -1,10 +1,11 @@
 class BootStrap {
 
-    SunPetstoreImporterService importerService
+    SunPetstoreImporterService sunPetstoreImporterService
 
      def init = { servletContext ->
 
-        importerService.importProductsAndCategories()
+        sunPetstoreImporterService.importProductsAndCategories()
+        sunPetstoreImporterService.importItems()
 
         // Create image upload directories
         new File(ImageStorageService.uploadedDir).mkdirs()

@@ -96,8 +96,8 @@
       <votes>3</votes>
       <product>Hairy Cat</product>
       <contactinfo>
-        <firstName>Sean</firstName>
-        <lastName>Brydon</lastName>
+        <firstname>Sean</firstname>
+        <lastname>Brydon</lastname>
         <email>abc@abc.xyz</email>
       </contactinfo>
       <address>
