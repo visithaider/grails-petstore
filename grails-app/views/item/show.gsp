@@ -1,3 +1,4 @@
+<%@ page import="org.grails.petstore.*" %>
   
 <html>
     <head>
@@ -11,7 +12,7 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <img src="/grails-petstore/images/uploaded/${item.imageURL}" alt="" style="float: right; margin: 10px"/>
+            <img src="/grails-petstore/images/item/large/${item.imageUrl}" alt="" style="float: right; margin: 10px"/>
             <div class="dialog">
                 <table>
                     <tbody>                                         
