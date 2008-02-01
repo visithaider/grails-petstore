@@ -1,3 +1,5 @@
+<%@ page import="org.grails.petstore.*" %>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -95,10 +97,10 @@
                                                               value="${item?.contactInfo?.email?.encodeAsHTML()}"/></td>
                     </tr>
 
-                    <g:if test="${item?.setImageUrl}">
+                    <g:if test="${item?.imageUrl}">
                     <tr>
-                    <td><input type="hidden" name="imageURL" value="${item.setImageUrl}"/></td>
-                        <td><img src="${createLinkTo(dir:'images/scaled', file:item.setImageUrl.encodeAsHTML())}" alt="item.imageURL.encodeAsHTML()"/></td>
+                    <td><input type="hidden" name="imageUrl" value="${item.imageUrl}"/></td>
+                        <td><img src="${createLinkTo(dir:'images/item/thumbnail', file:item.imageUrl.encodeAsHTML())}" alt="item.imageUrl.encodeAsHTML()"/></td>
                     </tr>
                     </g:if>
 

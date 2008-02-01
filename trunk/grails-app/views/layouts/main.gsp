@@ -1,3 +1,5 @@
+<%@ page import="org.grails.petstore.*" %>
+
 <html>
     <head>
         <title><g:layoutTitle default="Grails Pet Store" /></title>
@@ -19,7 +21,6 @@
             <span class="menuButton"><a class="list" href="${createLinkTo(dir:'item/list')}">Item List</a></span>
             <span class="menuButton"><a class="create" href="${createLinkTo(dir:'item/create')}">New Item</a></span>
             <span class="menuButton"><a class="list" href="${createLinkTo(dir:'tag/list')}">Tags</a></span>
-            <span class="menuButton"><a class="list" href="${createLinkTo(dir:'category/list')}">Categories</a></span>
         </div>
         <g:layoutBody />
     </body>	
