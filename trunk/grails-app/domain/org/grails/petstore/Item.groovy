@@ -9,9 +9,10 @@ class Item {
     String name, description, imageUrl
     Integer price, totalScore = 0, numberOfVotes = 0
 
-    //static embedded = ["product", "address", "contactInfo"]
-
-    static searchable = true
+    static searchable = {
+        address(component:true)
+        contactInfo(component:true)
+    }
 
     static hasMany = [tags : Tag]
 

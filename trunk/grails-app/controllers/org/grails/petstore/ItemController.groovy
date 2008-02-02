@@ -5,7 +5,6 @@ class ItemController {
     def geoCoderService
     def captchaService
     def imageStorageService
-    def searchableService
 
     def scaffold = Item
 
@@ -44,18 +43,15 @@ class ItemController {
      */
     def search = {
         def view = "searchresult"
-        def searchresult = []
+        def itemList = []
         if (params.q?.trim()) {
             try {
-                searchresult = searchableService.search(params.q, params)
+                itemList = Item.searchEvery(params.q, [offset:params.offset, max:params.max])
             } catch (e) {
                 log.error e, e
             }
         }
-        render (
-            view:view,
-            model:[searchResult: searchresult]
-        )
+        render(view:view, model:[itemList: itemList])
     }
 
     def list = {
@@ -97,7 +93,6 @@ class ItemController {
         item.tag(params.tagNames?.split("\\s") as List)
 
         bindData(item.address, params, "address")
-        bindData(item.product, params, "product")
         bindData(item.contactInfo, params, "contactInfo")
 
         def uploaded = request.getFile("file")
@@ -105,7 +100,7 @@ class ItemController {
             if (item.imageUrl) {
                 imageStorageService.deleteImage(item.imageUrl)
             }
-            item.imageUrl = imageStorageService.storeUploadedImage(image.bytes, image.contentType)
+            item.imageUrl = imageStorageService.storeUploadedImage(uploaded.bytes, uploaded.contentType)
         }
 
         item.validate()
