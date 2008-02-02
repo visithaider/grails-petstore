@@ -4,7 +4,7 @@ class SellerContactInfo {
 
     String firstName, lastName, email
 
-    //static belongsTo = [Item]
+    static belongsTo = Item
 
     static searchable = true
 

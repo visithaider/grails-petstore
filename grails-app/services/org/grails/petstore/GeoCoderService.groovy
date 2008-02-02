@@ -8,7 +8,7 @@ class GeoCoderService {
     int proxyPort = 0
     boolean proxySet = true
 
-    private static final String APPLICATION_ID = "org.grails.petstore.geocoder"
+    private static final String APPLICATION_ID = "org.grails.petstore"
     private static final String SERVICE_URL = "http://api.local.yahoo.com/MapsService/V1/geocode"
 
     void setProxy(String host, int port) {
@@ -28,7 +28,7 @@ class GeoCoderService {
         }
 
         location = URLEncoder.encode(location, "ISO-8859-1")
-        String url = SERVICE_URL + "?appid=" + APPLICATION_ID + "&location=" + location
+        def url = SERVICE_URL + "?appid=" + APPLICATION_ID + "&location=" + location
 
         def doc = new XmlSlurper().parse(new URL(url).openStream())
         assert doc.name() == "ResultSet"

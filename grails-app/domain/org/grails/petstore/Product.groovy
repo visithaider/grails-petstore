@@ -4,7 +4,7 @@ class Product {
 
     String name, description, imageUrl
 
-    static belongsTo = [item:Item, category:Category]
+    static belongsTo = [category:Category]
 
     static searchable = false
 
@@ -15,7 +15,6 @@ class Product {
             it?.indexOf("<link") < 0
         })
         imageUrl(blank:false)
-        item(nullable:true)
     }
 
     String toString() {
