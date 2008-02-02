@@ -24,11 +24,11 @@
             <table>
                 <tbody>
                     <tr class='prop'>
-                        <td valign='top' class='name'><label for='product.category'>Category:</label></td>
-                        <td valign='top' class='value'><g:select optionKey="id" from="${Category.list()}"
-                                                                 name='product.category.id'
+                        <td valign='top' class='name'><label for='product'>Product:</label></td>
+                        <td valign='top' class='value'><g:select optionKey="id" from="${Product.list()}"
+                                                                 name='product.id'
                                                                  optionValue="name"
-                                                                 value="${item?.product?.category?.id}"></g:select></td>
+                                                                 value="${item?.product?.id}"></g:select></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='product.name'>Name:</label></td>
