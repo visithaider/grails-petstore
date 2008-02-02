@@ -3,6 +3,7 @@ package org.grails.petstore
 class SunPetstoreImporterService {
 
     static transactional = true
+
     def exportFileName = new File("scripts/sun_petstore_export.xml")
     def imageDirectory = "../javapetstore-2.0-ea5/web/"
     def imageStorageService
@@ -19,12 +20,13 @@ class SunPetstoreImporterService {
                 def image = new File(imageDirectory, imageUrl)
                 assert image.exists()
 
-                imageStorageService.storeCategoryImage(cName + "." + format, image.readBytes())
+                def imageName = cName + "." + format
+                imageStorageService.storeCategoryImage(imageName, image.readBytes())
 
                 category = new Category(
                     name:cName,
                     description:c.description.text(),
-                    imageUrl:image.name
+                    imageUrl:imageName
                 )
 
                 log.debug "Stored category $cName"
@@ -39,12 +41,13 @@ class SunPetstoreImporterService {
                     def image = new File(imageDirectory, imageUrl)
                     assert image.exists()
 
-                    imageStorageService.storeProductImage(pName + "." + format, image.readBytes())
+                    def imageName = pName + "." + format
+                    imageStorageService.storeProductImage(imageName, image.readBytes())
 
                     product = new Product(
                             name:pName,
                             description:p.description.text(),
-                            imageUrl:image.name,
+                            imageUrl:imageName,
                     )
                 }
                 category.addToProducts(product)
@@ -72,9 +75,10 @@ class SunPetstoreImporterService {
                 totalScore:Integer.valueOf(itemTag.score.text()),
                 numberOfVotes:Integer.valueOf(itemTag.votes.text())
             )
-            
+
             // Product
             item.product = Product.findByName(itemTag.product.text())
+
 
             // Contact info
             def contactInfo = new SellerContactInfo()
@@ -83,10 +87,7 @@ class SunPetstoreImporterService {
             contactInfo.lastName = ci.lastname
             contactInfo.email = ci.email
             item.contactInfo = contactInfo
-            if (!contactInfo.save()) {
-                log.error "Info errors: " + contactInfo.errors.allErrors
 
-            }
 
             // Address
             def address = new Address()
@@ -97,9 +98,7 @@ class SunPetstoreImporterService {
             address.state = adr.state
             address.zip = adr.zip
             item.address = address
-            if (!address.save()) {
-                log.error "Address errors: " + address.errors.allErrors
-            }
+
 
             // Tags
             def tagStrings = itemTag.tags.tag.collect { it.text() }
@@ -108,13 +107,12 @@ class SunPetstoreImporterService {
             // Image
             def image = itemTag.image.text()
             def imageFile = new File(imageDirectory, image)
-            assert imageFile.exists()
             item.imageUrl =  imageStorageService.storeUploadedImage(imageFile.readBytes(), "image/jpeg")
 
-            log.debug "Saved item? " + item.save()
+            assert item.save()
+            log.debug "Saved item ${item.id}"
         }
         log.info "Imported ${petstore.items.item.size()} items!"
-
     }
 
 }

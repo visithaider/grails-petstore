@@ -4,7 +4,6 @@ class BootStrap {
     def imageStorageService
 
      def init = { servletContext ->
-
         imageStorageService.clearDirectories()
         imageStorageService.createDirectories()
 

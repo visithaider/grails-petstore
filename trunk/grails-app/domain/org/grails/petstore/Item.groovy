@@ -33,16 +33,16 @@ class Item {
     }
 
     void tag(List<String> tags) {
+        // TODO: this is not concurrency-safe.
+        // Need a better strategy to handle concurrent tagging of items, maybe in a service.
         def unique = new HashSet(tags)
-        synchronized (Item) {
-            unique.each {
-                def tag = Tag.findByTag(it)
-                if (!tag) {
-                    tag = new Tag(tag: it)
-                    tag.save(flush:true)
-                }
-                addToTags(tag)
+        unique.each {
+            def tag = Tag.findByTag(it)
+            if (!tag) {
+                tag = new Tag(tag: it)
+                tag.save()  // This tag might have been stored in another thread at this point
             }
+            addToTags(tag)
         }
     }
 

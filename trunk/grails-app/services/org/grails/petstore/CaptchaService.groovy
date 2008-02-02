@@ -1,29 +1,31 @@
 package org.grails.petstore
 
-import java.awt.*
+import java.awt.Color
 import static java.awt.Color.GRAY
+import java.awt.Font
 import static java.awt.Font.BOLD
 import static java.awt.Font.ITALIC
+import java.awt.Graphics
+import java.awt.Toolkit
 import java.awt.image.BufferedImage
 import java.awt.image.FilteredImageSource
-import java.awt.image.ImageFilter
-import java.awt.image.ImageProducer
+
 
 
 class CaptchaService {
 
     static transactional = false
 
-    Random rd = new Random()
-    static final int WIDTH = 200
-    static final int HEIGHT = 60
-    Color background = new Color(0xc0c0c0)
+    final def rd = new Random()
+    final def width = 200
+    final def height = 60
+    def background = new Color(0xc0c0c0)
 
     protected void drawMessage(Graphics g, String message) {
         g.font = new Font("Arial", BOLD | ITALIC, 30)
         g.color = GRAY
         int len = message.length()
-        int wgap = WIDTH / len
+        int wgap = width / len
         int startX = 10, startY = 20
 
         for (i in 0..len - 1) {
@@ -40,18 +42,18 @@ class CaptchaService {
     }
 
     String generateCaptchaString(int count) {
-        RandomString rs = new RandomString()
+        def rs = new RandomString()
         rs.getString(count, "IiOo0")
     }
 
     BufferedImage getCaptchaImage(String message) {
-        getCaptchaImage(message, WIDTH, HEIGHT)
+        getCaptchaImage(message, width, height)
     }
 
     BufferedImage getCaptchaImage(String message, int w, int h) {
-        BufferedImage bufferImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB)
-        BufferedImage lastBimg
-        Graphics g, g2
+        def bufferImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB)
+        def lastBimg
+        def g, g2
 
         try {
             g = bufferImg.graphics
@@ -63,9 +65,9 @@ class CaptchaService {
             16.times { drawRandomLine(g) }
             drawMessage(g, message)
 
-            ImageFilter filter = new BlueFilter()
-            ImageProducer producer = new FilteredImageSource(bufferImg.source, filter)
-            Image filteredImg = Toolkit.getDefaultToolkit().createImage(producer)
+            def filter = new BlueFilter()
+            def producer = new FilteredImageSource(bufferImg.source, filter)
+            def filteredImg = Toolkit.getDefaultToolkit().createImage(producer)
 
             lastBimg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB)
             g2 = lastBimg.graphics

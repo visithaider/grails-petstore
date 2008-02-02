@@ -4,7 +4,7 @@ class Address {
 
     String street1, street2, city, state, zip
 
-    //static belongsTo = [Item]
+    static belongsTo = Item
 
     static searchable = true
 

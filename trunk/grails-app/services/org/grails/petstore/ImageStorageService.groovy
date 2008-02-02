@@ -26,13 +26,13 @@ import org.apache.commons.io.FileUtils
 
 class ImageStorageService {
 
-    final allowedImageFormats = ["jpeg","jpg","png","gif"].asImmutable()
+    final allowedImageFormats = ["jpeg", "jpg", "png", "gif"].asImmutable()
 
     String imageDir = "web-app/images/"
-    final String categoryDir = imageDir + "category/"
-    final String productDir = imageDir + "product/"
-    final String thumbnailDir = imageDir + "item/thumbnail/"
-    final String uploadedDir = imageDir + "item/large/"
+    String categoryDir = imageDir + "category/"
+    String productDir = imageDir + "product/"
+    String thumbnailDir = imageDir + "item/thumbnail/"
+    String uploadedDir = imageDir + "item/large/"
 
     static transactional = false
 

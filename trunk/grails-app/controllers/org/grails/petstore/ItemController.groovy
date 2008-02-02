@@ -5,9 +5,10 @@ class ItemController {
     def geoCoderService
     def captchaService
     def imageStorageService
-    //def searchableService
+    def searchableService
 
     def scaffold = Item
+
     def defaultAction = "list"
 
     static final String CAPTCHA_ATTR = "captchaString"
@@ -42,17 +43,33 @@ class ItemController {
      * Indexed search.
      */
     def search = {
-//        if (!params.q?.trim()) {
-//            render (model:[:], view:"searchresult")
-//        }
-//        try {
-//            render (
-//                model:[searchResult: searchableService.search(params.q, params)],
-//                view:"searchresult"
-//            )
-//        } catch (SearchEngineQueryParseException ex) {
-//            return [parseException: true]
-//        }
+        def view = "searchresult"
+        def searchresult = []
+        if (params.q?.trim()) {
+            try {
+                searchresult = searchableService.search(params.q, params)
+            } catch (e) {
+                log.error e, e
+            }
+        }
+        render (
+            view:view,
+            model:[searchResult: searchresult]
+        )
+    }
+
+    def list = {
+        def cid = params.category
+        if (cid) {
+            def category = Category.get(cid)
+            if (category) {
+                def items = Item.createCriteria().list {
+                    "in"("product", category.products)    
+                }
+                return [itemList:items]
+            }
+        }
+        [itemList:Item.list()]
     }
 
     def edit = {
@@ -70,19 +87,14 @@ class ItemController {
         if (params.id) {
             item = Item.get(params.id)
         } else {
-            item = new Item(
-                    address:new Address(),
-                    contactInfo:new SellerContactInfo(),
-                    product:new Product()
+            item = new Item(address:new Address(),
+                            contactInfo:new SellerContactInfo(),
+                            product:new Product()
             )
         }
 
         item.properties = params
         item.tag(params.tagNames?.split("\\s") as List)
-
-        if (params.imageUrl) {
-            item.imageUrl = params.imageUrl
-        }
 
         bindData(item.address, params, "address")
         bindData(item.product, params, "product")
@@ -98,7 +110,7 @@ class ItemController {
 
         item.validate()
         if (session[CAPTCHA_ATTR] && (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])) {
-            //item.errors.reject("captchaMismatch")
+            item.errors.reject("captchaMismatch", "Captcha did not match")
         }
 
         if (!item.errors.hasErrors() && item.save()) {
