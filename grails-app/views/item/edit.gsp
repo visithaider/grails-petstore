@@ -31,15 +31,14 @@
                                                                  value="${item?.product?.id}"></g:select></td>
                     </tr>
                     <tr class='prop'>
-                        <td valign='top' class='name'><label for='product.name'>Name:</label></td>
-                        <td valign='top' class='value'><input type="text" id='product.name' name='product.name'
-                                                              value="${item?.product?.name?.encodeAsHTML()}"/></td>
+                        <td valign='top' class='name'><label for='name'>Name:</label></td>
+                        <td valign='top' class='value'><input type="text" id='name' name='name'
+                                                              value="${item?.name?.encodeAsHTML()}"/></td>
                     </tr>
                     <tr class='prop'>
-                        <td valign='top' class='name'><label for='product.description'>Description:</label></td>
-                        <td valign='top' class='value'><input type="text" id='product.description'
-                                                              name='product.description'
-                                                              value="${item?.product?.description?.encodeAsHTML()}"/>
+                        <td valign='top' class='name'><label for='description'>Description:</label></td>
+                        <td valign='top' class='value'>
+                            <g:textArea name="description" value="${item?.description}" escapeHtml="true"/>
                         </td>
                     </tr>
 

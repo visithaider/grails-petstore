@@ -15,29 +15,34 @@
                     <li>
                         <a href="${createLink(action:list, params:[category:c.id])}">
                             <img src="${createLinkTo(dir:"images/category",file:c.imageUrl)}" alt="${c.name}"/>
-                        </a> 
-                        <g:if test="${c.id?.toString() == params.category}">
+                        </a>
+                        <% if (c.id == params.category?.toLong() ||
+                               c.products.any { it.id == params.product?.toLong()} ) { %>
                             <ul id="productList">
                             <g:each in="${c.products}" var="p">
                                 <li>
-                                    <a href="">
+                                    <a href="${createLink(controller:"item",action:"list",params:[product:p.id])}"
+                                       title="${p.name}" >
                                         <img src="${createLinkTo(dir:"images/product",file:p.imageUrl)}" alt="${p.name}"/>
                                     </a>
                                 </li>
                             </g:each>
                             </ul>
-                        </g:if>
+                        <% } %>
                     </li>
                     </g:each>
                 </ul>
             </div>
             <div id="items">
-                <h1>Item List</h1>
+                <h1>Showing ${itemList.size()} pets</h1>
                 <g:if test="${flash.message}">
                 <div class="message">${flash.message}</div>
                 </g:if>
+                <div class="paginateButtons paginateTop">
+                    <g:paginate total="${itemList.size()}" />
+                </div>
                 <g:render template="itemListTemplate" model="[itemList:itemList]"/>
-                <div class="paginateButtons" style="clear: both">
+                <div class="paginateButtons paginateBottom">
                     <g:paginate total="${itemList.size()}" />
                 </div>
             </div>

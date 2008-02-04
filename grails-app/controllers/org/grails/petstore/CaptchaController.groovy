@@ -4,7 +4,7 @@ import javax.imageio.ImageIO
 
 class CaptchaController {
 
-    def captchaService
+    CaptchaService captchaService
 
     def index = {
         def captcha = session[ItemController.CAPTCHA_ATTR]

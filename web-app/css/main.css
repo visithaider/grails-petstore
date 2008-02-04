@@ -202,12 +202,20 @@ th.desc a {
 .paginateButtons {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
-    border-top: 0;
     color: #666;
     font-size: 10px;
     overflow: hidden;
     padding: 10px 3px;
 }
+
+.paginateTop {
+    border-bottom: 0;
+}
+
+.paginateBottom {
+    border-top: 0;
+}
+
 .paginateButtons a {
     background: #fff;
     border: 1px solid #ccc;
@@ -277,8 +285,21 @@ th.desc a {
 }
 
 
-/*Search form */
-#searchableForm {
+#searchAndTags {
+    margin: 15px;
     float: right;
-    margin: 10px 15px;
+    width: 300px;
+}
+
+#searchableForm {
+    text-align: right;
+}
+
+#tags {
+    margin-top: 5px;
+    text-align: right;
+}
+
+#tags a:hover {
+    text-decoration: underline;
 }

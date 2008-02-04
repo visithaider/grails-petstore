@@ -8,11 +8,8 @@ td.nowrap {
 }
 
 div#browser {
+    margin-top: 20px;
     float: left;
-}
-
-div#browser img {
-    border: none;
 }
 
 ul {
