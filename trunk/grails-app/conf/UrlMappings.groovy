@@ -5,6 +5,10 @@ class UrlMappings {
 			 // apply constraints here
 		  }
 	  }
+	  "/tag/$tag" {
+          controller = "tag"
+          action = "listTagged"
+      }
 	  "500"(view:'/error')
 	}
 }

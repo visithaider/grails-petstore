@@ -15,7 +15,7 @@
                 </g:if>
                 <h1>${item.name}</h1>
                 <div id="itemImage">
-                    <img src="/grails-petstore/images/item/large/${item.imageUrl}" alt="${item.imageUrl}"/>
+                    <img src="${createLinkTo(dir:"images/item/large",file:item.imageUrl)}" alt="${item.imageUrl}"/>
                 </div>
                 <table>
                     <tbody>
@@ -39,7 +39,7 @@
                             <td valign="top" class="name">Tags:</td>
                             <td valign="top" class="value">
                                 <g:each in="${item.tags}" var="t">
-                                    <g:link controller="tag" action="list" id="${t.id}">${t.tag}</g:link>&nbsp;
+                                    <g:link controller="tag" action="${t.tag}">${t.tag}</g:link>&nbsp;
                                 </g:each>
                             </td>
                         </tr>
@@ -47,7 +47,9 @@
                             <td valign="top" class="name">Vote:</td>
                             <td valign="top" class="value">
                                 <g:each in="[1,2,3,4,5]" var="rating">
-                                    <g:link action="voteFor" id="${item.id}" params="[rating:rating]"><button>${rating}</button></g:link>
+                                    <span class="rating">
+                                        <a href="${createLink(action:"voteFor", id:item.id, params:[rating:rating])}">${rating}</a>
+                                    </span>
                                 </g:each>
                             </td>
                         </tr>

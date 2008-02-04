@@ -14,23 +14,31 @@
         <g:each in="${itemList}" status="i" var="item">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                 <td>
-                    <g:link action="show" id="${item.id}">
+                    <g:link controller="item" action="show" id="${item.id}">
                         <img src="${createLinkTo(dir:'images/item/thumbnail', file:item.imageUrl?.encodeAsHTML())}" alt="" />
                     </g:link>
                 </td>
                 <td>
                     <h2>
-                        <g:link action="show" id="${item.id}">${item.name?.encodeAsHTML()}</g:link>
+                        <g:link controller="item" action="show" id="${item.id}">${item.name?.encodeAsHTML()}</g:link>
                     </h2>
                     <p>
                         ${item.description?.encodeAsHTML()}
                     </p>
                 </td>
-                <td class="nowrap">${item.product?.name?.encodeAsHTML()}</td>
-                <td class="nowrap">${item.product?.category?.name?.encodeAsHTML()}</td>
+                <td class="nowrap">
+                    <a href="${createLink(controller:"item",action:"list",params:[product:item.product.id])}">
+                        ${item.product?.name?.encodeAsHTML()}
+                    </a>
+                </td>
+                <td class="nowrap">
+                    <a href="${createLink(controller:"item",action:"list",params:[category:item.product.category.id])}">
+                        ${item.product?.category?.name?.encodeAsHTML()}
+                    </a>
+                </td>
                 <td>
                     <g:each in="${item.tags}" var="tag">
-                        <a href="${createLink(controller:"tag", action:"list", id:tag.id)}">
+                        <a href="${createLink(controller:"tag", action:tag.tag)}">
                             ${tag.tag.encodeAsHTML()}
                         </a>
                     </g:each>

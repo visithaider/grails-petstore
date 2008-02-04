@@ -10,16 +10,16 @@
   </head>
   <body>
   <div class="body">
-      <% if (!(params.q?.trim())) { %>
-          <h1>Nothing found.</h1>        
+      <% if (itemList.isEmpty()) { %>
+          <h1>No items are tagged with "${params.tag}".</h1>
       <% } else { %>
-          <h1>Search results for "${params.q}"</h1>
+          <h1>${itemList.size()} item${itemList.size() == 1 ? "" : "s"} are tagged "${params.tag}"</h1>
           <div class="paginateButtons paginateTop">
-              <g:paginate controller="item" action="search" params="[q: params.q]" total="${itemList.size()}" />
+              <g:paginate controller="tag" action="listTagged" params="[tag: params.tag]" total="${itemList.size()}" />
           </div>
-          <g:render template="itemListTemplate" model="[itemList:itemList]"/>
-          <div class="paginateButtons paginateTop">
-              <g:paginate controller="item" action="search" params="[q: params.q]" total="${itemList.size()}" />
+          <g:render template="/item/itemListTemplate" model="[itemList:itemList]"/>
+          <div class="paginateButtons paginateBottom">
+              <g:paginate controller="tag" action="listTagged" params="[tag: params.tag]" total="${itemList.size()}" />
           </div>
       <% } %>
   </div>
