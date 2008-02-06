@@ -111,7 +111,9 @@ class SunPetstoreImporterService {
 
             assert item.save()
             log.debug "Saved item ${item.id}"
+            print "."
         }
+        println ""
         log.info "Imported ${petstore.items.item.size()} items!"
     }
 

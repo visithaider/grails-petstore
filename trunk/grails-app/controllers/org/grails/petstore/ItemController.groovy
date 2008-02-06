@@ -2,24 +2,35 @@ package org.grails.petstore
 
 class ItemController {
 
-    def geoCoderService
-    def captchaService
-    def imageStorageService
+    GeoCoderService geoCoderService
+    CaptchaService captchaService
+    ImageStorageService imageStorageService
 
     def scaffold = Item
 
     def defaultAction = "list"
 
+    // TODO: captcha to interceptor around edit/update etc
     static final String CAPTCHA_ATTR = "captchaString"
 
-    // TODO: captcha to interceptor around edit/update etc
-
-    private void setCaptcha() {
+    private def setCaptcha() {
         session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
     }
 
-    private void unsetCaptcha() {
+    private def unsetCaptcha() {
         session.removeAttribute(CAPTCHA_ATTR)
+    }
+
+    private def toIntParams = { Map map ->
+        def intParams = [:]
+        map.each { e ->
+            if (e.value.isInteger()) {
+                intParams.put(e.key, e.value.toInteger())
+            } else {
+                intParams.put(e)
+            }
+        }
+        return intParams
     }
 
     /**
@@ -42,38 +53,36 @@ class ItemController {
      * Indexed search.
      */
     def search = {
-        def view = "searchresult"
-        def itemList = []
+        def items = []
         if (params.q?.trim()) {
             try {
-                itemList = Item.searchEvery(params.q, [offset:params.offset, max:params.max])
+                items = Item.searchEvery(params.q, params)
             } catch (e) {
                 log.error e, e
             }
         }
-        render(view:view, model:[itemList: itemList])
+        render(view:"searchresult", model:[itemList: items])
     }
 
     def list = {
-        def pid = params.product
-        def cid = params.category
-        if (pid) {
-            def product = Product.get(pid)
-            if (product) {
-                def items = Item.findAllByProduct(product)
-                return [itemList:items]
-            }
-        }
-        if (cid) {
-            def category = Category.get(cid)
-            if (category) {
-                def items = Item.createCriteria().list {
-                    "in"("product", category.products)    
-                }
-                return [itemList:items]
-            }
-        }
-        return [itemList:Item.list()]
+        [itemList:Item.list(params),total:Item.count()]
+    }
+
+    def byProduct = {
+        def product = Product.get(params.product)
+        def items = Item.findAllByProduct(product, params)
+        def total = Item.countByProduct(product)
+        render(view:"list", model:[itemList:items, total:total])
+    }
+
+    def byCategory = {
+        def category = Category.get(params.category)
+        def total = Item.executeQuery(
+                "select count(*) from org.grails.petstore.Item i where i.product.category = ?", [category])
+        def items = Item.findAll(
+                "from org.grails.petstore.Item where product.category = ?",
+                [category], toIntParams(params))
+        render(view:"list", model:[itemList:items, total:total[0]])
     }
 
     def edit = {
