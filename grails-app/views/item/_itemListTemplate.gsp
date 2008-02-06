@@ -4,9 +4,9 @@
             <tr>
                 <th>Image</th>
                 <g:sortableColumn property="name" title="Name" />
-                <g:sortableColumn property="product.name" title="Product" />
-                <g:sortableColumn property="product.category.name" title="Category" />
-                <g:sortableColumn property="tags" title="Tags" />
+                <th>Product</th>
+                <th>Category</th>
+                <th>Tags</th>
                 <g:sortableColumn property="price" title="Price" />
             </tr>
         </thead>
@@ -27,13 +27,13 @@
                     </p>
                 </td>
                 <td class="nowrap">
-                    <a href="${createLink(controller:"item",action:"list",params:[product:item.product.id])}">
-                        ${item.product?.name?.encodeAsHTML()}
+                    <a href="${createLink(controller:"item",action:"byProduct",id:item.product?.id)}">
+                        ${item.product?.name.encodeAsHTML()}
                     </a>
                 </td>
                 <td class="nowrap">
-                    <a href="${createLink(controller:"item",action:"list",params:[category:item.product.category.id])}">
-                        ${item.product?.category?.name?.encodeAsHTML()}
+                    <a href="${createLink(controller:"item",action:"byCategory",id:item.product?.category.id)}">
+                        ${item.product?.category.name.encodeAsHTML()}
                     </a>
                 </td>
                 <td>

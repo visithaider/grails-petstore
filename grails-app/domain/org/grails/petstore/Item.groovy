@@ -8,6 +8,7 @@ class Item {
 
     String name, description, imageUrl
     Integer price, totalScore = 0, numberOfVotes = 0
+    Date dateCreated, lastUpdated
 
     static searchable = {
         address(component:true)

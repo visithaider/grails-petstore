@@ -14,8 +14,6 @@ class Category {
 
     static hasMany = [products:Product]
 
-    static belongsTo = Product
-
     @Override
     String toString() {
         "$name: $description"
