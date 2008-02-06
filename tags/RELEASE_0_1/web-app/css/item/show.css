@@ -1,0 +1,19 @@
+div#itemImage {
+    float: right;
+}
+
+div.dialog {
+    margin-right: 420px;
+}
+
+.rating {
+}
+
+.rating a {
+    padding: 5px 10px;
+    background: #eee;
+}
+
+.rating a:hover {
+    background: #ddd;
+}
