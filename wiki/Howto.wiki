@@ -19,4 +19,5 @@ The JPS does not have to be running, the images are simply read from disk during
 
 Currently it seems that the searchable plugin breaks context reloading.
 
+You may need to manually add the utils directory as a source folder in IntelliJ.
   
