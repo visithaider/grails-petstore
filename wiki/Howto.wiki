@@ -1,13 +1,20 @@
 #summary How to get going
 
-  * Get Groovy 1.5
   * Get Grails 1.0
-  * Get Grails Feed pluigin:
-
-    grails install-plugin feed
-
   * Get Searchable plugin:
 
     grails install-plugin searchable
 
   * Go!
+
+Note that in order to run the Java Pet Store import on bootstrap, you will need to [https://blueprints.dev.java.net/petstore/index.html download] and unpack/install the JPS application in the same directory as you checked out Grails Pet Store, i.e.:
+
+  somedir
+    |-grails-petstore
+    \-javapetstore-2.0-ea5
+
+The JPS does not have to be running, the images are simply read from disk during import. If you have the JPS in some other location, alter the relative paths in SunPetstoreImporterService.groovy.
+
+Currently it seems that the searchable plugin breaks context reloading.
+
+  
