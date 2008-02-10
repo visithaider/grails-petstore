@@ -11,7 +11,7 @@ class ImageStorageServiceTests extends GroovyTestCase {
 
     // TODO: this directory should be part of the classpath, but isn't
     //def res = new ClassPathResource("test.jpg")
-    def res = new FileSystemResource("classes/test/grails-petstore/test.jpg")
+    def res = new FileSystemResource("test/resources/test.jpg")
 
     def file = new MockMultipartFile("test.jpg", res.inputStream)
 

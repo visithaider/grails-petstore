@@ -23,7 +23,13 @@ class Item {
         imageUrl(nullable:true, matches:".*[jpeg|jpg|gif|png]\$")
     }
 
-    /* Business Methods */
+    static List findAllTagged(String tag) {
+        return Item.executeQuery("""
+            select i from org.grails.petstore.Item as i
+            inner join i.tags as t
+            with t.tag = ?
+            """, [tag])
+    }
 
     void addRating(Integer score){
         totalScore += score
@@ -37,7 +43,7 @@ class Item {
     void tag(List<String> tags) {
         // TODO: this is not concurrency-safe.
         // Need a better strategy to handle concurrent tagging of items, maybe in a service.
-        def unique = new HashSet(tags)
+        def unique = new HashSet(tags ?: [])
         unique.each {
             def tag = Tag.findByTag(it)
             if (!tag) {
