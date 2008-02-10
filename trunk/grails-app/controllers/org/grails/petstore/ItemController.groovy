@@ -10,17 +10,25 @@ class ItemController {
 
     def defaultAction = "list"
 
-    // TODO: captcha to interceptor around edit/update etc
+    def beforeInterceptor = {
+        setCaptcha()
+    }
+
+    def afterInterceptor = { model ->
+        model.put("actionName", actionName)        
+    }
+
     static final String CAPTCHA_ATTR = "captchaString"
 
-    private def setCaptcha() {
+    def setCaptcha() {
         session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
     }
 
-    private def unsetCaptcha() {
+    def unsetCaptcha() {
         session.removeAttribute(CAPTCHA_ATTR)
     }
 
+    // Converts integer-valued string parametes to actual integers
     private def toIntParams = { Map map ->
         def intParams = [:]
         map.each { e ->
@@ -33,25 +41,20 @@ class ItemController {
         return intParams
     }
 
-    /**
-     * RSS feed.
-     */
-    def feed = {
-        render(feedType:"rss",contentType:"text/xml") {
+    def rss = {
+        render(feedType:"rss",feedVersion:"2.0") {
             title = "Pets"
             link = g.createLink(action:"list")
             description = "Ten pets from the Grails Pet Store"
-            Item.list(max:10).each {
-                entry(it.name) {
+            Item.list(max:10).each { item ->
+                entry(item.name) {
                     link = g.createLink(action:"list",id:item.id)
+                    item.description
                 }
             }
         }
     }
 
-    /**
-     * Indexed search.
-     */
     def search = {
         def items = []
         if (params.q?.trim()) {
@@ -65,6 +68,9 @@ class ItemController {
     }
 
     def list = {
+        if (!params.max) {
+            params.max = 10
+        }
         [itemList:Item.list(params),total:Item.count()]
     }
 
@@ -72,7 +78,7 @@ class ItemController {
         def product = Product.get(params.product)
         def items = Item.findAllByProduct(product, params)
         def total = Item.countByProduct(product)
-        render(view:"list", model:[itemList:items, total:total])
+        render(view:"list", model:[itemList:items, total:total, id:params.product])
     }
 
     def byCategory = {
@@ -82,17 +88,16 @@ class ItemController {
         def items = Item.findAll(
                 "from org.grails.petstore.Item where product.category = ?",
                 [category], toIntParams(params))
-        render(view:"list", model:[itemList:items, total:total[0]])
+        render(view:"list", model:[itemList:items, total:total[0], id:params.category])
     }
 
     def edit = {
-        setCaptcha()
         [item:Item.get(params.id)]
     }
 
     def create = {
-        setCaptcha()
-        render(view:"edit", model:[item:new Item()])
+        def item = new Item(params)
+        render(view:"edit",model:[item:item])
     }
 
     def save = {
@@ -100,9 +105,7 @@ class ItemController {
         if (params.id) {
             item = Item.get(params.id)
         } else {
-            item = new Item(address:new Address(),
-                            contactInfo:new SellerContactInfo()
-            )
+            item = new Item(address:new Address(), contactInfo:new SellerContactInfo())
         }
 
         item.tag(params.tagNames?.split("\\s") as List)
@@ -120,16 +123,16 @@ class ItemController {
         }
 
         item.validate()
-        if (session[CAPTCHA_ATTR] && (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])) {
+        def captchaMismatch = session[CAPTCHA_ATTR] && (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])
+        if (captchaMismatch) {
             item.errors.reject("captchaMismatch", "Captcha did not match")
         }
 
-        if (!item.errors.hasErrors() && item.save()) {
+        if (!item.errors.hasErrors() && item.save()) {               
             unsetCaptcha()
             flash.message = "Saved item with id = " + item.id
             redirect(action:show,id:item.id)
         } else {
-            setCaptcha()
             flash.message = "${item.errors.errorCount} validation errors."
             render(view:"edit", model:[item:item])
         }

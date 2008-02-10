@@ -8,25 +8,20 @@ def password = "APP"
 def driver = "org.apache.derby.jdbc.ClientDriver"
 def sql = Sql.newInstance(url, username, password, driver)
 
-// Tags per item is loaded in advance, for efficiency
+// path to Java Pet Store images
+def pathToImages = "c:/javapetstore-2.0-ea5/web/"
+
+// Name of output file
+def outputFile = "scripts/sun_petstore_export.xml"
+
+// Item tags
 def tagQuery = """
 	select
-        t.tag, i.itemid
+        t.tag
     from tag_item ti
-	    left join item i on ti.itemid=i.itemid
-	    left join tag t on ti.tagid=t.tagid   
+	    left join tag t on ti.tagid=t.tagid
+    where ti.itemid = ?
 """
-
-def tagmap = [:]
-
-sql.eachRow(tagQuery, {
-	list = tagmap[it.itemid]
-	if (!list) {
-		list = []
-		tagmap[it.itemid] = list
-	}
-	list.add(it.tag)
-});
 
 // All items, with category, address, product and contact info joined
 def itemQuery = """
@@ -50,6 +45,13 @@ def itemQuery = """
 
 def sw = new StringWriter()
 def xml = new MarkupBuilder(sw)
+def imgBaseDir = new File(pathToImages)
+
+// Helper to encode images using base64
+def toBase64 = { imageUrl ->
+    def bytes = new File(imgBaseDir, imageUrl).readBytes()
+    bytes.encodeBase64()
+}
 
 xml.petstore() {
     categories() {
@@ -57,28 +59,31 @@ xml.petstore() {
             category() {
                 name c.name
                 description c.description
-                imageurl "images/" + c.imageurl
+                imageurl c.imageurl
+                image toBase64("images/${c.imageurl}")
                 products() {
                     sql.eachRow("select * from product where categoryid = ${c.categoryid}", { p ->
                         product() {
                             name p.name
                             description p.description
-                            imageurl "images/" + p.imageurl
+                            imageurl p.imageurl
+                            image toBase64("images/${p.imageurl}")
                         }
                     })
-                }
+                } // end of products
             }
         })
-    }
+    } // end of categories
     items() {
         sql.eachRow(itemQuery, { row ->
             item () {
                 name row.name
                 description row.description
-                image row.imageurl
+                imageurl row.imageurl
+                image toBase64(row.imageurl)
                 price row.price
                 totalScore row.totalscore
-                numberofVotes row.numberofvotes
+                numberOfVotes row.numberofvotes
                 product row.p_name
                 contactInfo() {
                     firstName row.firstname
@@ -93,13 +98,15 @@ xml.petstore() {
                     state row.state
                 }
                 tags() {
-                    tagmap[row.itemid]?.each {
-                        tag it
-                    }
+                    sql.eachRow(tagQuery, [row.itemid], {
+                        tag it.TAG
+                    })
                 }
             }
         }
-    )}  // end of items
+    )} // end of items
 }
 
-println sw.toString()
+def result = new File(outputFile)
+result.write(sw.toString())
+println "\n* * * Wrote export to ${outputFile}. Size: ${(int) (result.size() / 1024)} kilobytes. * * *\n"

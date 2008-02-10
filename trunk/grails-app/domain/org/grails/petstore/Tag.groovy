@@ -6,7 +6,6 @@ class Tag implements Comparable {
 
     static searchable = false
 
-    static hasMany = [items : Item]
     static belongsTo = Item
 
     String toString() {

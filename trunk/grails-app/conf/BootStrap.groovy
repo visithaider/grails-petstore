@@ -7,8 +7,13 @@ class BootStrap {
         imageStorageService.clearDirectories()
         imageStorageService.createDirectories()
 
-        sunPetstoreImporterService.importProductsAndCategories()
-        sunPetstoreImporterService.importItems()
+        try {
+            sunPetstoreImporterService.importProductsAndCategories()
+            sunPetstoreImporterService.importItems()
+        } catch (e) {
+            log.error "Could not import Sun Java Pet Store images", e
+        }
+
      }
 
      def destroy = {

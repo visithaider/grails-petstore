@@ -29,7 +29,7 @@
         <div style="font-weight: bold; text-transform: uppercase; letter-spacing: 8px; margin-left: 70px">Pet Store</div>
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><a class="list" href="${createLink(controller:"item",action:"list",params:[max:10])}">Pet Catalog</a></span>
+            <span class="menuButton"><a class="list" href="${createLink(controller:"item",action:"list")}">Pet Catalog</a></span>
             <span class="menuButton"><a class="create" href="${createLink(controller:"item", action:"create")}">New Pet</a></span>
         </div>
         <g:layoutBody />

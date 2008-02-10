@@ -30,7 +30,7 @@ class ItemTests extends GroovyTestCase {
             product:new Product(),
             contactInfo:new SellerContactInfo()
         )
-        assert !item.vaidate()
+        assert !item.validate()
 
         item.name = "An item"
         item.description = "A test item"

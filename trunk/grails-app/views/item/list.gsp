@@ -39,11 +39,11 @@
                 <div class="message">${flash.message}</div>
                 </g:if>
                 <div class="paginateButtons paginateTop">
-                    <g:paginate total="${total}" id="${params.id}"/>
+                    <g:paginate action="${actionName}" total="${total}" id="${id}"/>
                 </div>
                 <g:render template="itemListTemplate" model="[itemList:itemList]"/>
                 <div class="paginateButtons paginateBottom">
-                    <g:paginate total="${total}" id="${params.id}"/>
+                    <g:paginate action="${actionName}" total="${total}" id="${id}"/>
                 </div>
             </div>
         </div>
