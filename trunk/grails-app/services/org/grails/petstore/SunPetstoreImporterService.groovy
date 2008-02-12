@@ -1,10 +1,12 @@
 package org.grails.petstore
 
+import org.springframework.core.io.ClassPathResource
+
 class SunPetstoreImporterService {
 
     static transactional = true
 
-    def exportFile = new File("scripts/sun_petstore_export.xml")
+    def exportFile = new ClassPathResource("sun_petstore_export.xml").file
     def imageStorageService
 
     def benchmark = {
