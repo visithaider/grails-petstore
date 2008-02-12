@@ -1,8 +1,10 @@
 package org.grails.petstore
 
+import org.codehaus.groovy.grails.commons.GrailsApplication
+
 class SunPetstoreImporterServiceTests extends GroovyTestCase {
 
-    def sunPetstoreImporterService 
+    SunPetstoreImporterService sunPetstoreImporterService
 
     void testImport() {
         sunPetstoreImporterService.importProductsAndCategories()

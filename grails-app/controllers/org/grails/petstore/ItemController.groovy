@@ -10,25 +10,23 @@ class ItemController {
 
     def defaultAction = "list"
 
-    def beforeInterceptor = {
-        setCaptcha()
-    }
-
     def afterInterceptor = { model ->
-        model.put("actionName", actionName)        
+        model.put("actionName", actionName)
+        if (isCaptchaProtectedAction()) {
+            session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
+        } else {
+            session.removeAttribute(CAPTCHA_ATTR)
+        }
     }
 
-    static final String CAPTCHA_ATTR = "captchaString"
-
-    def setCaptcha() {
-        session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
+    def isCaptchaProtectedAction() {
+        actionName in ["edit","create","save"]
     }
 
-    def unsetCaptcha() {
-        session.removeAttribute(CAPTCHA_ATTR)
-    }
+    public static final def CAPTCHA_ATTR = ItemController.name + ".CAPTCHA_ATTR"
 
     // Converts integer-valued string parametes to actual integers
+    // TODO: does not belong here, shouldn't even be needed
     private def toIntParams = { Map map ->
         def intParams = [:]
         map.each { e ->
@@ -39,20 +37,6 @@ class ItemController {
             }
         }
         return intParams
-    }
-
-    def rss = {
-        render(feedType:"rss",feedVersion:"2.0") {
-            title = "Pets"
-            link = g.createLink(action:"list")
-            description = "Ten pets from the Grails Pet Store"
-            Item.list(max:10).each { item ->
-                entry(item.name) {
-                    link = g.createLink(action:"list",id:item.id)
-                    item.description
-                }
-            }
-        }
     }
 
     def search = {
@@ -96,8 +80,7 @@ class ItemController {
     }
 
     def create = {
-        def item = new Item(params)
-        render(view:"edit",model:[item:item])
+        render(view: "edit", model: [item: new Item(params)])
     }
 
     def save = {
@@ -129,7 +112,6 @@ class ItemController {
         }
 
         if (!item.errors.hasErrors() && item.save()) {               
-            unsetCaptcha()
             flash.message = "Saved item with id = " + item.id
             redirect(action:show,id:item.id)
         } else {

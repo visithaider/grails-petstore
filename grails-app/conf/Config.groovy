@@ -93,7 +93,6 @@ grails.war.dependencies = [
     "commons-io-*.jar",
     "*oro-*.jar",
     "jaxen-*.jar",
-    "xercesImpl.jar",
     "xstream-1.2.1.jar",
     "xpp3_min-1.1.3.4.O.jar"
 ]
