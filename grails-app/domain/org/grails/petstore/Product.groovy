@@ -1,12 +1,14 @@
 package org.grails.petstore
 
-class Product {
+class Product implements Comparable {
 
     String name, description, imageUrl
 
     static belongsTo = [category:Category]
 
-    static searchable = false
+    static searchable = {
+        category(component:true)
+    }
 
     static constraints = {
         name(blank:false, unique:true)
@@ -18,7 +20,11 @@ class Product {
     }
 
     String toString() {
-        "$name: $description [$category]"   
+        name
+    }
+
+    public int compareTo(otherProduct) {
+        return name.compareTo(otherProduct.name)
     }
 
 }

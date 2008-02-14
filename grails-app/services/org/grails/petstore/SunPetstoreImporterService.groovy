@@ -7,7 +7,8 @@ class SunPetstoreImporterService {
     static transactional = true
 
     def exportFile = new ClassPathResource("sun_petstore_export.xml").file
-    def imageStorageService
+    ImageStorageService imageStorageService
+    ItemService itemService
 
     def benchmark = {
         def before = System.currentTimeMillis()
@@ -85,10 +86,6 @@ class SunPetstoreImporterService {
         address.zip = adr.zip
         item.address = address
 
-        // Tags
-        def tagStrings = itemTag.tags.tag.collect { it.text() }
-        item.tag(tagStrings)
-
         // Image
         def imageBytes = itemTag.image.text().decodeBase64()
         item.imageUrl =  imageStorageService.storeUploadedImage(imageBytes, "image/jpeg")
@@ -114,15 +111,17 @@ class SunPetstoreImporterService {
         log.info "Imported ${Category.count()} categories and ${Product.count()} products."
     }
 
-    void importItems() {
+    void importItems(maxItems) {
         def petstore = new XmlSlurper().parse(exportFile)
 
-        log.info "About to import ${petstore.items.item.size()} items."
+        log.info "About to import ${maxItems} items."
 
-        petstore.items.item.each { itemTag ->
+        petstore.items.item[0..maxItems].each { itemTag ->
             def item = importItem(itemTag)
-            assert item.save()
-            print "."
+            def tagList = itemTag.tags.tag.collect { it.text() }
+
+            assert itemService.tagAndSave(item, tagList)
+            print "."                       
         }
         println ""
 

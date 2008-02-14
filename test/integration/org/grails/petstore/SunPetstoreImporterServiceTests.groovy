@@ -11,7 +11,7 @@ class SunPetstoreImporterServiceTests extends GroovyTestCase {
         assert Category.count() == 5
         assert Product.count() == 10
 
-        sunPetstoreImporterService.importItems()
+        sunPetstoreImporterService.importItems(102)
         def itemCount = 102
         assert Item.count() == itemCount
         assert Address.count() == itemCount

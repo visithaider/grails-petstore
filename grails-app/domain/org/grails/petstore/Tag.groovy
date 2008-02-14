@@ -4,9 +4,7 @@ class Tag implements Comparable {
 
     String tag
 
-    static searchable = false
-
-    static belongsTo = Item
+    static searchable = true
 
     String toString() {
         tag
