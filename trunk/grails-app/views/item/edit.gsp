@@ -12,9 +12,11 @@
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    <div class="errors">
-        <g:renderErrors bean="${item}" as="list"/>
-    </div>
+    <g:if test="${item.errors.hasErrors()}">
+        <div class="errors">
+            <g:renderErrors bean="${item}" as="list"/>
+        </div>
+    </g:if>
     <g:form action="save" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${item?.id}"/>
 

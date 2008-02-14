@@ -4,7 +4,9 @@ class Category {
 
     String name, description, imageUrl
 
-    static searchable = false
+    static searchable = {
+        products(component:true)
+    }
 
     static constraints = {
         name(blank:false, unique:true)
@@ -12,11 +14,12 @@ class Category {
         imageUrl(blank:false)
     }
 
+    SortedSet products
     static hasMany = [products:Product]
 
     @Override
     String toString() {
-        "$name: $description"
+        name
     }
     
 }

@@ -3,11 +3,11 @@
         <thead>
             <tr>
                 <th>Image</th>
-                <g:sortableColumn property="name" title="Name" />
+                <g:sortableColumn property="name" title="Name" action="${action}"/>
                 <th>Product</th>
                 <th>Category</th>
                 <th>Tags</th>
-                <g:sortableColumn property="price" title="Price" />
+                <g:sortableColumn property="price" title="Price" action="${action}"/>
             </tr>
         </thead>
         <tbody>

@@ -23,10 +23,9 @@ import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 import org.apache.commons.io.FileUtils
 
-
 class ImageStorageService {
 
-    final allowedImageFormats = ["jpeg", "jpg", "png", "gif"].asImmutable()
+    final allowedImageFormats = ImageIO.getReaderFileSuffixes() as List
 
     String imageDir = "web-app/images/"
     String categoryDir = imageDir + "category/"

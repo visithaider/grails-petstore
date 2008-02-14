@@ -9,6 +9,7 @@ class UrlMappings {
           controller = "tag"
           action = "listTagged"
       }
+      /*
       "/item/byCategory/$category" {
           controller = "item"
           action = "byCategory"
@@ -17,6 +18,7 @@ class UrlMappings {
           controller = "item"
           action = "byProduct"
       }
+      */
 	  "500"(view:'/error')
 	}
 }
