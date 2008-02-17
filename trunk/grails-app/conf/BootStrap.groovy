@@ -6,7 +6,7 @@ class BootStrap {
     SunPetstoreImporterService sunPetstoreImporterService
     ImageStorageService imageStorageService
     def importJps = true
-    def maxItems = 20
+    def maxItems = 102
 
      def init = { servletContext ->
         imageStorageService.clearDirectories()

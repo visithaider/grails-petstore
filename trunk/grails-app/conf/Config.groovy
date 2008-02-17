@@ -54,6 +54,7 @@ log4j {
             springframework="off"
             hibernate="off"
         }
+	//org.hibernate.cache="debug,stdout"
         org.grails.petstore="debug,stdout"
     }
     additivity.StackTrace=false
