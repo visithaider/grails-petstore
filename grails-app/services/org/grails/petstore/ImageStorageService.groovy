@@ -25,7 +25,7 @@ import org.apache.commons.io.FileUtils
 
 class ImageStorageService {
 
-    final allowedImageFormats = ImageIO.getReaderFileSuffixes() as List
+    final allowedImageFormats = ["jpg","jpeg","gif","png"] //ImageIO.getReaderFileSuffixes() as List
 
     String imageDir = "web-app/images/"
     String categoryDir = imageDir + "category/"

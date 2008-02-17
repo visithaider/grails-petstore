@@ -94,7 +94,7 @@ class ItemController {
             item.errors.reject("captchaMismatch", "Captcha did not match")
         }
 
-        def tagList = params.tagNames?.split("\\s").asList()
+        def tagList = params.tagNames?.split("\\s").toList()
 
         item.validate()
         if (!item.errors.hasErrors() && itemService.tagAndSave(item, tagList)) {
