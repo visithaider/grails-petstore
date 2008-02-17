@@ -40,6 +40,11 @@ class ItemController {
         render(view:"searchresult", model:[itemList: items])
     }
 
+    def show = {
+        def item = Item.get(params.id)
+        [item:item]
+    }
+
     def list = {
         if (!params.max) {
             params.max = 10
@@ -90,13 +95,13 @@ class ItemController {
             item.imageUrl = imageStorageService.storeUploadedImage(uploaded.bytes, uploaded.contentType)
         }
 
+        item.validate()
         if (captchaMismatch()) {
             item.errors.reject("captchaMismatch", "Captcha did not match")
         }
 
         def tagList = params.tagNames?.split("\\s").toList()
 
-        item.validate()
         if (!item.errors.hasErrors() && itemService.tagAndSave(item, tagList)) {
             flash.message = "Saved item ${item.id}"
             redirect(action:show,id:item.id)

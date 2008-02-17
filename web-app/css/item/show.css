@@ -1,3 +1,10 @@
+div#map {
+    float: right;
+    width: 400px;
+    height: 300px;
+    border:1px solid black;
+}
+
 div#itemImage {
     float: right;
 }
@@ -16,4 +23,10 @@ div.dialog {
 
 .rating a:hover {
     background: #ddd;
+}
+
+table {
+    float: left;
+    border: none;
+    width: 500px;
 }

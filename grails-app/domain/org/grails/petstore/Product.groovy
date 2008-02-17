@@ -19,6 +19,7 @@ class Product implements Comparable {
         imageUrl(blank:false)
     }
 
+    @Override
     String toString() {
         name
     }

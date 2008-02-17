@@ -4,14 +4,13 @@ class ItemService {
 
     static transactional = true
 
-    def tagAndSave(item, tagsList) {
-        // TODO: this is not concurrency safe
+    synchronized boolean tagAndSave(Item item, List<String> tagsList) {
         def tagSet = []
         tagsList.unique().each {
             def tag = Tag.findByTag(it)
             if (!tag) {
                 tag = new Tag(tag: it)
-                tag.save()  // This tag might have been stored in another thread at this point
+                tag.save()
             }
             tagSet.add(tag)
         }
