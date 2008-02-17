@@ -55,21 +55,17 @@ class Item {
         }
     }
 
-    def addRating(Integer score){
+    def addRating(Integer score) {
         totalScore += score
         numberOfVotes += 1
     }
 
-    def checkAverageRating(){
+    def checkAverageRating() {
         totalScore > 0 ? totalScore/numberOfVotes : 0.0
     }
 
     def tagsAsString() {
         tags ? tags.sort().join(" ") : ""
-    }
-
-    def containsTag(tag) {
-        tags.any { it.tag == tag }
     }
 
 }

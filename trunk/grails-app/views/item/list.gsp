@@ -13,16 +13,16 @@
                 <ul id="categoryList">
                     <g:each in="${Category.list()}" var="c">
                     <li>
-                        <a href="${createLink(action:"byCategory", id:c.id)}">
+                        <a href="${createLink(action:"byCategory", id:c.id)}" title="${c.name}">
                             <img src="${createLinkTo(dir:"images/category",file:c.imageUrl)}" alt="${c.name}"/>
                         </a>
-                        <% if (c.id == params.category?.toLong() ||
-                               c.products.any { it.id == params.product?.toLong()} ) { %>
+                        <%  def a = params.action, id = params.id?.toLong()
+                            if ((a == "byCategory" && c.id == id) ||
+                                (a == "byProduct"  && c.products.any { it.id == id })) { %>
                             <ul id="productList">
                             <g:each in="${c.products}" var="p">
                                 <li>
-                                    <a href="${createLink(action:"byProduct",id:p.id)}"
-                                       title="${p.name}" >
+                                    <a href="${createLink(action:"byProduct",id:p.id)}" title="${p.name}" >
                                         <img src="${createLinkTo(dir:"images/product",file:p.imageUrl)}" alt="${p.name}"/>
                                     </a>
                                 </li>
@@ -39,11 +39,11 @@
                 <div class="message">${flash.message}</div>
                 </g:if>
                 <div class="paginateButtons paginateTop">
-                    <g:paginate action="${action}" total="${total}" id="${id}"/>
+                    <g:paginate action="${a}" total="${total}" id="${id}"/>
                 </div>
                 <g:render template="itemListTemplate" model="[itemList:itemList]"/>
                 <div class="paginateButtons paginateBottom">
-                    <g:paginate action="${action}" total="${total}" id="${id}"/>
+                    <g:paginate action="${a}" total="${total}" id="${id}"/>
                 </div>
             </div>
         </div>

@@ -33,11 +33,6 @@ class ItemTests extends GroovyTestCase {
         }
     }
 
-    void testValidate() {
-        Item item = new Item()
-        assert !item.validate()
-    }
-
     void testSave() {
         Item item = new Item(
             address:new Address(),
@@ -91,6 +86,7 @@ class ItemTests extends GroovyTestCase {
     }
 
     Item buildItemFrom(String s, Product p) {
+        assert p
         def item = new Item(
             address:new Address(),
             contactInfo:new SellerContactInfo(),
@@ -100,12 +96,20 @@ class ItemTests extends GroovyTestCase {
         item.description =
         item.imageUrl =
         item.address.street1 =
-        item.address.zip =
         item.address.city =
         item.address.state =
         item.contactInfo.firstName =
-        item.contactInfo.lastName =
-        item.contactInfo.email = s
+        item.contactInfo.lastName = s
+        
+        item.contactInfo.email = "${s}@${s}.com"
+        item.address.zip = "12345"
+        item.price = 100
+
+        if (!item.validate()) {
+            item.errors.allErrors.each {
+                println it
+            }
+        }
 
         item
     }
@@ -126,8 +130,6 @@ class ItemTests extends GroovyTestCase {
 
         def list2 = Item.findAllByCategory(p2.category, params)
         assert list2 == [i3]
-
-
     }
 
 }

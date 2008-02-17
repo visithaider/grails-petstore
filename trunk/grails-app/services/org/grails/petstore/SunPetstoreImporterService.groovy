@@ -6,16 +6,10 @@ class SunPetstoreImporterService {
 
     static transactional = true
 
-    def exportFile = new ClassPathResource("sun_petstore_export.xml").file
     ImageStorageService imageStorageService
     ItemService itemService
 
-    def benchmark = {
-        def before = System.currentTimeMillis()
-        it()
-        def after = System.currentTimeMillis()
-        println "Call took ${after - before} ms."
-    }
+    def exportFile = new ClassPathResource("sun_petstore_export.xml").file
 
     def importCategory = { c ->
         def cName = c.name.text()
