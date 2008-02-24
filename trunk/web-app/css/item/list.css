@@ -10,6 +10,16 @@ td.nowrap {
 div#browser {
     margin-top: 20px;
     float: left;
+    background: #006dba;
+}
+
+#categoryList li {
+    background: white;
+    margin: 2px;
+    padding: 4px;
+}
+
+#productList li {
 }
 
 ul {

@@ -14,6 +14,10 @@ class Category {
         imageUrl(blank:false)
     }
 
+    static mapping = {
+        cache true
+    }
+
     SortedSet products
     static hasMany = [products:Product]
 

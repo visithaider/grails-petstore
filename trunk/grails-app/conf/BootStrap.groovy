@@ -1,5 +1,5 @@
-import org.grails.petstore.SunPetstoreImporterService
 import org.grails.petstore.ImageStorageService
+import org.grails.petstore.SunPetstoreImporterService
 
 class BootStrap {
 
@@ -13,8 +13,8 @@ class BootStrap {
         imageStorageService.createDirectories()
 
         try {
+            sunPetstoreImporterService.importProductsAndCategories()
             if (importJps) {
-                sunPetstoreImporterService.importProductsAndCategories()
                 sunPetstoreImporterService.importItems(maxItems)
             }
         } catch (e) {

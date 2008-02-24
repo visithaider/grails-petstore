@@ -6,19 +6,19 @@
         <meta name="layout" content="main" />
         <link rel="stylesheet" href="${createLinkTo(dir:"css/item",file:"show.css")}"/>
         <title>Show Item</title>
-        <!--
         <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAU5ND2jLlzfA0lYB9KhO2exQFxCRMmJ_u0ujLxBgyStU7cbIWpBQwU-AiRAKk50BIUA0-lRbdBQVehw"></script>
         <script type="text/javascript">
             //<![CDATA[
             function loadMap() {
               if (GBrowserIsCompatible()) {
                 var map = new GMap2(document.getElementById("map"));
-                map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+                var point = new GLatLng(${item.latitude}, ${item.longitude});
+                map.setCenter(point, 10);
+                map.addOverlay(new GMarker(point));
               }
             }
             //]]>
         </script>
-        -->
     </head>
     <body onunload="GUnload()">
         <div class="body">
@@ -119,10 +119,8 @@
             </div>
         </div>
         <script type="text/javascript">
-            /*
             google.load("maps", "2");
             google.setOnLoadCallback(loadMap);
-            */
         </script>
     </body>
 </html>

@@ -6,6 +6,10 @@ class SellerContactInfo {
 
     static belongsTo = Item
 
+    static mapping = {
+        cache true
+    }
+
     static searchable = true
 
     static constraints = {

@@ -6,6 +6,10 @@ class Product implements Comparable {
 
     static belongsTo = [category:Category]
 
+    static mapping = {
+        cache true
+    }
+
     static searchable = {
         category(component:true)
     }
@@ -24,6 +28,7 @@ class Product implements Comparable {
         name
     }
 
+    @Override
     public int compareTo(otherProduct) {
         return name.compareTo(otherProduct.name)
     }
