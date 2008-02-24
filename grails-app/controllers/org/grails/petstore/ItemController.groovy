@@ -30,14 +30,17 @@ class ItemController {
 
     def search = {
         def items = []
+        def total = 0
         if (params.q?.trim()) {
             try {
-                items = Item.searchEvery(params.q, params)
+                def result = Item.search(params.q, params)
+                total = result.total
+                items = result.results
             } catch (e) {
-                log.error e, e
+                log.error "Search error: " + e
             }
         }
-        render(view:"searchresult", model:[itemList: items])
+        render(view:"searchresult", model:[itemList: items, total:total])
     }
 
     def show = {

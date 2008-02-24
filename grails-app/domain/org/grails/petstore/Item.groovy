@@ -9,6 +9,11 @@ class Item {
     String name, description, imageUrl
     Integer price, totalScore = 0, numberOfVotes = 0
     Date dateCreated, lastUpdated
+    Double latitude, longitude
+
+    static mapping = {
+        cache true
+    }
 
     static searchable = {
         address(component:true)
@@ -21,8 +26,11 @@ class Item {
     static hasMany = [tags : Tag]
 
     static constraints = {
-        name(blank:false)
+        name(blank:false, maxSize:128)
+        description(maxSize:2000)
         price(min:0)
+        latitude(nullable:true)
+        longitude(nullable:true)
     }
 
     static List findAllTagged(tag) {
