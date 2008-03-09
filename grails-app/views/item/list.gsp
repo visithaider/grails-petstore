@@ -14,7 +14,7 @@
                     <g:each in="${Category.list()}" var="c">
                     <li>
                         <a href="${createLink(action:"byCategory", id:c.id)}" title="${c.name}">
-                            <img src="${createLinkTo(dir:"images/category",file:c.imageUrl)}" alt="${c.name}"/>
+                            <img src="${ps.categoryImage(category:c)}" alt="${c.name}"/>
                         </a>
                         <%  def a = params.action, id = params.id?.toLong()
                             if ((a == "byCategory" && c.id == id) ||
@@ -23,7 +23,7 @@
                             <g:each in="${c.products}" var="p">
                                 <li>
                                     <a href="${createLink(action:"byProduct",id:p.id)}" title="${p.name}" >
-                                        <img src="${createLinkTo(dir:"images/product",file:p.imageUrl)}" alt="${p.name}"/>
+                                        <img src="${ps.productImage(product:p)}" alt="${p.name}"/>
                                     </a>
                                 </li>
                             </g:each>

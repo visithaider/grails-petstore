@@ -7,8 +7,7 @@ class CaptchaController {
     CaptchaService captchaService
 
     def index = {
-        def captcha = session[ItemController.CAPTCHA_ATTR]
-        def image = captchaService.getCaptchaImage(captcha ?: "XYZ")
+        def image = captchaService.getCaptchaImage()
         response.contentType = "application/jpeg"
         ImageIO.write(image, "jpeg", response.outputStream)
     }
