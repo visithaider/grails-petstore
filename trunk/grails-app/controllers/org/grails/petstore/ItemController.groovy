@@ -2,26 +2,20 @@ package org.grails.petstore
 
 class ItemController {
 
-    GeoCoderService geoCoderService
     CaptchaService captchaService
     ImageStorageService imageStorageService
     ItemService itemService
-
-    def scaffold = Item
 
     def defaultAction = "list"
 
     def beforeInterceptor = {
         if (isCaptchaProtectedAction()) {
-            session[CAPTCHA_ATTR] = captchaService.generateCaptchaString(6)
+            captchaService.setCaptchaString()
         }
     }
 
-    public static final String CAPTCHA_ATTR = ItemController.name + ".CAPTCHA_ATTR"
-
     def captchaMismatch() {
-        session[CAPTCHA_ATTR] &&
-        (params[CAPTCHA_ATTR]?.trim() != session[CAPTCHA_ATTR])
+        params["captcha"]?.trim() != captchaService.getCaptchaString()
     }
 
     def isCaptchaProtectedAction() {
@@ -29,15 +23,14 @@ class ItemController {
     }
 
     def search = {
-        def items = []
-        def total = 0
+        def items = [], total = 0
         if (params.q?.trim()) {
             try {
                 def result = Item.search(params.q, params)
                 total = result.total
                 items = result.results
             } catch (e) {
-                log.error "Search error: " + e
+                log.error "Search error: ${e.message}"
             }
         }
         render(view:"searchresult", model:[itemList: items, total:total])
@@ -70,11 +63,23 @@ class ItemController {
     }
 
     def edit = {
-        [item:Item.get(params.id)]
+        def item = Item.get(params.id)
+        [item:item, tags:item.tagsAsString()]
     }
 
     def create = {
         render(view: "edit", model: [item: new Item()])
+    }
+
+    private void handleFileUpload(Item item) {
+        def uploaded = request.getFile("file")
+        if (!uploaded.empty) {
+            if (item.imageUrl) {
+                // Delete the old image when a new is uploaded
+                imageStorageService.deleteImage(item.imageUrl)
+            }
+            item.imageUrl = imageStorageService.storeUploadedImage(uploaded.bytes, uploaded.contentType)
+        }
     }
 
     def save = {
@@ -85,32 +90,26 @@ class ItemController {
             item = new Item(address:new Address(), contactInfo:new SellerContactInfo())
         }
 
-        bindData(item, params)
+        bindData(item, params, ["tags"])
         bindData(item.address, params, "address")
         bindData(item.contactInfo, params, "contactInfo")
 
-        def uploaded = request.getFile("file")
-        if (!uploaded.empty) {
-            if (item.imageUrl) {
-                // Delete the old image when a new is uploaded
-                imageStorageService.deleteImage(item.imageUrl)
-            }
-            item.imageUrl = imageStorageService.storeUploadedImage(uploaded.bytes, uploaded.contentType)
-        }
+        handleFileUpload(item)
 
         item.validate()
         if (captchaMismatch()) {
             item.errors.reject("captchaMismatch", "Captcha did not match")
         }
 
-        def tagList = params.tagNames?.split("\\s").toList()
+        def tagList = params.tags?.split("\\s").toList()
 
         if (!item.errors.hasErrors() && itemService.tagAndSave(item, tagList)) {
             flash.message = "Saved item ${item.id}"
             redirect(action:show,id:item.id)
         } else {
             flash.message = "${item.errors.errorCount} validation errors."
-            render(view:"edit", model:[item:item])
+            captchaService.setCaptchaString()
+            render(view:"edit", model:[item:item,tags:params.tags])
         }
     }
 
@@ -120,8 +119,8 @@ class ItemController {
             // TODO: wrap in transaction?
             item.delete()
             imageStorageService.deleteImage(item.imageUrl)
+            flash.message = "Item ${item.id} deleted."
         }
-        flash.message = "Item ${item.id} deleted."
         redirect(action:list)
     }
 

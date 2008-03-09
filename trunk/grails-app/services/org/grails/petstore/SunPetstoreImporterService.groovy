@@ -1,15 +1,23 @@
 package org.grails.petstore
 
-import org.springframework.core.io.ClassPathResource
+import org.springframework.beans.factory.InitializingBean
+import org.springframework.context.ResourceLoaderAware
+import org.springframework.core.io.ResourceLoader
 
-class SunPetstoreImporterService {
+class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBean {
 
     static transactional = true
 
     ImageStorageService imageStorageService
     ItemService itemService
+    ResourceLoader resourceLoader
 
-    def exportFile = new ClassPathResource("sun_petstore_export.xml").file
+    File exportFile
+
+    @Override
+    void afterPropertiesSet() {
+       exportFile = resourceLoader.getResource("classpath:sun_petstore_export.xml").file
+    }
 
     def importCategory = { c ->
         def cName = c.name.text()
@@ -89,11 +97,12 @@ class SunPetstoreImporterService {
 
     void importProductsAndCategories() {
         def petstore = new XmlSlurper().parse(exportFile)
+        def categories = petstore.categories.category
 
-        log.info "About to import ${petstore.categories.category.size()} categories " +
-                 "and ${petstore.categories.category.product.product.size()} products."
+        log.info "About to import ${categories.size()} categories " +
+                 "and ${categories.products.product.size()} products."
 
-        petstore.categories.category.each { c ->
+        categories.each { c ->
             def category = importCategory(c)
             c.products.product.each { p ->
                 def product = importProduct(p)

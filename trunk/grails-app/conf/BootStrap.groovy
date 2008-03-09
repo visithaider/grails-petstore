@@ -1,28 +1,28 @@
-import org.grails.petstore.ImageStorageService
+import grails.util.GrailsUtil
 import org.grails.petstore.SunPetstoreImporterService
 
 class BootStrap {
 
     SunPetstoreImporterService sunPetstoreImporterService
-    ImageStorageService imageStorageService
-    def importJps = true
-    def maxItems = 102
+    boolean importJps = true
+    int maxItems = 20
 
      def init = { servletContext ->
-        imageStorageService.clearDirectories()
-        imageStorageService.createDirectories()
-
         try {
             sunPetstoreImporterService.importProductsAndCategories()
             if (importJps) {
-                sunPetstoreImporterService.importItems(maxItems)
+                Thread.start {
+                    log.info "Started import of $maxItems items in background task"
+                    sunPetstoreImporterService.importItems(maxItems)
+                    log.info "Import completed"
+                }
             }
         } catch (e) {
-            log.error "Could not import from Java Pet Store", e
+            log.error "Could not import from Java Pet Store", GrailsUtil.sanitize (e)
         }
 
      }
 
-     def destroy = {
-     }
+     def destroy = {}
+
 } 

@@ -1,58 +1,40 @@
 package org.grails.petstore
 
 import java.awt.Image
-import static java.awt.RenderingHints.KEY_ALPHA_INTERPOLATION
-import static java.awt.RenderingHints.KEY_ANTIALIASING
-import static java.awt.RenderingHints.KEY_COLOR_RENDERING
-import static java.awt.RenderingHints.KEY_DITHERING
-import static java.awt.RenderingHints.KEY_FRACTIONALMETRICS
-import static java.awt.RenderingHints.KEY_INTERPOLATION
-import static java.awt.RenderingHints.KEY_RENDERING
-import static java.awt.RenderingHints.KEY_STROKE_CONTROL
-import static java.awt.RenderingHints.KEY_TEXT_ANTIALIASING
-import static java.awt.RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY
-import static java.awt.RenderingHints.VALUE_ANTIALIAS_ON
-import static java.awt.RenderingHints.VALUE_COLOR_RENDER_QUALITY
-import static java.awt.RenderingHints.VALUE_DITHER_ENABLE
-import static java.awt.RenderingHints.VALUE_FRACTIONALMETRICS_ON
-import static java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR
-import static java.awt.RenderingHints.VALUE_RENDER_QUALITY
-import static java.awt.RenderingHints.VALUE_STROKE_NORMALIZE
-import static java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON
+import static java.awt.RenderingHints.*
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
+import javax.servlet.ServletContext
 import org.apache.commons.io.FileUtils
+import org.springframework.beans.factory.DisposableBean
+import org.springframework.beans.factory.InitializingBean
+import org.springframework.web.context.ServletContextAware
 
-class ImageStorageService {
 
-    final allowedImageFormats = ["jpg","jpeg","gif","png"] //ImageIO.getReaderFileSuffixes() as List
-
-    String imageDir = "web-app/images/"
-    String categoryDir = imageDir + "category/"
-    String productDir = imageDir + "product/"
-    String thumbnailDir = imageDir + "item/thumbnail/"
-    String uploadedDir = imageDir + "item/large/"
+class ImageStorageService implements ServletContextAware, InitializingBean, DisposableBean {
 
     static transactional = false
+
+    List allowedImageFormats = ["jpg","jpeg","gif","png"].asImmutable()
+    // Better, but Java 6 only: ImageIO.getReaderFileSuffixes() as List
+
+    ServletContext servletContext
+    String categoryDir, productDir, thumbnailDir, uploadedDir
+
+    @Override
+    void afterPropertiesSet() {
+        configureDirectories()
+        createDirectories()
+    }
+
+    @Override
+    void destroy() {
+        clearDirectories()
+    }
 
     void deleteImage(String path) {
         [thumbnailDir, uploadedDir].each {
             new File(it, path).delete()
-        }
-    }
-
-    void createDirectories() {
-        [categoryDir, productDir, thumbnailDir, uploadedDir].each {
-            def dir = new File(it)
-            dir.mkdirs()
-        }
-
-    }
-
-    void clearDirectories() {
-        [categoryDir, productDir, thumbnailDir, uploadedDir].each {
-            def dir = new File(it)
-            FileUtils.deleteDirectory(dir)
         }
     }
 
@@ -79,7 +61,7 @@ class ImageStorageService {
         return newName
     }
 
-    // Private methods below
+    /* Private methods below */
 
     private String getRandomName() {
         new RandomString().getStringFromLong()
@@ -129,6 +111,26 @@ class ImageStorageService {
 
     private Image toImage(String path) {
         ImageIO.read(new File(path))
+    }
+
+    private void configureDirectories() {
+        def imagesDir = servletContext.getRealPath("images/")
+        categoryDir = imagesDir + "category/"
+        productDir = imagesDir + "product/"
+        thumbnailDir = imagesDir + "item/thumbnail/"
+        uploadedDir = imagesDir + "item/large/"
+    }
+
+    private void createDirectories() {
+        [categoryDir, productDir, thumbnailDir, uploadedDir].each {
+            new File(it).mkdirs()
+        }
+    }
+
+    private void clearDirectories() {
+        [categoryDir, productDir, thumbnailDir, uploadedDir].each {
+            FileUtils.forceDeleteOnExit(new File(it))
+        }
     }
 
 }

@@ -9,15 +9,13 @@ class RandomString {
     }
 
     String getString(int count, String exclude) {
-        assert count > 0
-
         if (exclude == null) {
             exclude = ""
         }
         char start = ' '
         char end = 'z'
         char num = end - start
-        StringBuffer buf = new StringBuffer()
+        def buf = new StringBuilder()
         while (count-- != 0) {
             char c = (char) rd.nextInt((int) num)
             if (Character.isLetterOrDigit(c) && exclude.indexOf((int) c) < 0) {

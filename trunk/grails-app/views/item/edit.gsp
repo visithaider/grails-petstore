@@ -43,9 +43,8 @@
                     </tr>
 
                     <tr class='prop'>
-                        <td valign='top' class='name'><label for='tagNames'>Tags:</label></td>
-                        <td valign='top' class='value'><input type='text' id='tagNames' name='tagNames'
-                                                              value="${item?.tagsAsString()}"/></td>
+                        <td valign='top' class='name'><label for='tags'>Tags:</label></td>
+                        <td valign='top' class='value'><input type='text' id='tags' name='tags' value="${tags}"/></td>
                     </tr>
 
                     <tr class='prop'>
@@ -98,8 +97,8 @@
 
                     <g:if test="${item?.imageUrl}">
                     <tr>
-                    <td><input type="hidden" name="imageUrl" value="${item.imageUrl}"/></td>
-                        <td><img src="${createLinkTo(dir:'images/item/thumbnail', file:item.imageUrl.encodeAsHTML())}" alt="item.imageUrl.encodeAsHTML()"/></td>
+                        <td><input type="hidden" name="imageUrl" value="${item.imageUrl}"/></td>
+                        <td><img src="${ps.thumbnailImage(item:item)}" alt="item.imageUrl.encodeAsHTML()"/></td>
                     </tr>
                     </g:if>
 
@@ -109,11 +108,11 @@
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='captcha'>Captcha:</label></td>
-                        <td valign='top' class='value'><img src="${createLinkTo(dir:'captcha')}" alt="Captcha"/></td>
+                        <td valign='top' class='value'><img src="${createLink(controller:"captcha")}" alt="captcha"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'></td>
-                        <td valign='top' class='value'><input type="text" id='captcha' name='captchaString'/></td>
+                        <td valign='top' class='value'><input type="text" id='captcha' name='captcha'/></td>
                     </tr>
                 </tbody>
             </table>

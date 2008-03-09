@@ -15,7 +15,7 @@
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                 <td>
                     <g:link controller="item" action="show" id="${item.id}">
-                        <img src="${createLinkTo(dir:'images/item/thumbnail', file:item.imageUrl?.encodeAsHTML())}" alt="" />
+                        <img src="${ps.thumbnailImage(item:item)}" alt="" />
                     </g:link>
                 </td>
                 <td>
