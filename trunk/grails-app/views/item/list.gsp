@@ -1,5 +1,3 @@
-<%@ page import="org.grails.petstore.*" %>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -34,7 +32,7 @@
                 </ul>
             </div>
             <div id="items">
-                <h1>Showing ${total} pets</h1>
+                <h1>Items</h1>
                 <g:if test="${flash.message}">
                 <div class="message">${flash.message}</div>
                 </g:if>

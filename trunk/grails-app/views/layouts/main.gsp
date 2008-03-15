@@ -1,5 +1,3 @@
-<%@ page import="org.grails.petstore.*" %>
-
 <html>
     <head>
         <title><g:layoutTitle default="Grails Pet Store" /></title>
