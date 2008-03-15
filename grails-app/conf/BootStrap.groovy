@@ -1,16 +1,15 @@
 import grails.util.GrailsUtil
-import org.grails.petstore.SunPetstoreImporterService
 
 class BootStrap {
 
     SunPetstoreImporterService sunPetstoreImporterService
     boolean importJps = true
-    int maxItems = 20
 
      def init = { servletContext ->
         try {
             sunPetstoreImporterService.importProductsAndCategories()
             if (importJps) {
+                int maxItems = (GrailsUtil.environment == "production" ? 102 : 20)
                 Thread.start {
                     log.info "Started import of $maxItems items in background task"
                     sunPetstoreImporterService.importItems(maxItems)

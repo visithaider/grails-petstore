@@ -12,7 +12,7 @@
         </thead>
         <tbody>
         <g:each in="${itemList}" status="i" var="item">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+            <tr class="${(i % 2) == 0 ? "odd" : "even"}">
                 <td>
                     <g:link controller="item" action="show" id="${item.id}">
                         <img src="${ps.thumbnailImage(item:item)}" alt="" />
@@ -20,27 +20,29 @@
                 </td>
                 <td>
                     <h2>
-                        <g:link controller="item" action="show" id="${item.id}">${item.name?.encodeAsHTML()}</g:link>
+                        <g:link controller="item" action="show" id="${item.id}">
+                            ${item.name?.encodeAsHTML()}
+                        </g:link>
                     </h2>
                     <p>
                         ${item.description?.encodeAsHTML()}
                     </p>
                 </td>
                 <td class="nowrap">
-                    <a href="${createLink(controller:"item",action:"byProduct",id:item.product?.id)}">
-                        ${item.product?.name.encodeAsHTML()}
-                    </a>
+                    <g:link controller="item" action="byProduct" id="${item.product.id}">
+                        ${item.product.name.encodeAsHTML()}
+                    </g:link>
                 </td>
                 <td class="nowrap">
-                    <a href="${createLink(controller:"item",action:"byCategory",id:item.product?.category.id)}">
-                        ${item.product?.category.name.encodeAsHTML()}
-                    </a>
+                    <g:link controller="item" action="byCategory" id="${item.product.category.id}">
+                        ${item.product.category.name.encodeAsHTML()}
+                    </g:link>
                 </td>
                 <td>
                     <g:each in="${item.tags}" var="tag">
-                        <a href="${createLink(controller:"tag", action:tag.tag)}">
+                        <g:link controller="tag" action="${tag.tag}">
                             ${tag.tag.encodeAsHTML()}
-                        </a>
+                        </g:link>
                     </g:each>
                 </td>
                 <td>$${item.price?.encodeAsHTML()}</td>

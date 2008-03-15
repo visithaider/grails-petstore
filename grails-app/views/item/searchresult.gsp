@@ -1,8 +1,3 @@
-<%@ page import="org.springframework.util.ClassUtils" %>
-<%@ page import="org.codehaus.groovy.grails.plugins.searchable.SearchableUtils" %>
-<%@ page import="org.codehaus.groovy.grails.plugins.searchable.lucene.LuceneUtils" %>
-<%@ page import="org.grails.petstore.*" %>
-
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">

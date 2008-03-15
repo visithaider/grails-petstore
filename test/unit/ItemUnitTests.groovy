@@ -1,0 +1,3 @@
+class ItemUnitTests extends GroovyTestCase {
+
+}
