@@ -1,8 +1,14 @@
-class ItemTests extends GroovyTestCase {
+import org.hibernate.SessionFactory
+import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests
+
+class ItemTests extends AbstractTransactionalDataSourceSpringContextTests {
 
     SunPetstoreImporterService sunPetstoreImporterService
+    SearchableService searchableService
+    SessionFactory sessionFactory
 
-    protected void setUp() {
+    protected void onSetUpInTransaction() {
+        searchableService.stopMirroring()
         sunPetstoreImporterService.importProductsAndCategories()
     }
 
@@ -14,28 +20,14 @@ class ItemTests extends GroovyTestCase {
             item.addToTags(new Tag(tag: it))
         }
 
-        assert item.tagsAsString() == "t1 t2 t3"
-    }
-
-    void testContainsTag() {
-        Item item = new Item()
-        assert !item.containsTag("t1")
-
-        def tags = ["t1", "t2", "t3"]
-        tags.each {
-            item.addToTags(new Tag(tag:it))
-        }
-
-        tags.each {
-            assert item.containsTag(it)
-        }
+        assert item.tagsAsString() == "t1 t2 t3" : item.tagsAsString()
     }
 
     void testSave() {
         Item item = new Item(
             address:new Address(),
             contactInfo:new SellerContactInfo(),
-            product:Product.get(1)
+            product:Product.list().get(0)
         )
         assert !item.save()
 
@@ -56,7 +48,9 @@ class ItemTests extends GroovyTestCase {
         item.contactInfo.lastName = "Backlund"
         item.contactInfo.email = "foo@bar.com"
 
-        assert item.save()
+        assert item.save() : item.errors.allErrors.collect {
+            "Rejected value '${it.rejectedValue}' on field '${it.field}'\n"
+        }
 
         assert item.id != null
         assert item.address.id != null
@@ -83,21 +77,21 @@ class ItemTests extends GroovyTestCase {
         assert item.checkAverageRating() == 7.5
     }
 
-    Item buildItemFrom(String s, Product p) {
+    private Item buildItemFrom(String s, Product p) {
         assert p
         def item = new Item(
             address:new Address(),
             contactInfo:new SellerContactInfo(),
             product:p
         )
-        item.name =
-        item.description =
-        item.imageUrl =
-        item.address.street1 =
-        item.address.city =
-        item.address.state =
-        item.contactInfo.firstName =
-        item.contactInfo.lastName = s
+        item.name = "Name ${s}"
+        item.description = "Description ${s}"
+        item.imageUrl = "Image url ${s}"
+        item.address.street1 = "Address street 1 ${s}"
+        item.address.city = "Address city ${s}"
+        item.address.state = "Address state ${s}"
+        item.contactInfo.firstName = "Contact info first name ${s}"
+        item.contactInfo.lastName = "Contact info last name ${s}"
         
         item.contactInfo.email = "${s}@${s}.com"
         item.address.zip = "12345"
@@ -113,8 +107,9 @@ class ItemTests extends GroovyTestCase {
     }
 
     void testFindAllByCategory() {
-        def p1 = Product.get(1)
-        def p2 = Product.get(2)
+        def p1 = Product.list().get(0)
+        def p2 = Product.list().get(1)
+
         def i1 = buildItemFrom("A", p1)
         def i2 = buildItemFrom("B", p1)
         def i3 = buildItemFrom("C", p2)
@@ -123,11 +118,11 @@ class ItemTests extends GroovyTestCase {
 
         def params = [:]
 
-        def list1 = Item.findAllByCategory(p1.category, params)
-        assert list1 == [i1, i2]
+        def itemsByCategory = Item.findAllByCategory(p1.category, params)
+        assert itemsByCategory == [i1, i2]
 
-        def list2 = Item.findAllByCategory(p2.category, params)
-        assert list2 == [i3]
+        itemsByCategory = Item.findAllByCategory(p2.category, params)
+        assert itemsByCategory == [i3]
     }
 
 }

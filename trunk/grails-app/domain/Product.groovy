@@ -2,16 +2,6 @@ class Product implements Comparable {
 
     String name, description, imageUrl
 
-    static belongsTo = [category:Category]
-
-    static mapping = {
-        cache true
-    }
-
-    static searchable = {
-        category(component:true)
-    }
-
     static constraints = {
         name(blank:false, unique:true)
         description(blank:false, validator: {
@@ -21,14 +11,17 @@ class Product implements Comparable {
         imageUrl(blank:false)
     }
 
-    @Override
-    String toString() {
-        name
+    static mapping = {
+        cache true
     }
 
+    static belongsTo = [category:Category]
+
+    static searchable = true
+
     @Override
-    public int compareTo(otherProduct) {
-        return name.compareTo(otherProduct.name)
+    int compareTo(other) {
+        return name.compareTo(other.name)
     }
 
 }

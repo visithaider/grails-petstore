@@ -11,7 +11,7 @@
                 <ul id="categoryList">
                     <g:each in="${Category.list()}" var="c">
                     <li>
-                        <a href="${createLink(action:"byCategory", id:c.id)}" title="${c.name}">
+                        <a href="${createLink(controller:"item", action:"byCategory", id:c.id)}" title="${c.name}">
                             <img src="${ps.categoryImage(category:c)}" alt="${c.name}"/>
                         </a>
                         <%  def a = params.action, id = params.id?.toLong()
@@ -20,7 +20,7 @@
                             <ul id="productList">
                             <g:each in="${c.products}" var="p">
                                 <li>
-                                    <a href="${createLink(action:"byProduct",id:p.id)}" title="${p.name}" >
+                                    <a href="${createLink(controller:"item", action:"byProduct",id:p.id)}" title="${p.name}" >
                                         <img src="${ps.productImage(product:p)}" alt="${p.name}"/>
                                     </a>
                                 </li>
@@ -32,16 +32,16 @@
                 </ul>
             </div>
             <div id="items">
-                <h1>Items</h1>
+                <h1>${headline}</h1>
                 <g:if test="${flash.message}">
                 <div class="message">${flash.message}</div>
                 </g:if>
                 <div class="paginateButtons paginateTop">
-                    <g:paginate action="${a}" total="${total}" id="${id}"/>
+                    <g:paginate action="${a}" total="${total}" id="${id}" params="${params}"/>
                 </div>
-                <g:render template="itemListTemplate" model="[itemList:itemList]"/>
+                <g:render template="/item/itemListTemplate" model="[itemList:itemList]"/>
                 <div class="paginateButtons paginateBottom">
-                    <g:paginate action="${a}" total="${total}" id="${id}"/>
+                    <g:paginate action="${a}" total="${total}" id="${id}" params="${params}"/>
                 </div>
             </div>
         </div>
