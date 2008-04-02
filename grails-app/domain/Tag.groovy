@@ -2,23 +2,22 @@ class Tag implements Comparable {
 
     String tag
 
-    static mapping = {
-        cache true
-    }
+    static hasMany = [items:Item]
+    static belongsTo = Item
 
     static constraints = {
         tag(blank:false, unique:true)
     }
 
+    static mapping = {
+        cache true
+    }
+
     static searchable = true
 
     @Override
-    String toString() {
-        tag
+    int compareTo(other) {
+        return tag.compareTo(other.tag)
     }
-
-    @Override
-    int compareTo(otherTag) {
-        return tag.compareTo(otherTag.tag)
-    }
+    
 }

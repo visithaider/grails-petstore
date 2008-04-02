@@ -9,21 +9,6 @@ class Item {
     Date dateCreated, lastUpdated
     Double latitude, longitude
 
-    static mapping = {
-        cache true
-        tags cache:true
-    }
-
-    static searchable = {
-        address(component:true)
-        contactInfo(component:true)
-        tags(component:true)
-        product(component:true)
-    }
-
-    SortedSet tags
-    static hasMany = [tags : Tag]
-
     static constraints = {
         name(blank:false, maxSize:128)
         description(maxSize:2000)
@@ -32,35 +17,52 @@ class Item {
         longitude(nullable:true)
     }
 
-    static List findAllTagged(tag) {
-        return Item.executeQuery("""
-            select i from Item as i
-            inner join i.tags as t
-            with t.tag = ?
-            """, [tag])
+    static mapping = {
+        cache true
+        tags cache:true
+    }
+
+    SortedSet tags
+    static hasMany = [tags : Tag]
+
+    static searchable = true
+
+    static List findAllByTag(String tag, Map params) {
+        Item.executeQuery(
+            "select i from Tag t, Item i where t.tag = :tag and t in elements(i.tags)",
+            [tag:tag], params)
+    }
+
+    static int countAllByTag(String tag) {
+        Item.createCriteria().get {
+            tags {
+                eq "tag", tag
+            }
+            projections {
+                count "id"
+            }
+        }
     }
 
     static List findAllByCategory(Category category, Map params) {
         Item.createCriteria().list {
             product {
-                eq("category",category)
+                eq "category",category
             }
             order(params.sort ?: "name")
             maxResults(params.max?.toInteger() ?: 10)
             firstResult(params.offset?.toInteger() ?: 0)
-            cacheable(true)
         }
     }
 
     static int countAllByCategory(Category category) {
         Item.createCriteria().get {
             product {
-                eq("category",category)
+                eq "category",category
             }
             projections {
-                count("id")
+                count "id"
             }
-            cacheable(true)
         }
     }
 
@@ -74,7 +76,7 @@ class Item {
     }
 
     def tagsAsString() {
-        tags ? tags.sort().join(" ") : ""
+        tags ? tags.collect {it.tag}.sort().join(" ") : ""
     }
 
 }

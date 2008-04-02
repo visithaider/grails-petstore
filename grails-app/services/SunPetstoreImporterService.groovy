@@ -1,5 +1,3 @@
-import org.hibernate.CacheMode
-import org.hibernate.SessionFactory
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.context.ResourceLoaderAware
 import org.springframework.core.io.ResourceLoader
@@ -8,9 +6,9 @@ class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBea
 
     static transactional = true
 
+    SearchableService searchableService
     ImageStorageService imageStorageService
     ItemService itemService
-    SessionFactory sessionFactory
     ResourceLoader resourceLoader
     File exportFile
 
@@ -119,15 +117,12 @@ class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBea
 
         log.info "About to import ${maxItems} items."
 
-        sessionFactory.currentSession.setCacheMode CacheMode.IGNORE
         petstore.items.item[0..maxItems].each { itemTag ->
             def item = importItem(itemTag)
             def tagList = itemTag.tags.tag.collect { it.text() }
 
             assert itemService.tagAndSave(item, tagList)
-            print "."                       
         }
-        println ""
 
         log.info "Imported ${Item.count()} items."
     }

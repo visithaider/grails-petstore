@@ -7,7 +7,7 @@ class UrlMappings {
 	  }
 	  "/tag/$tag" {
           controller = "tag"
-          action = "listTagged"
+          action = "byTag"
       }
 	  "500"(view:'/error')
 	}

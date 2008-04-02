@@ -10,9 +10,10 @@
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    <g:if test="${item.errors.hasErrors()}">
+    
+    <g:if test="${command.hasErrors()}">
         <div class="errors">
-            <g:renderErrors bean="${item}" as="list"/>
+            <g:renderErrors bean="${command}" as="list"/>
         </div>
     </g:if>
     <g:form action="save" method="post" enctype="multipart/form-data">
@@ -42,7 +43,7 @@
 
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='tags'>Tags:</label></td>
-                        <td valign='top' class='value'><input type='text' id='tags' name='tags' value="${tags}"/></td>
+                        <td valign='top' class='value'><input type='text' id='tags' name='tags' value="${command.tags}"/></td>
                     </tr>
 
                     <tr class='prop'>

@@ -3,7 +3,6 @@ import static java.awt.RenderingHints.*
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 import javax.servlet.ServletContext
-import org.apache.commons.io.FileUtils
 import org.springframework.beans.factory.DisposableBean
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.web.context.ServletContextAware
@@ -16,7 +15,7 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
     // Better, but Java 6 only: ImageIO.getReaderFileSuffixes() as List
 
     ServletContext servletContext
-    String categoryDir, productDir, thumbnailDir, uploadedDir
+    String categoryDir, productDir, itemDir, thumbnailDir, uploadedDir
 
     @Override
     void afterPropertiesSet() {
@@ -114,8 +113,9 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
         def imagesDir = servletContext.getRealPath("images/")
         categoryDir = imagesDir + "category/"
         productDir = imagesDir + "product/"
-        thumbnailDir = imagesDir + "item/thumbnail/"
-        uploadedDir = imagesDir + "item/large/"
+        itemDir = imagesDir + "item/"
+        thumbnailDir = itemDir + "thumbnail/"
+        uploadedDir = itemDir + "large/"
     }
 
     private void createDirectories() {
@@ -125,8 +125,8 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
     }
 
     private void clearDirectories() {
-        [categoryDir, productDir, thumbnailDir, uploadedDir].each {
-            FileUtils.forceDeleteOnExit(new File(it))
+        [categoryDir, productDir, thumbnailDir, uploadedDir, itemDir].each {
+            new File(it).delete()
         }
     }
 

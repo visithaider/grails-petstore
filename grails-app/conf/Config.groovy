@@ -54,8 +54,7 @@ log4j {
             springframework="off"
             //hibernate="off"
         }
-	    org.hibernate.cache="debug,stdout"
-        org.grails.petstore="debug,stdout"
+        org.grails.petstore="debug"
     }
     additivity.StackTrace=false
 }
@@ -91,7 +90,6 @@ grails.war.dependencies = [
     "commons-validator-*.jar",
     "commons-fileupload-*.jar",
     "commons-io-*.jar",
-    "commons-io-*.jar",
     "*oro-*.jar",
     "jaxen-*.jar",
     "xstream-1.2.1.jar",
@@ -104,3 +102,6 @@ grails.war.java5.dependencies = [
 ]
 
 
+
+// The following properties have been added by the Upgrade process...
+grails.views.gsp.encoding="UTF-8"
