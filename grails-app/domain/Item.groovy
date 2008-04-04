@@ -19,7 +19,10 @@ class Item {
 
     static mapping = {
         cache true
-        tags cache:true
+        tags cache:true, lazy:true
+        address lazy:true
+        contactInfo lazy:true
+        product lazy:true
     }
 
     SortedSet tags
@@ -27,55 +30,48 @@ class Item {
 
     static searchable = true
 
+    // TODO: get(0) on count queries is ugly
+
     static List findAllByTag(String tag, Map params) {
         Item.executeQuery(
-            "select i from Tag t, Item i where t.tag = :tag and t in elements(i.tags)",
+            """select i from Tag t, Item i
+               where t.tag = :tag and t in elements(i.tags)
+               order by lower(${params.sort ?: "name"}) ${params.order ?: "desc"}""",
             [tag:tag], params)
     }
 
     static int countAllByTag(String tag) {
-        Item.createCriteria().get {
-            tags {
-                eq "tag", tag
-            }
-            projections {
-                count "id"
-            }
-        }
+        Item.executeQuery(
+            """select count(*) from Tag t, Item i
+               where t.tag = :tag and t in elements(i.tags)""",
+            [tag:tag]).get(0)
     }
 
     static List findAllByCategory(Category category, Map params) {
-        Item.createCriteria().list {
-            product {
-                eq "category",category
-            }
-            order(params.sort ?: "name")
-            maxResults(params.max?.toInteger() ?: 10)
-            firstResult(params.offset?.toInteger() ?: 0)
-        }
+        Item.executeQuery(
+            """select i from Item i, Category c
+               where c = :c and i.product in elements(c.products)
+               order by lower(${params.sort ?: "name"}) ${params.order ?: "asc"}""",
+            [c:category], params)
     }
 
     static int countAllByCategory(Category category) {
-        Item.createCriteria().get {
-            product {
-                eq "category",category
-            }
-            projections {
-                count "id"
-            }
-        }
+        Item.executeQuery(
+            """select count(*) from Item i, Category c
+               where c = :c and i.product in elements(c.products)""",
+            [c:category]).get(0)
     }
 
-    def addRating(Integer score) {
+    void addRating(int score) {
         totalScore += score
         numberOfVotes += 1
     }
 
-    def checkAverageRating() {
+    double checkAverageRating() {
         totalScore > 0 ? totalScore/numberOfVotes : 0.0
     }
 
-    def tagsAsString() {
+    String tagsAsString() {
         tags ? tags.collect {it.tag}.sort().join(" ") : ""
     }
 

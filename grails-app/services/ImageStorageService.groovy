@@ -21,12 +21,12 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
     @Override
     void afterPropertiesSet() {
         configureDirectories()
-        createDirectories()
+        //createDirectories()
     }
 
     @Override
     void destroy() {
-        clearDirectories()
+        //clearDirectories()
     }
 
     void deleteImage(String path) {
@@ -111,10 +111,10 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
     }
 
     private void configureDirectories() {
-        def imagesDir = servletContext.getRealPath("images/")
-        categoryDir = imagesDir + "category/"
-        productDir = imagesDir + "product/"
-        itemDir = imagesDir + "item/"
+        def imagesDir = servletContext.getRealPath("images")
+        categoryDir = imagesDir + "/category/"
+        productDir = imagesDir + "/product/"
+        itemDir = imagesDir + "/item/"
         thumbnailDir = itemDir + "thumbnail/"
         uploadedDir = itemDir + "large/"
     }

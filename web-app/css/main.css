@@ -19,6 +19,7 @@ body {
     background: #fff;
     color: #333;
     font: 11px verdana, arial, helvetica, sans-serif;
+    width: 100%;
 }
 
 a:link, a:visited, a:hover {
@@ -230,8 +231,13 @@ th.desc a {
 
 /* DIALOG */
 
+.dialog {
+    width: 100%;
+}
+
 .dialog table {
     padding: 5px 0;
+    width: 100%;
 }
 
 .prop {

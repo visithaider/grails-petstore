@@ -5,21 +5,23 @@
     <title>Edit Item</title>
 </head>
 <body>
-<div class="body">
+<div class="body" style="width: 600px">
     <h1>Edit Item</h1>
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    
     <g:if test="${command.hasErrors()}">
         <div class="errors">
             <g:renderErrors bean="${command}" as="list"/>
         </div>
     </g:if>
+    <g:if test="${item.hasErrors()}">
+        <div class="errors">
+            <g:renderErrors bean="${item}" as="list"/>
+        </div>
+    </g:if>
     <g:form action="save" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${item?.id}"/>
-
-        <div class="dialog">
             <table>
                 <tbody>
                     <tr class='prop'>
@@ -115,7 +117,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
         <div class="buttons">
             <span class="button"><g:actionSubmit class="save" value="Update"/></span>
             <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');"
