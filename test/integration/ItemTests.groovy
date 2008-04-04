@@ -1,13 +1,12 @@
 import org.hibernate.SessionFactory
-import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests
 
-class ItemTests extends AbstractTransactionalDataSourceSpringContextTests {
+class ItemTests extends GroovyTestCase {
 
     SunPetstoreImporterService sunPetstoreImporterService
     SearchableService searchableService
     SessionFactory sessionFactory
 
-    protected void onSetUpInTransaction() {
+    protected void setUp() {
         searchableService.stopMirroring()
         sunPetstoreImporterService.importProductsAndCategories()
     }
@@ -123,6 +122,13 @@ class ItemTests extends AbstractTransactionalDataSourceSpringContextTests {
 
         itemsByCategory = Item.findAllByCategory(p2.category, params)
         assert itemsByCategory == [i3]
+        println Tag.list()
+        println Item.findAll()
     }
 
+    void testFindAllByTag() {
+        println Tag.list()
+        println Item.findAll()
+    }
+    
 }

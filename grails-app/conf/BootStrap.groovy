@@ -1,3 +1,5 @@
+import grails.util.GrailsUtil
+
 class BootStrap {
 
     SunPetstoreImporterService sunPetstoreImporterService
