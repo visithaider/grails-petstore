@@ -3,6 +3,7 @@ import static java.awt.RenderingHints.*
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 import javax.servlet.ServletContext
+import org.apache.commons.io.FileUtils
 import org.springframework.beans.factory.DisposableBean
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.web.context.ServletContextAware
@@ -126,7 +127,9 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
 
     private void clearDirectories() {
         [categoryDir, productDir, thumbnailDir, uploadedDir, itemDir].each {
-            new File(it).delete()
+            def dir = new File(it)
+            dir.delete()
+            assert !dir.exists()
         }
     }
 
