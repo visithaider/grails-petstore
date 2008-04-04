@@ -22,6 +22,7 @@ class ItemController {
         def items = [], total = 0
         if (params.q?.trim()) {
             try {
+                // TODO: can't sort on tokenized field name
                 def result = Item.search(params.q, params)
                 total = result.total
                 items = result.results
@@ -44,9 +45,9 @@ class ItemController {
     def byCategory = {
         def category = Category.get(params.id)
         def total = Item.countAllByCategory(category)
-        def items = Item.findAllByCategory(category, params)
+        def items = Item.findAllByCategory(category, GpsWebUtils.toHqlParams(params))
         def headline = "Found ${total} pets in category '${category.name}'"
-        render(view:"list", model:[itemList:items, total:total, id:params.id, headline:headline])
+        render(view: "list", model: [itemList: items, total: total, id: params.id, headline: headline])
     }
 
     def show = {
@@ -75,11 +76,14 @@ class ItemController {
         bindData(item.contactInfo, params, "contactInfo")
         handleFileUpload(command, item)
 
-        if (!command.errors.hasErrors() && itemService.tagAndSave(item, command.tagList)) {
+        item.validate()
+        if (!(command.errors.hasErrors() || item.errors.hasErrors()) &&
+            itemService.tagAndSave(item, command.tagList)) {
+
             flash.message = "Saved item ${item.id}"
             redirect(action:show,id:item.id)
         } else {
-            flash.message = "${item.errors.errorCount} validation errors."
+            flash.message = "${item.errors.errorCount + command.errors.errorCount} validation errors."
             captchaService.setCaptchaString()
             render(view:"edit", model:[item:item, command:command])
         }

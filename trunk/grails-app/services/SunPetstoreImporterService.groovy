@@ -1,3 +1,4 @@
+import grails.util.GrailsUtil
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.context.ResourceLoaderAware
 import org.springframework.core.io.ResourceLoader
@@ -87,8 +88,12 @@ class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBea
         item.address = address
 
         // Image
-        def imageBytes = itemTag.image.text().decodeBase64()
-        item.imageUrl =  imageStorageService.storeUploadedImage(imageBytes, "image/jpeg")
+        if (GrailsUtil.environment == "production") {
+            def imageBytes = itemTag.image.text().decodeBase64()
+            item.imageUrl =  imageStorageService.storeUploadedImage(imageBytes, "image/jpeg")
+        } else {
+            item.imageUrl = "leia.jpg"
+        }
 
         return item
     }

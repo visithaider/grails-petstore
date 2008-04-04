@@ -6,12 +6,12 @@ dataSource {
 }
 hibernate {
     cache.use_second_level_cache=false
-    cache.use_query_cache=true
-    cache.provider_class="org.hibernate.cache.EhCacheProvider"
+    cache.use_query_cache=false
+    cache.provider_class="org.hibernate.cache.NoCacheProvider"
     show_sql=true
     format_sql=true
 }
-// environment specific settings
+
 environments {
 	development {
 		dataSource {
@@ -25,10 +25,16 @@ environments {
 			url = "jdbc:hsqldb:mem:testDb"
 		}
 	}
-	production {
+    production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			jndiName = "jdbc/GrailsPetStoreDB"
 		}
-	}
+        hibernate {
+            cache.use_second_level_cache=true
+            cache.use_query_cache=true
+            cache.provider_class="org.hibernate.cache.EhCacheProvider"
+            show_sql=false
+        }
+    }
 }

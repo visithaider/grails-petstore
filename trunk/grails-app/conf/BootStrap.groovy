@@ -5,13 +5,13 @@ class BootStrap {
     SunPetstoreImporterService sunPetstoreImporterService
     SearchableService searchableService
     boolean importJps = true
+    int maxItems = (GrailsUtil.environment == "production" ? 102 : 10)
 
      def init = { servletContext ->
         searchableService.stopMirroring()
         try {
             sunPetstoreImporterService.importProductsAndCategories()
             if (importJps) {
-                int maxItems = (GrailsUtil.environment == "production" ? 102 : 20)
                 Thread.start {
                     log.info "Started import of $maxItems items in background task"
                     sunPetstoreImporterService.importItems(maxItems)
