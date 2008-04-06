@@ -122,7 +122,7 @@ class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBea
 
         log.info "About to import ${maxItems} items."
 
-        petstore.items.item[0..maxItems].each { itemTag ->
+        petstore.items.item[0..maxItems-1].each { itemTag ->
             def item = importItem(itemTag)
             def tagList = itemTag.tags.tag.collect { it.text() }
 

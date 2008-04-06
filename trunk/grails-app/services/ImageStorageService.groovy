@@ -74,7 +74,7 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
 
     }
 
-    private Image scaleImage(Image image, int width, int height) {
+    private Image scaleImage(BufferedImage image, int width, int height) {
         def scaled = new BufferedImage(width, height, image.type)
         def g = scaled.createGraphics()
         g.setRenderingHint(KEY_ALPHA_INTERPOLATION, VALUE_ALPHA_INTERPOLATION_QUALITY)
@@ -127,9 +127,7 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
 
     private void clearDirectories() {
         [categoryDir, productDir, thumbnailDir, uploadedDir, itemDir].each {
-            def dir = new File(it)
-            dir.delete()
-            assert !dir.exists()
+            new File(it).delete()
         }
     }
 

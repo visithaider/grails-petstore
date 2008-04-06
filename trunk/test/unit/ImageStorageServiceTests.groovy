@@ -12,7 +12,6 @@ class ImageStorageServiceTests extends GroovyTestCase {
     protected void setUp() {
         imageStorageService.servletContext = sc
         imageStorageService.afterPropertiesSet()
-        println "HEJ: " + imageStorageService.thumbnailDir
     }
 
     void testStoreUploadedImage() {

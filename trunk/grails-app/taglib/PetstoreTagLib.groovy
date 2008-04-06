@@ -2,11 +2,11 @@ class PetstoreTagLib {
 
     static namespace = "ps"
 
-    ImageStorageService imageStorageService
+    // TODO: read directory names from ImageService
 
     def categoryImage = { attrs ->
         def category = attrs.category
-        out << g.createLinkTo(dir:"images/category",file:category.imageUrl) 
+        out << g.createLinkTo(dir:"images/category",file:category.imageUrl)
     }
 
     def productImage = { attrs ->

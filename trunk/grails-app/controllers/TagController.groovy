@@ -9,7 +9,6 @@ class TagController {
         } else {
             redirect(controller:"item",action:"list")
         }
-
     }
 
 }

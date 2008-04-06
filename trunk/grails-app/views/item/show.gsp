@@ -79,7 +79,7 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name">Average score:</td>
-                                <td valign="top" class="value"><g:formatNumber number="${item.checkAverageRating()}" format="###.#"/></td>
+                                <td valign="top" class="value"><g:formatNumber number="${item.averageRating()}" format="###.#"/></td>
                             </tr>
                         </tbody>
                     </table>
