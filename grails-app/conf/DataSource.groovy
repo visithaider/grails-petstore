@@ -8,7 +8,7 @@ hibernate {
     cache.use_second_level_cache=false
     cache.use_query_cache=false
     cache.provider_class="org.hibernate.cache.NoCacheProvider"
-    show_sql=true
+    show_sql=false
     format_sql=true
 }
 
@@ -27,7 +27,7 @@ environments {
 	}
     production {
 		dataSource {
-			dbCreate = "update"
+			dbCreate = "create-drop"
 			jndiName = "jdbc/GrailsPetStoreDB"
 		}
         hibernate {
@@ -35,6 +35,7 @@ environments {
             cache.use_query_cache=true
             cache.provider_class="org.hibernate.cache.EhCacheProvider"
             show_sql=false
+            dialect="org.hibernate.dialect.MySQLInnoDBDialect"
         }
     }
 }

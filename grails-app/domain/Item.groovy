@@ -67,7 +67,7 @@ class Item {
         numberOfVotes += 1
     }
 
-    double checkAverageRating() {
+    double averageRating() {
         totalScore > 0 ? totalScore/numberOfVotes : 0.0
     }
 

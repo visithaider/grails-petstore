@@ -17,7 +17,12 @@ class Tag implements Comparable {
 
     @Override
     int compareTo(other) {
-        return tag.compareTo(other.tag)
+        tag.compareTo(other.tag)
+    }
+
+    @Override
+    String toString() {
+        tag
     }
     
 }

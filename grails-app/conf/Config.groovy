@@ -52,9 +52,11 @@ log4j {
             codehaus.groovy.grails.plugins="error" // plugins
             codehaus.groovy.grails.orm.hibernate="error" // hibernate integration
             springframework="off"
-            //hibernate="off"
+            hibernate {
+                SQL="debug"
+                hbm2ddl="debug"
+            }
         }
-        org.grails.petstore="debug"
     }
     additivity.StackTrace=false
 }

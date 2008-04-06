@@ -1,18 +1,7 @@
-import org.hibernate.SessionFactory
-
 class ItemTests extends GroovyTestCase {
 
-    SunPetstoreImporterService sunPetstoreImporterService
-    SearchableService searchableService
-    SessionFactory sessionFactory
-
-    protected void setUp() {
-        searchableService.stopMirroring()
-        sunPetstoreImporterService.importProductsAndCategories()
-    }
-
     void testTagsAsString() {
-        Item item = new Item()
+        def item = new Item()
         assert item.tagsAsString() == ""
 
         ["t1", "t2", "t3"].each {
@@ -23,7 +12,7 @@ class ItemTests extends GroovyTestCase {
     }
 
     void testSave() {
-        Item item = new Item(
+        def item = new Item(
             address:new Address(),
             contactInfo:new SellerContactInfo(),
             product:Product.list().get(0)
@@ -57,23 +46,23 @@ class ItemTests extends GroovyTestCase {
     }
 
     void testRating() {
-        Item item = new Item()
+        def item = new Item()
 
         assert item.totalScore == 0
         assert item.numberOfVotes == 0
-        assert item.checkAverageRating() == 0
+        assert item.averageRating() == 0
 
         item.addRating(10)
 
         assert item.totalScore == 10
         assert item.numberOfVotes == 1
-        assert item.checkAverageRating() == 10
+        assert item.averageRating() == 10
 
         item.addRating(5)
 
         assert item.totalScore == 15
         assert item.numberOfVotes == 2
-        assert item.checkAverageRating() == 7.5
+        assert item.averageRating() == 7.5
     }
 
     private Item buildItemFrom(String s, Product p) {
@@ -114,7 +103,7 @@ class ItemTests extends GroovyTestCase {
         def i3 = buildItemFrom("C", p2)
 
         assert i1.save() && i2.save() && i3.save()
-
+                                                             Tes
         def params = [:]
 
         def itemsByCategory = Item.findAllByCategory(p1.category, params)
@@ -122,13 +111,18 @@ class ItemTests extends GroovyTestCase {
 
         itemsByCategory = Item.findAllByCategory(p2.category, params)
         assert itemsByCategory == [i3]
-        println Tag.list()
-        println Item.findAll()
+    }
+
+    void testCountAllByCategory() {
+        Item.countAllByCategory(Category.get(1))
     }
 
     void testFindAllByTag() {
-        println Tag.list()
-        println Item.findAll()
+        Item.findAllByTag("tag", [:])
     }
     
+    void testCountAllByTag() {
+        Item.countAllByTag("tag")
+    }
+
 }
