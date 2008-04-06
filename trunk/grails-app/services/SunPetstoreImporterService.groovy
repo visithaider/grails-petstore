@@ -15,7 +15,7 @@ class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBea
 
     @Override
     void afterPropertiesSet() {
-       exportFile = resourceLoader.getResource("classpath:sun_petstore_export.xml").file
+       exportFile = resourceLoader.getResource("classpath:java_pet_store_export.xml").file
     }
 
     def importCategory = { c ->
