@@ -12,7 +12,7 @@ def sql = Sql.newInstance(url, username, password, driver)
 def pathToImages = "c:/javapetstore-2.0-ea5/web/"
 
 // Name of output file
-def outputFile = "src/java/sun_petstore_export.xml"
+def outputFile = "src/java/java_pet_store_export.xml"
 
 // Item tags
 def tagQuery = """
