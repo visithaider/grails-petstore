@@ -13,7 +13,7 @@
     <facet type="Groovy" name="Groovy">
       <configuration />
     </facet>
-    <facet type="Grails" name="Grails" implicit="true">
+    <facet type="Grails" name="Grails">
       <configuration />
     </facet>
   </component>

@@ -1,16 +1,15 @@
+import javax.servlet.ServletContext
+import org.springframework.core.io.ClassPathResource
 import org.springframework.mock.web.MockMultipartFile
-import org.springframework.mock.web.MockServletContext
 
 class ImageStorageServiceTests extends GroovyTestCase {
 
     def imageStorageService = new ImageStorageService()
-    //def res = new FileSystemResource("test/resources/test.jpg")
-
-    def file = new MockMultipartFile("test.jpg", "".getBytes())
-    def sc = new MockServletContext("test/resources")
+    def testFile = new ClassPathResource("test.jpg")
+    def file = new MockMultipartFile("test.jpg", testFile.inputStream)
 
     protected void setUp() {
-        imageStorageService.servletContext = sc
+        imageStorageService.servletContext = {"classes"} as ServletContext
         imageStorageService.afterPropertiesSet()
     }
 
@@ -30,7 +29,7 @@ class ImageStorageServiceTests extends GroovyTestCase {
     }
 
     void testStoreProductImage() {
-        imageStorageService.storeProductImage(this.file.name, this.file.bytes)
+        imageStorageService.storeProductImage(file.name, file.bytes)
 
         assert new File(imageStorageService.productDir, file.name).exists()
     }
@@ -43,7 +42,7 @@ class ImageStorageServiceTests extends GroovyTestCase {
     }
 
     protected void tearDown() {
-        imageStorageService.clearDirectories()
+        imageStorageService.destroy()
     }
 
 
