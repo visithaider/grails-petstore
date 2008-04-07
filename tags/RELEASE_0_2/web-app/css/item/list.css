@@ -1,0 +1,50 @@
+h2 {
+    padding: 0;
+    margin: 2px 0 10px 0;
+}
+
+td.nowrap {
+    white-space: nowrap;
+}
+
+div#browser {
+    margin-top: 20px;
+    float: left;
+    background: #006dba;
+}
+
+#categoryList li {
+    background: white;
+    margin: 2px;
+    padding: 4px;
+}
+
+#productList li {
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul#productList li {
+    display: inline;
+}
+
+div.productImage {
+    display: inline;
+}
+
+ul#productList {
+    margin-left: 5px;
+}
+
+div#items {
+    margin-left: 330px;
+}
