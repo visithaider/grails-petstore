@@ -10,7 +10,7 @@ class ItemService {
 
     GeoCoderService geoCoderService
     ExecutorService executorService = Executors.newFixedThreadPool(1)
-    boolean fetchCoordinates = true
+    boolean fetchCoordinates = false
 
     synchronized boolean tagAndSave(Item item, List<String> tagList) {
         if (fetchCoordinates) {
