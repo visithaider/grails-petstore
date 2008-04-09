@@ -1,23 +1,27 @@
 #summary How to get going
 
-  * Get Grails 1.0
+  * Get Grails 1.0.2
   * Get Searchable plugin:
 
-    grails install-plugin searchable
+    grails install-plugin searchable 0.4
+
+  * Get Feeds plugin:
+
+    grails install-plugin feeds 1.2
 
   * Go!
 
-Note that in order to run the Java Pet Store import on bootstrap, you will need to [https://blueprints.dev.java.net/petstore/index.html download] and unpack/install the JPS application in the same directory as you checked out Grails Pet Store, i.e.:
-{{{
-  somedir
-    |
-    |-grails-petstore/
-    |
-    \-javapetstore-2.0-ea5/
-}}}
-The JPS does not have to be running, the images are simply read from disk during import. If you have the JPS in some other location, alter the relative paths in SunPetstoreImporterService.groovy.
+The import of Java Pet Store no longer requires the Java Pet Store on disk, everything is read from the XML export file in src/java.
 
-Currently it seems that the searchable plugin breaks context reloading.
+Development mode has a few things turned off for speed:
 
-You may need to manually add the utils directory as a source folder in IntelliJ.
+  * No coordinate fetching from Yahoo (turn on in GeoCoderService)
+  * Only imports 10 items from JPS (production mode imports all 102, change in BootStrap)
+  * Uses the same image for all items (production mode imports individual images from JPS, change in SunPetstoreImporterService)
+  * Hibernate second-level cache breaks reloading of application ("cache is not alive"), and is turned off in development mode (change in DataSource)
+
+Production mode is default configured for deployment in an environment with a MySQL database exposed in JNDI as ""jdbc/GrailsPetStoreDB" (see DataSource) 
+
+GPS 0.2 should require Java 5 or later (tested on WinXP/Java 1.6 and OS X 10.4.11/Java 1.5).
+
   
