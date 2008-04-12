@@ -36,7 +36,7 @@ class Item {
         Item.executeQuery(
             """select i from Tag t, Item i
                where t.tag = :tag and t in elements(i.tags)
-               order by lower(${params.sort ?: "name"}) ${params.order ?: "desc"}""",
+               order by lower(i.${params.sort ?: "name"}) ${params.order ?: "desc"}""",
             [tag:tag], params)
     }
 
@@ -51,7 +51,7 @@ class Item {
         Item.executeQuery(
             """select i from Item i, Category c
                where c = :c and i.product in elements(c.products)
-               order by lower(${params.sort ?: "name"}) ${params.order ?: "asc"}""",
+               order by lower(i.${params.sort ?: "name"}) ${params.order ?: "asc"}""",
             [c:category], params)
     }
 
