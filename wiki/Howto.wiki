@@ -1,6 +1,8 @@
 #summary How to get going
 #labels Featured
 
+These instructions apply to GPS 0.2.
+
   * Get Grails 1.0.2
   * Get Searchable plugin:
 
