@@ -10,6 +10,7 @@ class Category {
 
     static mapping = {
         cache true
+        products cache:true
     }
 
     SortedSet products
