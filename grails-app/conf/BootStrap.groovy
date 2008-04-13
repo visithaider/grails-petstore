@@ -2,7 +2,7 @@ import grails.util.GrailsUtil
 
 class BootStrap {
 
-    SunPetstoreImporterService sunPetstoreImporterService
+    JavaPetStoreImporterService javaPetStoreImporterService
     SearchableService searchableService
     boolean importJps = true
     int maxItems = (GrailsUtil.environment == "production" ? 102 : 10)
@@ -10,10 +10,10 @@ class BootStrap {
      def init = { servletContext ->
         searchableService.stopMirroring()
         try {
-            sunPetstoreImporterService.importProductsAndCategories()
+            javaPetStoreImporterService.importProductsAndCategories()
             if (importJps) {
                 log.info "Started import of $maxItems items"
-                sunPetstoreImporterService.importItems(maxItems)
+                javaPetStoreImporterService.importItems(maxItems)
                 searchableService.indexAll()
                 log.info "Import completed"
             }

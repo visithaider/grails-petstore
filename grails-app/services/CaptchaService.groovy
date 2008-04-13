@@ -13,10 +13,10 @@ class CaptchaService {
     static transactional = false
     static scope = "session"
 
-    final static Random rd = new Random()
-    final static int width = 200
-    final static int height = 60
-    final static Color background = new Color(0xc0c0c0)
+    Random rd = new Random()
+    int width = 200
+    int height = 60
+    Color background = new Color(0xc0c0c0)
     String captchaString
 
     void setCaptchaString() {
