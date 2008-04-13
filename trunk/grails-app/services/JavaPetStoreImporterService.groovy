@@ -1,9 +1,10 @@
 import grails.util.GrailsUtil
+import java.util.concurrent.LinkedBlockingQueue
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.context.ResourceLoaderAware
 import org.springframework.core.io.ResourceLoader
 
-class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBean {
+class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBean {
 
     static transactional = true
 
@@ -120,16 +121,31 @@ class SunPetstoreImporterService implements ResourceLoaderAware, InitializingBea
     void importItems(maxItems) {
         def petstore = new XmlSlurper().parse(exportFile)
 
+        def queue = new LinkedBlockingQueue<ImportQueueElement>()
+
         log.info "About to import ${maxItems} items."
 
-        petstore.items.item[0..maxItems-1].each { itemTag ->
-            def item = importItem(itemTag)
-            def tagList = itemTag.tags.tag.collect { it.text() }
+        def startTime = System.currentTimeMillis()
 
-            assert itemService.tagAndSave(item, tagList)
+        // Producer thread
+        Thread.start {
+            petstore.items.item[0..maxItems-1].each { itemTag ->
+                def item = importItem(itemTag)
+                def tagList = itemTag.tags.tag.collect { it.text() }
+                assert queue.add(new ImportQueueElement(item:item,tagList:tagList))
+                println "Added element ${item.name}"
+            }
+            queue.add(ImportQueueElement.EOS)
         }
 
-        log.info "Imported ${Item.count()} items."
-    }
+        // Consumer loop
+        def next
+        while ((next = queue.take()) != ImportQueueElement.EOS) {
+            println "Took element ${next.item.name}"
+            assert itemService.tagAndSave(next.item, next.tagList)   
+        }
+
+        log.info "Imported ${Item.count()} items in ${System.currentTimeMillis() - startTime} ms"
+    }                                                                                               
 
 }

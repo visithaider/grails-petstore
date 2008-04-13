@@ -1,9 +1,6 @@
-import org.hibernate.jmx.StatisticsService
-import org.springframework.jmx.export.MBeanExporter
-import org.springframework.jmx.support.MBeanServerFactoryBean
-
 beans = {
-	hibernateStats(StatisticsService) {
+    /*
+    hibernateStats(StatisticsService) {
 		statisticsEnabled=true
 		sessionFactory=ref("sessionFactory")
 	}
@@ -14,4 +11,5 @@ beans = {
         server = mbeanServerFactory
         beans = ["org.hibernate:name=statistics":hibernateStats]
     }
+    */
 }
