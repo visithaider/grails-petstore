@@ -1,4 +1,3 @@
-import grails.util.GrailsUtil
 import java.util.concurrent.LinkedBlockingQueue
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.context.ResourceLoaderAware
@@ -89,7 +88,7 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         item.address = address
 
         // Image
-        if (GrailsUtil.environment == "production") {
+        if (true) {
             def imageBytes = itemTag.image.text().decodeBase64()
             item.imageUrl =  imageStorageService.storeUploadedImage(imageBytes, "image/jpeg")
         } else {
@@ -133,7 +132,6 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
                 def item = importItem(itemTag)
                 def tagList = itemTag.tags.tag.collect { it.text() }
                 assert queue.add(new ImportQueueElement(item:item,tagList:tagList))
-                println "Added element ${item.name}"
             }
             queue.add(ImportQueueElement.EOS)
         }
@@ -141,7 +139,6 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         // Consumer loop
         def next
         while ((next = queue.take()) != ImportQueueElement.EOS) {
-            println "Took element ${next.item.name}"
             assert itemService.tagAndSave(next.item, next.tagList)   
         }
 
