@@ -35,6 +35,9 @@ class ItemController {
     }
 
     def byProduct = {
+        if (!params.max) {
+            params.max = 10
+        }
         def product = Product.get(params.id)
         def total = Item.countByProduct(product)
         def items = Item.findAllByProduct(product, params)

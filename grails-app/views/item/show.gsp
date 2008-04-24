@@ -10,7 +10,7 @@
             function loadMap() {
               if (GBrowserIsCompatible()) {
                 var map = new GMap2(document.getElementById("map"));
-                var point = new GLatLng(${item.latitude}, ${item.longitude});
+                var point = new GLatLng(${item.latitude ?: 37}, ${item.longitude ?: -120});
                 map.setCenter(point, 10);
                 map.addOverlay(new GMarker(point));
               }
@@ -103,7 +103,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div id="map">Google Map (uncomment javascript to enable)</div>
+                    <div id="map"></div>
                     <div style="clear: both"></div>
                 </div>
 
