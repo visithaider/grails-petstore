@@ -26,14 +26,17 @@ environments {
 		}
 	}
     production {
-		dataSource {
-			dbCreate = "create-drop"
-			jndiName = "jdbc/GrailsPetStoreDB"
-		}
+        dataSource {
+			jndiName = "java:comp/env/jdbc/GrailsPetStoreDB"
+            pooled = false
+            dbCreate = "create-drop"
+            //url = "jdbc:hsqldb:file:GrailsPetStoreDB"
+        }
         hibernate {
-            cache.use_second_level_cache=true
-            cache.use_query_cache=true
-            cache.provider_class="org.hibernate.cache.EhCacheProvider"
+            // TODO: Second level cache has problems, product names turn up as null 
+            //cache.use_second_level_cache=true
+            //cache.use_query_cache=true
+            //cache.provider_class="org.hibernate.cache.EhCacheProvider"
             show_sql=false
             dialect="org.hibernate.dialect.MySQLInnoDBDialect"
         }

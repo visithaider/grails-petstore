@@ -8,20 +8,22 @@
     <body>
         <div class="body">
             <div id="browser">
+                <h3>Browse</h3>
                 <ul id="categoryList">
                     <g:each in="${Category.list()}" var="c">
-                    <li>
+                    <%  def a = params.action, id = params.id?.toLong()
+                        boolean active = (a == "byCategory" && c.id == id) ||
+                                         (a == "byProduct" && c.products.any { it.id == id }) %>
+                    <li class="${active ? "active" : "inactive"}">
                         <a href="${createLink(controller:"item", action:"byCategory", id:c.id)}" title="${c.name}">
-                            <img src="${ps.categoryImage(category:c)}" alt="${c.name}"/>
+                            ${c.name} (${Item.countAllByCategory(c)})
                         </a>
-                        <%  def a = params.action, id = params.id?.toLong()
-                            if ((a == "byCategory" && c.id == id) ||
-                                (a == "byProduct"  && c.products.any { it.id == id })) { %>
+                        <% if (active) { %>
                             <ul id="productList">
                             <g:each in="${c.products}" var="p">
                                 <li>
                                     <a href="${createLink(controller:"item", action:"byProduct",id:p.id)}" title="${p.name}" >
-                                        <img src="${ps.productImage(product:p)}" alt="${p.name}"/>
+                                        ${p.name} (${Item.countByProduct(p)})
                                     </a>
                                 </li>
                             </g:each>
@@ -30,19 +32,29 @@
                     </li>
                     </g:each>
                 </ul>
+                <div id="tags">
+                    <h3>Tags</h3>
+                        <g:each in="${Tag.list()}" var="t">
+                            <a href="${createLink(controller:"tag",action:t.tag)}">${t.tag}</a>
+                        </g:each>
+                </div>
             </div>
             <div id="items">
                 <h1>${headline}</h1>
                 <g:if test="${flash.message}">
                 <div class="message">${flash.message}</div>
                 </g:if>
-                <div class="paginateButtons paginateTop">
+                <g:if test="${total > itemList.size()}">
+                    <div class="paginateButtons paginateTop">
                     <g:paginate action="${a}" total="${total}" id="${id}" params="${params}"/>
-                </div>
+                    </div>
+                </g:if>
                 <g:render template="/item/itemListTemplate" model="[itemList:itemList]"/>
-                <div class="paginateButtons paginateBottom">
-                    <g:paginate action="${a}" total="${total}" id="${id}" params="${params}"/>
-                </div>
+                <g:if test="${total > itemList.size()}">
+                    <div class="paginateButtons paginateBottom">
+                        <g:paginate action="${a}" total="${total}" id="${id}" params="${params}"/>
+                    </div>
+                </g:if>
             </div>
         </div>
     </body>

@@ -1,0 +1,16 @@
+<!--
+
+    Tomcat context file for production environment.
+
+    JNDI data source is configured in conf/DataSource.groovy.
+
+-->
+
+<Context path="/grails-petstore" debug="99" reloadable="false" crossContext="false">
+
+    <Resource name="jdbc/GrailsPetStoreDB" auth="Container" type="javax.sql.DataSource"
+              maxActive="10" maxIdle="10" maxWait="10000"
+              username="gps" password="gps" driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/gps?autoReconnect=true"/>
+
+</Context>

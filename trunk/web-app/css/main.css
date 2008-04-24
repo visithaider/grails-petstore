@@ -79,7 +79,7 @@ input:focus, select:focus, textarea:focus {
     border: 1px solid #ccc;
     border-style: solid none solid none;	
     margin-top: 5px;
-    padding: 10px 12px;
+    padding: 5px 12px;
 }
 
 .menuButton {
@@ -290,22 +290,13 @@ th.desc a {
     padding-left: 28px;
 }
 
-
-#searchAndTags {
-    margin: 15px;
-    float: right;
-    width: 300px;
+#menuButtons {
+    margin: 5px;
+    float: left;
 }
+
 
 #searchableForm {
+    float: right;
     text-align: right;
-}
-
-#tags {
-    margin-top: 5px;
-    text-align: right;
-}
-
-#tags a:hover {
-    text-decoration: underline;
 }
