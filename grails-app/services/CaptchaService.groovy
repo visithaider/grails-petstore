@@ -14,14 +14,16 @@ class CaptchaService {
     static scope = "session"
 
     Random rd = new Random()
-    int width = 200
-    int height = 60
+    int width = 200, height = 60
     Color background = new Color(0xc0c0c0)
     String captchaString
 
     void setCaptchaString() {
-        def rs = new RandomString()
-        captchaString = rs.getString(6, "IiOo0")
+        captchaString = RandomString.getString(6, "IiOo0")
+    }
+
+    boolean isValidCaptchaString(String s) {
+        captchaString == s?.trim()
     }
 
     BufferedImage getCaptchaImage() {

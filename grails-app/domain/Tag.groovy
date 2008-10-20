@@ -1,4 +1,4 @@
-class Tag implements Comparable {
+class Tag implements Comparable, Serializable  {
 
     String tag
 

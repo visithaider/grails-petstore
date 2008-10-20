@@ -12,10 +12,8 @@ class BootStrap {
         try {
             javaPetStoreImporterService.importProductsAndCategories()
             if (importJps) {
-                log.info "Started import of $maxItems items"
                 javaPetStoreImporterService.importItems(maxItems)
                 searchableService.indexAll()
-                log.info "Import completed"
             }
         } catch (e) {
             log.error "Could not import from Java Pet Store", GrailsUtil.sanitize (e)

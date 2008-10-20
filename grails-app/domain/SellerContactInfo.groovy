@@ -1,4 +1,4 @@
-class SellerContactInfo {
+class SellerContactInfo implements Serializable {
 
     String firstName, lastName, email
 

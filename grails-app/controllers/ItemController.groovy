@@ -5,7 +5,7 @@ class ItemController {
     CaptchaService captchaService
     ImageStorageService imageStorageService
     ItemService itemService
-
+    
     def defaultAction = "list"
 
     def list = {
@@ -132,13 +132,17 @@ class ItemCommand {
     MultipartFile file
     String tags, captcha
 
-    CaptchaService captchaService
+    def captchaService
 
     static constraints = {
         captcha(blank:false, validator: {
+            println "Running validator, captcha: ${it}, properties: ${ItemCommand.declaredMethods.collect{f->"${f}\n"}}"
+            //captchaService?.isValidCaptchaString(it)
             //it?.trim() == captchaService.getCaptchaString()
         })
     }
+
+    ItemCommand() {}
 
     ItemCommand(Item item) {
         tags = item ? item.tagsAsString() : ""

@@ -81,6 +81,15 @@
                                 <td valign="top" class="name">Average score:</td>
                                 <td valign="top" class="value"><g:formatNumber number="${item.averageRating()}" format="###.#"/></td>
                             </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name"></td>
+                                <td valign="top" class="value">
+                                    <br/>
+                                    <span class="rating">
+                                        <g:link controller="shoppingCart" action="add" id="${item.id}">Add to cart</g:link>
+                                    </span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div id="itemImage">
@@ -89,16 +98,14 @@
                     <div style="clear: both"></div>
                 </div>
 
-                <h1>Contact Info</h1>
+                <h1>About the seller</h1>
                 <div id="contactInfo">
                     <table>
                         <tbody>
                             <tr class="prop">
-                                <td valign="top" class="name">Seller:</td>
                                 <td valign="top" class="value">${item?.contactInfo?.encodeAsHTML()}</td>
                             </tr>
                             <tr class="prop">
-                                <td valign="top" class="name">Address:</td>
                                 <td valign="top" class="value">${item.address?.encodeAsHTML()}</td>
                             </tr>
                         </tbody>

@@ -39,6 +39,7 @@ log4j {
     appender.'errors.layout.ConversionPattern'='[%r] %c{2} %m%n'
     appender.'errors.File'="stacktrace.log"
     rootLogger="error,stdout"
+    /*
     logger {
         grails.app="debug"
         grails="info"
@@ -53,15 +54,14 @@ log4j {
             codehaus.groovy.grails.plugins="error" // plugins
             codehaus.groovy.grails.orm.hibernate="error" // hibernate integration
             springframework="off"
-		/*
             hibernate {
-                SQL="debug"
+                //SQL="debug"
                 hbm2ddl="debug"
             }
-		*/
         }
     }
     additivity.StackTrace=false
+    */
 }
 
 // WAR dependency config

@@ -16,7 +16,7 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
     // Better, but Java 6 only: ImageIO.getReaderFileSuffixes() as List
 
     ServletContext servletContext
-    String categoryDir, productDir, itemDir, thumbnailDir, uploadedDir
+    String itemDir, thumbnailDir, uploadedDir
 
     @Override
     void afterPropertiesSet() {
@@ -33,14 +33,6 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
         [thumbnailDir, uploadedDir].each {
             new File(it, path).delete()
         }
-    }
-
-    void storeCategoryImage(String name, byte[] imageData) {
-        writeFileToDisk(imageData, categoryDir, name)
-    }
-
-    void storeProductImage(String name, byte[] imageData) {
-        writeFileToDisk(imageData, productDir, name)
     }
 
     String storeUploadedImage(byte[] imageData, String contentType) {
@@ -61,7 +53,7 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
     /* Private methods below */
 
     private String getRandomName() {
-        new RandomString().getStringFromLong()
+        RandomString.getStringFromLong()
     }
 
     private String getFormat(String contentType) {
@@ -112,21 +104,19 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
 
     private void configureDirectories() {
         def imagesDir = servletContext.getRealPath("images")
-        categoryDir = imagesDir + "/category/"
-        productDir = imagesDir + "/product/"
         itemDir = imagesDir + "/item/"
         thumbnailDir = itemDir + "thumbnail/"
         uploadedDir = itemDir + "large/"
     }
 
     private void createDirectories() {
-        [categoryDir, productDir, thumbnailDir, uploadedDir].each {
+        [thumbnailDir, uploadedDir].each {
             new File(it).mkdirs()
         }
     }
 
     private void clearDirectories() {
-        [categoryDir, productDir, thumbnailDir, uploadedDir, itemDir].each {
+        [thumbnailDir, uploadedDir, itemDir].each {
             new File(it).delete()
         }
     }

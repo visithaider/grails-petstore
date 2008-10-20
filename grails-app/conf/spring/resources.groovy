@@ -1,4 +1,9 @@
 beans = {
+
+    shoppingCart(ShoppingCart) { bean ->
+        bean.scope="session"
+    }
+
     /*
     hibernateStats(StatisticsService) {
 		statisticsEnabled=true

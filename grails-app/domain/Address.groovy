@@ -1,4 +1,4 @@
-class Address {
+class Address implements Serializable {
 
     String street1, street2, city, state, zip
 
@@ -14,7 +14,7 @@ class Address {
         cache true
     }
 
-    static belongsTo = Item
+    static belongsTo = [Item, Customer]
 
     static searchable = true
 

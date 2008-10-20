@@ -2,11 +2,11 @@ class RandomString {
 
     final static Random rd = new Random()
 
-    String getString(int count) {
+    static String getString(int count) {
         getString(count, null)
     }
 
-    String getString(int count, String exclude) {
+    static String getString(int count, String exclude) {
         exclude = exclude ?: ""
         char start = ' ', end = 'z', num = end - start
         def buf = new StringBuilder()
@@ -21,7 +21,7 @@ class RandomString {
         return buf.toString()
     }
 
-    String getStringFromLong() {
+    static String getStringFromLong() {
         Long.toString(Math.abs(rd.nextLong()), 36)
     }
 

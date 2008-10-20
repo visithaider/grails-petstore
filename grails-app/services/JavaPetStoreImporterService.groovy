@@ -22,16 +22,9 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         def cName = c.name.text()
         def category = Category.findByName(cName)
         if (!category) {
-            def imageUrl = c.imageurl.text()
-            def format = imageUrl.substring(imageUrl.lastIndexOf('.') + 1)
-            def imageName = cName + "." + format
-            def imageBytes = c.image.text().decodeBase64()
-            imageStorageService.storeCategoryImage(imageName, imageBytes)
-
             category = new Category(
                 name:cName,
-                description:c.description.text(),
-                imageUrl:imageName
+                description:c.description.text()
             )
         }
         return category
@@ -41,16 +34,9 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         def pName = p.name.text()
         def product = Product.findByName(pName)
         if (!product) {
-            def imageUrl = p.imageurl.text()
-            def format = imageUrl.substring(imageUrl.lastIndexOf('.') + 1)
-            def imageName = pName + "." + format
-            def imageBytes = p.image.text().decodeBase64()
-            imageStorageService.storeProductImage(imageName, imageBytes)
-
             product = new Product(
                     name:pName,
-                    description:p.description.text(),
-                    imageUrl:imageName,
+                    description:p.description.text()
             )
         }
         return product
@@ -117,10 +103,10 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         log.info "Imported ${Category.count()} categories and ${Product.count()} products."
     }
 
-    void importItems(maxItems) {
+    void importItems(int maxItems) {
         def petstore = new XmlSlurper().parse(exportFile)
 
-        def queue = new LinkedBlockingQueue<ImportQueueElement>()
+        def queue = new LinkedBlockingQueue()
 
         log.info "About to import ${maxItems} items."
 
@@ -131,7 +117,7 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
             petstore.items.item[0..maxItems-1].each { itemTag ->
                 def item = importItem(itemTag)
                 def tagList = itemTag.tags.tag.collect { it.text() }
-                assert queue.add(new ImportQueueElement(item:item,tagList:tagList))
+                queue.add(new ImportQueueElement(item:item,tagList:tagList))
             }
             queue.add(ImportQueueElement.EOS)
         }
@@ -139,7 +125,7 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         // Consumer loop
         def next
         while ((next = queue.take()) != ImportQueueElement.EOS) {
-            assert itemService.tagAndSave(next.item, next.tagList)   
+            itemService.tagAndSave(next.item, next.tagList)
         }
 
         log.info "Imported ${Item.count()} items in ${System.currentTimeMillis() - startTime} ms"
