@@ -1,6 +1,6 @@
-class Product implements Comparable {
+class Product implements Comparable, Serializable {
 
-    String name, description, imageUrl
+    String name, description
 
     static constraints = {
         name(blank:false, unique:true)
@@ -8,7 +8,6 @@ class Product implements Comparable {
             it?.indexOf("<script") < 0 &&
             it?.indexOf("<link") < 0
         })
-        imageUrl(blank:false)
     }
 
     static mapping = {

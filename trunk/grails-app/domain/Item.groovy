@@ -1,4 +1,4 @@
-class Item {
+class Item implements Serializable {
 
     Product product
     Address address

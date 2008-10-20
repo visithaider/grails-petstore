@@ -1,11 +1,10 @@
-class Category {
+class Category implements Serializable {
 
-    String name, description, imageUrl
+    String name, description
 
     static constraints = {
         name(blank:false, unique:true)
         description(nullable:true)
-        imageUrl(blank:false)
     }
 
     static mapping = {

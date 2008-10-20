@@ -280,6 +280,9 @@
       <SplitterProportionsDataImpl />
     </option>
   </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myVersion" value="123" />
+  </component>
   <component name="TeamCityRootDirectoryHolder">
     <option name="myRelativeRootDirectory" />
   </component>

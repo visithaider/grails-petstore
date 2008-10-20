@@ -1,0 +1,15 @@
+.formInputRow {
+    margin: 0 5px;
+    padding: 5px;
+    border-top: 1px solid cadetblue;
+
+}
+
+.formInputRow label {
+    width: 200px;
+    float: left;
+}
+
+.formInputRow input {
+    float: right;
+}

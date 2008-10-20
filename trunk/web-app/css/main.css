@@ -290,13 +290,43 @@ th.desc a {
     padding-left: 28px;
 }
 
+div.logo {
+	margin: 10px 20px;
+}
+
 #menuButtons {
     margin: 5px;
     float: left;
 }
 
-
 #searchableForm {
     float: right;
+    text-align: right;
+}
+
+#cart {
+    float: right;
+    width: 250px;
+    margin: 10px;
+}
+
+#cart table {
+    width: 100%;
+    border: none;
+}
+
+#cart table td {
+    white-space: nowrap;
+    padding: 1px 4px;
+}
+
+#cart table caption {
+    font-size: 11px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid;
+}
+
+#cart table tfoot td {
     text-align: right;
 }

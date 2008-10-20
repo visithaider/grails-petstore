@@ -11,22 +11,23 @@
                 <h3>Browse</h3>
                 <ul id="categoryList">
                     <g:each in="${Category.list()}" var="c">
-                    <%  def a = params.action, id = params.id?.toLong()
-                        boolean active = (a == "byCategory" && c.id == id) ||
-                                         (a == "byProduct" && c.products.any { it.id == id }) %>
+                    <!-- TODO: Move to controller interceptor -->
+                    <% def a = params.action, id = params.id?.toLong()
+                       boolean active = (a == "byCategory" && c.id == id) ||
+                                        (a == "byProduct" && c.products.any { it.id == id }) %>
                     <li class="${active ? "active" : "inactive"}">
                         <a href="${createLink(controller:"item", action:"byCategory", id:c.id)}" title="${c.name}">
                             ${c.name} (${Item.countAllByCategory(c)})
                         </a>
                         <% if (active) { %>
                             <ul id="productList">
-                            <g:each in="${c.products}" var="p">
+                                <g:each in="${c.products}" var="p">
                                 <li>
                                     <a href="${createLink(controller:"item", action:"byProduct",id:p.id)}" title="${p.name}" >
                                         ${p.name} (${Item.countByProduct(p)})
                                     </a>
                                 </li>
-                            </g:each>
+                                </g:each>
                             </ul>
                         <% } %>
                     </li>
@@ -34,15 +35,16 @@
                 </ul>
                 <div id="tags">
                     <h3>Tags</h3>
-                        <g:each in="${Tag.list()}" var="t">
-                            <a href="${createLink(controller:"tag",action:t.tag)}">${t.tag}</a>
-                        </g:each>
+                    <!-- TODO: tag cloud -->
+                    <g:each in="${Tag.list()}" var="t">
+                        <a href="${createLink(controller:"tag",action:t.tag)}">${t.tag}</a>
+                    </g:each>
                 </div>
             </div>
             <div id="items">
                 <h1>${headline}</h1>
                 <g:if test="${flash.message}">
-                <div class="message">${flash.message}</div>
+                    <div class="message">${flash.message}</div>
                 </g:if>
                 <g:if test="${total > itemList.size()}">
                     <div class="paginateButtons paginateTop">

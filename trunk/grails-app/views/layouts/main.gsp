@@ -7,11 +7,47 @@
         <g:javascript library="application" />				
     </head>
     <body>
+	<div id="header">
+        <div id="cart">
+            <g:set var="sc" value="${applicationContext.shoppingCart}"/>
+            <table>
+                <caption>Shopping cart</caption>
+                <tbody>
+                    <g:each in="${sc.itemIds}" var="iid">
+                        <tr>
+                            <td>${sc.getItemCount(iid)}</td>
+                            <td><g:link controller="item" action="show" id="${iid}">${Item.get(iid)?.name}</g:link></td>
+                            <td>
+                                <g:link controller="shoppingCart" action="add" id="${iid}">
+                                    <img src="${createLinkTo(dir:"images",file:"add.png")}" alt="+"/>
+                                </g:link>
+                                <g:link controller="shoppingCart" action="remove" id="${iid}">
+                                    <img src="${createLinkTo(dir:"images",file:"delete.png")}" alt="-"/>
+                                </g:link>
+                            </td>
+                        </tr>
+                    </g:each>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <% if (sc.isEmpty()) { %>
+                                <em>Empty</em>                            
+                            <% } else { %>
+                                <g:link controller="customerOrder" action="checkout">
+                                    Checkout
+                                </g:link>
+                            <% } %>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
         </div>
-        <div class="logo"><img src="${createLinkTo(dir:'images',file:'grails_logo.jpg')}" alt="Grails" /></div>
-        <div style="font-weight: bold; text-transform: uppercase; letter-spacing: 8px; margin-left: 70px">Pet Store</div>
+        <div class="logo"><img src="${createLinkTo(dir:'images',file:'gps_logo.png')}" alt="Grails" /></div>
         <div class="nav">
             <div id="searchableForm">
                 <g:form url='[controller: "item", action: "search"]' name="searchableForm" method="get">
@@ -25,6 +61,7 @@
             </div>
             <div style="clear: both"> </div>
         </div>
+	</div><!-- end header -->
         <g:layoutBody />
     </body>	
 </html>
