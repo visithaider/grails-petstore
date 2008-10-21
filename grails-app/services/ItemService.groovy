@@ -7,6 +7,8 @@ class ItemService {
     GeoCoderService geoCoderService
     boolean fetchCoordinates = false
 
+    // TODO asynchronous coordinate fetching using JMS
+
     synchronized boolean tagAndSave(Item item, List<String> withTags) {
         if (fetchCoordinates) {
             fetchCoordinatesFor item, { tag item, withTags }
@@ -28,6 +30,7 @@ class ItemService {
             def t = Tag.findByTag(it)
             if (!t) {
                 t = new Tag(tag: it)
+                t.items.add(item) 
                 t.save()
             }
             tagSet.add(t)

@@ -10,11 +10,6 @@
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    <g:if test="${command.hasErrors()}">
-        <div class="errors">
-            <g:renderErrors bean="${command}" as="list"/>
-        </div>
-    </g:if>
     <g:if test="${item.hasErrors()}">
         <div class="errors">
             <g:renderErrors bean="${item}" as="list"/>
@@ -44,8 +39,8 @@
                     </tr>
 
                     <tr class='prop'>
-                        <td valign='top' class='name'><label for='tags'>Tags:</label></td>
-                        <td valign='top' class='value'><input type='text' id='tags' name='tags' value="${command.tags}"/></td>
+                        <td valign='top' class='name'><label for='tagString'>Tags:</label></td>
+                        <td valign='top' class='value'><input type='text' id='tagString' name='tagString' value="${item?.tagsAsString().encodeAsHTML()}"/></td>
                     </tr>
 
                     <tr class='prop'>
