@@ -1,5 +1,3 @@
-import org.springframework.web.multipart.MultipartFile
-
 class ItemController {
 
     CaptchaService captchaService
@@ -59,36 +57,31 @@ class ItemController {
 
     def edit = {
         captchaService.setCaptchaString()
-        def item = Item.get(params.id)
-        [item:item,command:new ItemCommand(item)]
+        [item: Item.get(params.id)]
     }
 
     def create = {
         captchaService.setCaptchaString()
-        def item = new Item()
-        render(view: "edit", model: [item:item, command: new ItemCommand(item)])
+        render(view: "edit", model: [item: new Item()])
     }
 
-    def save = { ItemCommand command ->
-        def item = params.id ?
-            Item.get(params.id) :
-            new Item(address:new Address(), contactInfo:new SellerContactInfo())
+    def save = {
+        def item = params.id ? Item.get(params.id) : new Item()
+        item.properties = params
+        
+        handleFileUpload(params.file, item)
 
-        bindData(item, params, ["tags"])
-        bindData(item.address, params, "address")
-        bindData(item.contactInfo, params, "contactInfo")
-        handleFileUpload(command, item)
+        def tagList = tagStringToList(params.tagString)
 
+        // TODO global error for captcha mismatch 
         item.validate()
-        if (!(command.errors.hasErrors() || item.errors.hasErrors()) &&
-            itemService.tagAndSave(item, command.tagList)) {
-
+        if (captchaMatches(params.captcha) && itemService.tagAndSave(item, tagList)) {
             flash.message = "Saved item ${item.id}"
             redirect(action:show,id:item.id)
         } else {
-            flash.message = "${item.errors.errorCount + command.errors.errorCount} validation errors."
+            flash.message = "${item.errors.errorCount} validation errors."
             captchaService.setCaptchaString()
-            render(view:"edit", model:[item:item, command:command])
+            render(view:"edit", model:[item:item])
         }
     }
 
@@ -114,43 +107,22 @@ class ItemController {
         }
     }
 
-    private void handleFileUpload(ItemCommand cmd, Item item) {
-        if (!cmd.file.empty) {
+    private def captchaMatches(captcha) {
+        captcha?.trim() == captchaService.getCaptchaString()
+    }
+
+    private def tagStringToList(tagString) {
+        tagString ? tagString.split("\\s").toList() : []
+    }
+
+    private def handleFileUpload(file, item) {
+        if (!file?.empty) {
             if (item.imageUrl) {
                 // Delete the old image when a new is uploaded
                 imageStorageService.deleteImage(item.imageUrl)
             }
-            item.imageUrl = imageStorageService.storeUploadedImage(cmd.file.bytes, cmd.file.contentType)
+            item.imageUrl = imageStorageService.storeUploadedImage(file.bytes, file.contentType)
         }
-    }
-
-}
-
-// TODO: captchaService not injected properly
-// TODO: try to fit the Item in here too
-class ItemCommand {
-    MultipartFile file
-    String tags, captcha
-
-    def captchaService
-
-    static constraints = {
-        captcha(blank:false, validator: {
-            println "Running validator, captcha: ${it}, properties: ${ItemCommand.declaredMethods.collect{f->"${f}\n"}}"
-            //captchaService?.isValidCaptchaString(it)
-            //it?.trim() == captchaService.getCaptchaString()
-        })
-    }
-
-    ItemCommand() {}
-
-    ItemCommand(Item item) {
-        tags = item ? item.tagsAsString() : ""
-        //captchaService.setCaptchaString()
-    }
-
-    List<String> getTagList() {
-        tags ? tags.split("\\s").toList() : []
     }
 
 }

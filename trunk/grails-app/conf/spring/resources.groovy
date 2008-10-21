@@ -1,7 +1,7 @@
 beans = {
 
     shoppingCart(ShoppingCart) { bean ->
-        bean.scope="session"
+        bean.scope = "session"
     }
 
     /*
