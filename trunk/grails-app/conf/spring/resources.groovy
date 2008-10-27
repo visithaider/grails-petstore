@@ -11,8 +11,12 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer
 
 beans = {
 
-    switch(GU.environment) {
-		case "production":
+    shoppingCart(ShoppingCart) {bean ->
+        bean.scope = "session"
+    }
+
+    switch (GU.environment) {
+        case "production":
             connectionFactory(JndiObjectFactoryBean) {
                 jndiUrl = "java:/JmsXA"
             }
@@ -30,19 +34,15 @@ beans = {
             break
     }
 
-    shoppingCart(ShoppingCart) { bean ->
-        bean.scope = "session"
-    }
-
     jmsTemplate(JmsTemplate) {
         connectionFactory = ref("connectionFactory")
         defaultDestination = ref("coordinatesLookupQueue")
     }
 
-	jmsContainer(DefaultMessageListenerContainer) {
-		connectionFactory = ref("connectionFactory")
-		destination = ref("coordinatesLookupQueue")
-		messageListener = ref("coordinatesLookupService")
+    jmsContainer(DefaultMessageListenerContainer) {
+        connectionFactory = ref("connectionFactory")
+        destination = ref("coordinatesLookupQueue")
+        messageListener = ref("coordinatesLookupService")
         //sessionTransacted = true
         //transactionManager = ref("transactionManager")
     }
@@ -50,17 +50,17 @@ beans = {
     // Expose Hibernate statistics to JMX
 
     hibernateStats(StatisticsService) {
-		statisticsEnabled=true
-		sessionFactory=ref("sessionFactory")
-	}
+        statisticsEnabled = true
+        sessionFactory = ref("sessionFactory")
+    }
 
     mbeanServerFactory(MBeanServerFactoryBean) {
-        locateExistingServerIfPossible=true
+        locateExistingServerIfPossible = true
     }
 
     mbeanExporter(MBeanExporter) {
         server = mbeanServerFactory
-        beans = ["org.hibernate:name=statistics":hibernateStats]
+        beans = ["org.hibernate:name=statistics": hibernateStats]
     }
 
 }
