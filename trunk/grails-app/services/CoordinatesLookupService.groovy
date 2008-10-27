@@ -1,5 +1,6 @@
 import javax.jms.MessageListener
 import javax.jms.Message
+import grails.util.GrailsUtil
 
 class CoordinatesLookupService implements MessageListener {
 
