@@ -5,5 +5,10 @@ class Customer implements Serializable {
     Address address
     
     static belongsTo = CustomerOrder
-    
+
+    static constraints = {
+        name(blank:false)
+        email(email:true, blank:false)
+    }
+
 }

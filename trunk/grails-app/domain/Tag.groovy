@@ -2,7 +2,7 @@ class Tag implements Comparable, Serializable  {
 
     String tag
 
-    static hasMany = [items:Item]
+    //static hasMany = [items:Item]
     static belongsTo = Item
 
     static constraints = {

@@ -15,13 +15,11 @@ class PetstoreTagLib {
     }
 
     def thumbnailImage = { attrs ->
-        def item = attrs.item
-        out << g.createLinkTo(dir:"images/item/thumbnail", file:item.imageUrl)
+        out << g.createLinkTo(dir:"images/item/thumbnail", file:attrs.imageUrl)
     }
     
     def largeImage = { attrs ->
-        def item = attrs.item
-        out << g.createLinkTo(dir:"images/item/large", file:item.imageUrl)
+        out << g.createLinkTo(dir:"images/item/large", file:attrs.imageUrl)
     }
 
 }

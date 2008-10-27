@@ -39,6 +39,22 @@ log4j {
     appender.'errors.layout.ConversionPattern'='[%r] %c{2} %m%n'
     appender.'errors.File'="stacktrace.log"
     rootLogger="error,stdout"
+    logger {
+        StackTrace="error,errors"
+        grails="info"
+        grails {
+            app="debug"
+        }
+        org {
+            springframework="info"
+            hibernate="info"
+            hibernate {
+                //SQL="debug"
+                //hbm2ddl="debug"
+            }
+        }
+    }
+    additivity.StackTrace=false
     /*
     logger {
         grails.app="debug"

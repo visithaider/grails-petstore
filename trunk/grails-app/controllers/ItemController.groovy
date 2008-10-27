@@ -1,3 +1,5 @@
+import org.springframework.web.multipart.MultipartFile
+
 class ItemController {
 
     CaptchaService captchaService
@@ -56,32 +58,26 @@ class ItemController {
     }
 
     def edit = {
-        captchaService.setCaptchaString()
-        [item: Item.get(params.id)]
+        def item = Item.get(params.id)
+        [item: item,command:new ItemCommand(item)]
     }
 
     def create = {
-        captchaService.setCaptchaString()
-        render(view: "edit", model: [item: new Item()])
+        def command = new ItemCommand(address: new Address(), contactInfo: new SellerContactInfo())
+        render(view: "edit", model: [command:command])
     }
 
-    def save = {
-        def item = params.id ? Item.get(params.id) : new Item()
-        item.properties = params
+    def save = { ItemCommand command ->
+        command.handleFileUpload()
         
-        handleFileUpload(params.file, item)
-
-        def tagList = tagStringToList(params.tagString)
-
-        // TODO global error for captcha mismatch 
-        item.validate()
-        if (captchaMatches(params.captcha) && itemService.tagAndSave(item, tagList)) {
-            flash.message = "Saved item ${item.id}"
+        if (command.hasNoErrors() && itemService.tagAndSave(command.item, command.tagList)) {
+            def item = Item.get(command.id)
+            flash.message = "Saved item ${item}"
             redirect(action:show,id:item.id)
         } else {
-            flash.message = "${item.errors.errorCount} validation errors."
-            captchaService.setCaptchaString()
-            render(view:"edit", model:[item:item])
+            flash.message = "${command.errors.errorCount} validation errors."
+            //captchaService.setCaptchaString()
+            render(view:"edit", model:[item:command.item,command:command])
         }
     }
 
@@ -107,22 +103,77 @@ class ItemController {
         }
     }
 
-    private def captchaMatches(captcha) {
-        captcha?.trim() == captchaService.getCaptchaString()
+}
+
+class ItemCommand {
+    
+    Long id
+    Product product
+    Address address
+    SellerContactInfo contactInfo
+    String name, description, tagString, imageUrl, captcha
+    Integer price
+    MultipartFile file
+
+    ImageStorageService imageStorageService
+    CaptchaService captchaService
+
+    static constraints = {
+        name(blank:false)
+        price(blank:false,nullable:false,min:0)
     }
 
-    private def tagStringToList(tagString) {
+    ItemCommand() {}
+
+    ItemCommand(Item item) {
+        id = item.id
+        product = item.product
+        address = item.address
+        contactInfo = item.contactInfo
+        imageUrl = item.imageUrl
+        name = item.name
+        description = item.description
+        price = item.price
+    }
+
+    Item getItem() {
+        def item = id ?
+            Item.get(id) :
+            new Item(address:new Address(), contactInfo:new SellerContactInfo(), product:product)
+        
+        item.address.properties = address.properties
+        item.contactInfo.properties = contactInfo.properties
+        item.name = name
+        item.description = description
+        item.imageUrl = imageUrl
+        item.price = price
+
+        return item
+    }
+
+    def getTagList() {
         tagString ? tagString.split("\\s").toList() : []
     }
 
-    private def handleFileUpload(file, item) {
-        if (!file?.empty) {
-            if (item.imageUrl) {
-                // Delete the old image when a new is uploaded
-                imageStorageService.deleteImage(item.imageUrl)
-            }
-            item.imageUrl = imageStorageService.storeUploadedImage(file.bytes, file.contentType)
+    def hasNoErrors() {
+        validateCaptcha()
+        return !this.errors.hasErrors()
+    }
+
+    def validateCaptcha() {
+        // TODO captchaService not injected at the time of regular validation (might be fixed in Grails 1.1)
+        if (!captchaService.validateCaptchaString(captcha)) {
+            this.errors.rejectValue("captcha", "default.captcha.does.not.match")
         }
     }
 
+    def handleFileUpload() {
+        if (file && !file.empty) {
+            if (imageUrl) {
+                // Delete the old image when a new is uploaded
+                imageStorageService.deleteImage(imageUrl)
+            }
+            imageUrl = imageStorageService.storeUploadedImage(file.bytes, file.contentType)
+        }
+    }
 }

@@ -26,19 +26,23 @@ environments {
 		}
 	}
     production {
+        // JBossAS - JNDI data source, JTA transactions, MySQL database
         dataSource {
-			jndiName = "java:comp/env/jdbc/GrailsPetStoreDB"
-            pooled = false
+			jndiName = "java:/MySqlDS"
             dbCreate = "create-drop"
-            //url = "jdbc:hsqldb:file:GrailsPetStoreDB"
+            pooled = false
         }
         hibernate {
-            // TODO: Second level cache has problems, product names turn up as null 
-            //cache.use_second_level_cache=true
-            //cache.use_query_cache=true
-            //cache.provider_class="org.hibernate.cache.EhCacheProvider"
-            show_sql=false
+            hibernate.transaction.manager_lookup_class="org.hibernate.transaction.JBossTransactionManagerLookup"
+            hibernate.transaction.factory_class="org.hibernate.transaction.JTATransactionFactory"
+
+            jta.UserTransaction="UserTransaction"
+
+            cache.use_second_level_cache=true
+            cache.provider_class="org.jboss.hibernate.cache.DeployedTreeCacheProvider"
+
             dialect="org.hibernate.dialect.MySQLInnoDBDialect"
+            show_sql=false
         }
     }
 }
