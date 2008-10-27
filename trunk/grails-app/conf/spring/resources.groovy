@@ -8,6 +8,7 @@ import org.springframework.jmx.export.MBeanExporter
 import org.springframework.jmx.support.MBeanServerFactoryBean
 import org.springframework.jndi.JndiObjectFactoryBean
 import org.springframework.jms.listener.DefaultMessageListenerContainer
+import org.apache.activemq.pool.PooledConnectionFactory
 
 beans = {
 
@@ -26,8 +27,8 @@ beans = {
             break
         case "development":
         case "test":
-            connectionFactory(ActiveMQConnectionFactory) {
-                brokerURL = 'vm://localhost'
+            connectionFactory(PooledConnectionFactory, "vm://localhost") {
+                maxConnections = 10
             }
             coordinatesLookupQueue(ActiveMQQueue, "coordinatesLookupQueue") {
             }
@@ -43,7 +44,7 @@ beans = {
         connectionFactory = ref("connectionFactory")
         destination = ref("coordinatesLookupQueue")
         messageListener = ref("coordinatesLookupService")
-        //sessionTransacted = true
+        sessionTransacted = true
         //transactionManager = ref("transactionManager")
     }
 
