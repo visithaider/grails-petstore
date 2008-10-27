@@ -18,15 +18,13 @@ class CaptchaService {
     Color background = new Color(0xc0c0c0)
     String captchaString
 
-    void setCaptchaString() {
-        captchaString = RandomString.getString(6, "IiOo0")
+    boolean validateCaptchaString(String captcha) {
+        this.captchaString == captcha?.trim()
     }
 
-    boolean isValidCaptchaString(String s) {
-        captchaString == s?.trim()
-    }
+    BufferedImage generateCaptchaImage() {
+        setNewCaptchaString()
 
-    BufferedImage getCaptchaImage() {
         def bufferImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
         def lastBimg, g, g2
 
@@ -52,6 +50,14 @@ class CaptchaService {
             g2?.dispose()
         }
         return lastBimg
+    }
+
+    private void setNewCaptchaString() {
+        captchaString = RandomString.getString(6, "IiOo0")
+    }
+
+    private boolean isValidCaptchaString(String s) {
+        captchaString == s?.trim()
     }
 
     private void drawMessage(Graphics g) {

@@ -44,9 +44,6 @@
             </table>
         </div>
 
-        <div id="spinner" class="spinner" style="display:none;">
-            <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
-        </div>
         <div class="logo"><img src="${createLinkTo(dir:'images',file:'gps_logo.png')}" alt="Grails" /></div>
         <div class="nav">
             <div id="searchableForm">

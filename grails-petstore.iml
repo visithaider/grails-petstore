@@ -31,6 +31,7 @@
       <sourceFolder url="file://$MODULE_DIR$/plugins/feeds-1.2/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/plugins/feeds-1.2/test/integration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/plugins/feeds-1.2/test/unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/plugins/jms-0.3/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/plugins/searchable-0.4/grails-app/conf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/plugins/searchable-0.4/grails-app/controllers" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/plugins/searchable-0.4/grails-app/services" isTestSource="false" />
@@ -57,6 +58,24 @@
         <SOURCES />
         <jarDirectory url="file://$MODULE_DIR$/plugins/feeds-1.2/lib" recursive="false" />
         <jarDirectory url="file://$MODULE_DIR$/plugins/searchable-0.4/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/geronimo-jms_1.1_spec-1.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/activemq-core-5.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntryProperties />

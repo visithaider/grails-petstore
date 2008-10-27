@@ -10,13 +10,13 @@
     <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
     </g:if>
-    <g:if test="${item.hasErrors()}">
+    <g:if test="${command.hasErrors()}">
         <div class="errors">
-            <g:renderErrors bean="${item}" as="list"/>
+            <g:renderErrors bean="${command}" as="list"/>
         </div>
     </g:if>
     <g:form action="save" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="${item?.id}"/>
+        <input type="hidden" name="id" value="${command.id}"/>
             <table>
                 <tbody>
                     <tr class='prop'>
@@ -24,77 +24,77 @@
                         <td valign='top' class='value'><g:select optionKey="id" from="${Product.list()}"
                                                                  name='product.id'
                                                                  optionValue="name"
-                                                                 value="${item?.product?.id}"></g:select></td>
+                                                                 value="${command.product?.id}"></g:select></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='name'>Name:</label></td>
                         <td valign='top' class='value'><input type="text" id='name' name='name'
-                                                              value="${item?.name?.encodeAsHTML()}"/></td>
+                                                              value="${command.name}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='description'>Description:</label></td>
                         <td valign='top' class='value'>
-                            <g:textArea name="description" value="${item?.description}" escapeHtml="true"/>
+                            <g:textArea name="description" value="${command.description}" escapeHtml="true"/>
                         </td>
                     </tr>
 
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='tagString'>Tags:</label></td>
-                        <td valign='top' class='value'><input type='text' id='tagString' name='tagString' value="${item?.tagsAsString().encodeAsHTML()}"/></td>
+                        <td valign='top' class='value'><input type='text' id='tagString' name='tagString' value="${command.tagString}"/></td>
                     </tr>
 
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='price'>Price:</label></td>
                         <td valign='top' class='value'><input type='text' id='price' name='price'
-                                                              value="${item?.price}"/></td>
+                                                              value="${command.price}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='address.street1'>Street1:</label></td>
                         <td valign='top' class='value'><input type="text" id='street1' name='address.street1'
-                                                              value="${item?.address?.street1?.encodeAsHTML()}"/></td>
+                                                              value="${command.address.street1}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='address.street2'>Street2:</label></td>
                         <td valign='top' class='value'><input type="text" id='street2' name='address.street2'
-                                                              value="${item?.address?.street2?.encodeAsHTML()}"/></td>
+                                                              value="${command.address.street2}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='address.city'>City:</label></td>
                         <td valign='top' class='value'><input type="text" id='city' name='address.city'
-                                                              value="${item?.address?.city?.encodeAsHTML()}"/></td>
+                                                              value="${command.address.city}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='address.state'>State:</label></td>
                         <td valign='top' class='value'><input type="text" id='state' name='address.state'
-                                                              value="${item?.address?.state?.encodeAsHTML()}"/></td>
+                                                              value="${command.address.state}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='address.zip'>Zip:</label></td>
                         <td valign='top' class='value'><input type="text" id='zip' name='address.zip'
-                                                              value="${item?.address?.zip?.encodeAsHTML()}"/></td>
+                                                              value="${command.address.zip}"/></td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='contactInfo.firstName'>First Name:</label></td>
                         <td valign='top' class='value'><input type="text" id='firstName' name='contactInfo.firstName'
-                                                              value="${item?.contactInfo?.firstName?.encodeAsHTML()}"/>
+                                                              value="${command.contactInfo.firstName}"/>
                         </td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='contactInfo.lastName'>Last Name:</label></td>
                         <td valign='top' class='value'><input type="text" id='lastName' name='contactInfo.lastName'
-                                                              value="${item?.contactInfo?.lastName?.encodeAsHTML()}"/>
+                                                              value="${command.contactInfo.lastName}"/>
                         </td>
                     </tr>
                     <tr class='prop'>
                         <td valign='top' class='name'><label for='contactInfo.email'>Email:</label></td>
                         <td valign='top' class='value'><input type="text" id='email' name='contactInfo.email'
-                                                              value="${item?.contactInfo?.email?.encodeAsHTML()}"/></td>
+                                                              value="${command.contactInfo.email}"/></td>
                     </tr>
 
-                    <g:if test="${item?.imageUrl}">
+                    <g:if test="${command.imageUrl}">
                     <tr>
-                        <td><input type="hidden" name="imageUrl" value="${item.imageUrl}"/></td>
-                        <td><img src="${ps.thumbnailImage(item:item)}" alt="item.imageUrl.encodeAsHTML()"/></td>
+                        <td><input type="hidden" name="imageUrl" value="${command.imageUrl}"/></td>
+                        <td><img src="${ps.thumbnailImage(imageUrl:command.imageUrl)}" alt="${command.imageUrl}"/></td>
                     </tr>
                     </g:if>
 
@@ -114,8 +114,7 @@
             </table>
         <div class="buttons">
             <span class="button"><g:actionSubmit class="save" value="Update"/></span>
-            <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');"
-                                                 value="Delete"/></span>
+            <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
         </div>
     </g:form>
 </div>
