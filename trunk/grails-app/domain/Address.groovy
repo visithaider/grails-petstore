@@ -11,7 +11,7 @@ class Address implements Serializable {
     }
 
     static mapping = {
-        cache true
+        cache usage:"transactional"
     }
 
     static belongsTo = [Item, Customer]

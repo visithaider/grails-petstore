@@ -47,37 +47,15 @@ log4j {
         }
         org {
             springframework="info"
-            hibernate="info"
+            //hibernate="info"
             hibernate {
-                //SQL="debug"
                 //hbm2ddl="debug"
-            }
-        }
-    }
-    additivity.StackTrace=false
-    /*
-    logger {
-        grails.app="debug"
-        grails="info"
-        StackTrace="error,errors"
-        org {
-            codehaus.groovy.grails.web.servlet="error"  //  controllers
-            codehaus.groovy.grails.web.pages="error" //  GSP
-            codehaus.groovy.grails.web.sitemesh="error" //  layouts
-            codehaus.groovy.grails."web.mapping.filter"="error" // URL mapping
-            codehaus.groovy.grails."web.mapping"="error" // URL mapping
-            codehaus.groovy.grails.commons="info" // core / classloading
-            codehaus.groovy.grails.plugins="error" // plugins
-            codehaus.groovy.grails.orm.hibernate="error" // hibernate integration
-            springframework="off"
-            hibernate {
+                //cache="debug"
                 //SQL="debug"
-                hbm2ddl="debug"
             }
         }
     }
     additivity.StackTrace=false
-    */
 }
 
 // WAR dependency config
@@ -86,7 +64,7 @@ grails.war.dependencies = [
     "ant-launcher.jar",
     "hibernate3.jar",
     "jdbc2_0-stdext.jar",
-    "jta.jar",
+    //"jta.jar",
     "groovy-all-*.jar",
     "springmodules-sandbox.jar",
     "standard-${servletVersion}.jar",
@@ -94,8 +72,8 @@ grails.war.dependencies = [
     "antlr-*.jar",
     "cglib-*.jar",
     "dom4j-*.jar",
-    "ehcache-*.jar",
-    "junit-*.jar",
+    //"ehcache-*.jar",
+    //"junit-*.jar",
     "commons-logging-*.jar",
     "sitemesh-*.jar",
     "spring-*.jar",
@@ -122,7 +100,33 @@ grails.war.java5.dependencies = [
     "ejb3-persistence.jar",
 ]
 
+environments {
+    development {
+        jpsImport.maxItems = 10
+    }
+    production {
+        
+    }
+}
 
+/*
+def deps = [
+    "hibernate3.jar",
+    "groovy-all-*.jar",
+    "standard-${servletVersion}.jar",
+    "jstl-${servletVersion}.jar",
+    "oscache-*.jar",
+    "commons-logging-*.jar",
+    "sitemesh-*.jar",
+    "spring-*.jar",
+    "log4j-*.jar",
+    "ognl-*.jar",
+    "commons-*.jar",
+    "xstream-1.2.1.jar",
+    "xpp3_min-1.1.3.4.O.jar" ]
+
+grails.war.dependencies = { fileset(dir: "libs") { deps.each { pattern -> include(name: pattern) } } }
+*/
 
 // The following properties have been added by the Upgrade process...
 grails.views.gsp.encoding="UTF-8"

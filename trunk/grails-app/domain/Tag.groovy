@@ -10,7 +10,7 @@ class Tag implements Comparable, Serializable  {
     }
 
     static mapping = {
-        cache true
+        cache usage:"transactional"
     }
 
     static searchable = true

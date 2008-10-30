@@ -50,7 +50,18 @@ class CustomerOrderController {
         }
 
         enterPaymentDetails {
-            on("forward").to "reviewOrder"
+            on("forward") {
+                def creditCard = flow.order.creditCard
+                if (!creditCard) {
+                    creditCard = new CreditCardCommand()
+                    flow.order.creditCard = creditCard
+                }
+                creditCard.properties = params
+
+                if (!creditCard.validate()) {
+                    return error()
+                }
+            }.to "reviewOrder"
 
             on("back").to "enterPersonalDetails"
         }
