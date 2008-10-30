@@ -1,22 +1,15 @@
 import java.util.concurrent.LinkedBlockingQueue
-import org.springframework.beans.factory.InitializingBean
-import org.springframework.context.ResourceLoaderAware
-import org.springframework.core.io.ResourceLoader
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import org.springframework.core.io.Resource
 
-class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBean {
+class JavaPetStoreImporterService {
 
     static transactional = true
 
     SearchableService searchableService
     ImageStorageService imageStorageService
     ItemService itemService
-    ResourceLoader resourceLoader
-    File exportFile
-
-    @Override
-    void afterPropertiesSet() {
-       exportFile = resourceLoader.getResource("classpath:java_pet_store_export.xml").file
-    }
+    Resource exportFileResource
 
     def importCategory = { c ->
         def cName = c.name.text()
@@ -74,18 +67,14 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         item.address = address
 
         // Image
-        if (true) {
-            def imageBytes = itemTag.image.text().decodeBase64()
-            item.imageUrl =  imageStorageService.storeUploadedImage(imageBytes, "image/jpeg")
-        } else {
-            item.imageUrl = "leia.jpg"
-        }
+        def imageBytes = itemTag.image.text().decodeBase64()
+        item.imageUrl =  imageStorageService.storeUploadedImage(imageBytes, "image/jpeg")
 
         return item
     }
 
     void importProductsAndCategories() {
-        def petstore = new XmlSlurper().parse(exportFile)
+        def petstore = new XmlSlurper().parse(exportFileResource.file)
         def categories = petstore.categories.category
 
         log.info "About to import ${categories.size()} categories " +
@@ -103,18 +92,21 @@ class JavaPetStoreImporterService implements ResourceLoaderAware, InitializingBe
         log.info "Imported ${Category.count()} categories and ${Product.count()} products."
     }
 
-    void importItems(int maxItems) {
-        def petstore = new XmlSlurper().parse(exportFile)
+    void importItems() {
+        def petstore = new XmlSlurper().parse(exportFileResource.file)
 
         def queue = new LinkedBlockingQueue()
 
-        log.info "About to import ${maxItems} items."
+        def itemCount = ConfigurationHolder.config.jpsImport.maxItems
+        log.info "About to import ${itemCount ?: "all"} items."
 
         def startTime = System.currentTimeMillis()
 
+
         // Producer thread
         Thread.start {
-            petstore.items.item[0..maxItems-1].each { itemTag ->
+            def lastItem = (itemCount ?: 0) - 1
+            petstore.items.item[0..lastItem].each { itemTag ->
                 def item = importItem(itemTag)
                 def tagList = itemTag.tags.tag.collect { it.text() }
                 queue.add(new ImportQueueElement(item:item,tagList:tagList))

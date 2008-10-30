@@ -11,7 +11,7 @@ class Product implements Comparable, Serializable {
     }
 
     static mapping = {
-        cache true
+        cache usage:"transactional"
     }
 
     static belongsTo = [category:Category]
@@ -20,7 +20,7 @@ class Product implements Comparable, Serializable {
 
     @Override
     int compareTo(other) {
-        return name.compareTo(other.name)
+        name.compareTo(other?.name)
     }
 
 }

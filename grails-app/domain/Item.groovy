@@ -18,19 +18,13 @@ class Item implements Serializable {
     }
 
     static mapping = {
-        cache true
-        tags cache:true, lazy:true
-        address lazy:true
-        contactInfo lazy:true
-        product lazy:true
+        cache usage:"transactional"
+        tags cache:"transactional", sort: tag
     }
 
-    SortedSet tags
     static hasMany = [tags : Tag]
 
     static searchable = true
-
-    // TODO: get(0) on count queries is ugly
 
     static List findAllByTag(String tag, Map params) {
         Item.executeQuery(
@@ -47,19 +41,28 @@ class Item implements Serializable {
             [tag:tag]).get(0)
     }
 
-    static List findAllByCategory(Category category, Map params) {
-        Item.executeQuery(
-            """select i from Item i, Category c
-               where c = :c and i.product in elements(c.products)
-               order by lower(i.${params.sort ?: "name"}) ${params.order ?: "asc"}""",
-            [c:category], params)
+    static List findAllByCategory(Category category, params) {
+        Item.createCriteria().list {
+            product {
+                eq("category", category)
+            }
+            maxResults(params.max?.toInteger() ?: 10)
+            firstResult(params.offset?.toInteger() ?: 0)
+            order(params.sort ?: "name", params.order ?: "asc")
+            cacheable(true)
+        }
     }
 
     static int countAllByCategory(Category category) {
-        Item.executeQuery(
-            """select count(*) from Item i, Category c
-               where c = :c and i.product in elements(c.products)""",
-            [c:category]).get(0)
+        Item.createCriteria().get {
+            product {
+                eq("category", category)
+            }
+            projections {
+                count("id")
+            }
+            cacheable(true)
+        }
     }
 
     void addRating(int score) {

@@ -1,6 +1,5 @@
 import grails.util.GrailsUtil as GU
 
-import org.apache.activemq.ActiveMQConnectionFactory
 import org.apache.activemq.command.ActiveMQQueue
 import org.hibernate.jmx.StatisticsService
 import org.springframework.jms.core.JmsTemplate
@@ -9,6 +8,7 @@ import org.springframework.jmx.support.MBeanServerFactoryBean
 import org.springframework.jndi.JndiObjectFactoryBean
 import org.springframework.jms.listener.DefaultMessageListenerContainer
 import org.apache.activemq.pool.PooledConnectionFactory
+import org.springframework.core.io.ClassPathResource
 
 beans = {
 
@@ -16,13 +16,16 @@ beans = {
         bean.scope = "session"
     }
 
+    exportFileResource(ClassPathResource, "java_pet_store_export.xml") {
+    }
+
     switch (GU.environment) {
         case "production":
             connectionFactory(JndiObjectFactoryBean) {
-                jndiUrl = "java:/JmsXA"
+                jndiName = "java:/JmsXA"
             }
-            coordinatesLookupQueue() {
-                jndiUrl = "queue/CoordinatesLookupQueue"
+            coordinatesLookupQueue(JndiObjectFactoryBean) {
+                jndiName = "queue/CoordinatesLookupQueue"
             }
             break
         case "development":
@@ -40,12 +43,12 @@ beans = {
         defaultDestination = ref("coordinatesLookupQueue")
     }
 
-    jmsContainer(DefaultMessageListenerContainer) {
+    jmsContainer(GpsMessageListenerContainer) {
         connectionFactory = ref("connectionFactory")
         destination = ref("coordinatesLookupQueue")
         messageListener = ref("coordinatesLookupService")
         sessionTransacted = true
-        //transactionManager = ref("transactionManager")
+        transactionManager = ref("transactionManager")
     }
 
     // Expose Hibernate statistics to JMX

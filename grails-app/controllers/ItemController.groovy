@@ -48,7 +48,7 @@ class ItemController {
     def byCategory = {
         def category = Category.get(params.id)
         def total = Item.countAllByCategory(category)
-        def items = Item.findAllByCategory(category, GpsWebUtils.toHqlParams(params))
+        def items = Item.findAllByCategory(category, params)
         def headline = "Found ${total} pets in category '${category.name}'"
         render(view: "list", model: [itemList: items, total: total, id: params.id, headline: headline])
     }
@@ -76,7 +76,6 @@ class ItemController {
             redirect(action:show,id:item.id)
         } else {
             flash.message = "${command.errors.errorCount} validation errors."
-            //captchaService.setCaptchaString()
             render(view:"edit", model:[item:command.item,command:command])
         }
     }

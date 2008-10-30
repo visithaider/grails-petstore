@@ -9,7 +9,7 @@ class ItemService {
     JmsTemplate jmsTemplate
     Destination coordinatesLookupQueue
 
-    boolean fetchCoordinates = true
+    boolean fetchCoordinates = false
 
     synchronized boolean tagAndSave(Item item, List<String> withTags) {
         tag item, withTags

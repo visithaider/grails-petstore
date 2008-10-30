@@ -9,7 +9,7 @@ class SellerContactInfo implements Serializable {
     }
 
     static mapping = {
-        cache true
+        cache usage:"transactional"
     }
 
     static belongsTo = Item

@@ -8,11 +8,10 @@ class Category implements Serializable {
     }
 
     static mapping = {
-        cache true
-        products cache:true
+        cache usage:"transactional"
+        products cache:"transactional", sort:name   // Sorting will work in 1.1
     }
 
-    SortedSet products
     static hasMany = [products:Product]
 
     static searchable = true
