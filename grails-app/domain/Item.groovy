@@ -19,7 +19,7 @@ class Item implements Serializable {
 
     static mapping = {
         cache usage:"transactional"
-        tags cache:"transactional", sort: tag
+        tags cache:"transactional" //, sort: tag   // Sorting will work in 1.1
     }
 
     static hasMany = [tags : Tag]
@@ -27,18 +27,27 @@ class Item implements Serializable {
     static searchable = true
 
     static List findAllByTag(String tag, Map params) {
-        Item.executeQuery(
-            """select i from Tag t, Item i
-               where t.tag = :tag and t in elements(i.tags)
-               order by lower(i.${params.sort ?: "name"}) ${params.order ?: "desc"}""",
-            [tag:tag], params)
+        Item.createCriteria().list {
+            tags {
+                eq("tag", params.tag)
+            }
+            maxResults(params.max?.toInteger() ?: 10)
+            firstResult(params.offset?.toInteger() ?: 0)
+            order(params.sort ?: "name", params.order ?: "asc")
+            cacheable(true)
+        }
     }
 
-    static int countAllByTag(String tag) {
-        Item.executeQuery(
-            """select count(*) from Tag t, Item i
-               where t.tag = :tag and t in elements(i.tags)""",
-            [tag:tag]).get(0)
+    static int countByTag(String tag) {
+        Item.createCriteria().get {
+            tags {
+                eq("tag", tag)
+            }
+            projections {
+                count("id")
+            }
+            cacheable(true)
+        }
     }
 
     static List findAllByCategory(Category category, params) {
@@ -53,7 +62,7 @@ class Item implements Serializable {
         }
     }
 
-    static int countAllByCategory(Category category) {
+    static int countByCategory(Category category) {
         Item.createCriteria().get {
             product {
                 eq("category", category)

@@ -51,10 +51,10 @@ class CustomerOrderController {
 
         enterPaymentDetails {
             on("forward") {
-                def creditCard = flow.order.creditCard
+                def creditCard = flow.creditCard
                 if (!creditCard) {
                     creditCard = new CreditCardCommand()
-                    flow.order.creditCard = creditCard
+                    flow.creditCard = creditCard
                 }
                 creditCard.properties = params
 

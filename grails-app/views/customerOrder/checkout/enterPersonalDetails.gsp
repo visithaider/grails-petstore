@@ -7,8 +7,12 @@
 </head>
 <body>
 <div class="body">
-    <g:renderErrors bean="${customer}" as="list" />
-    <g:renderErrors bean="${billingAddress}" as="list" />
+    <g:if test="${customer.hasErrors() || billingAdress?.hasErrors()}">
+    <div class="errors">
+        <g:renderErrors bean="${customer}" as="list" />
+        <g:renderErrors bean="${billingAddress}" as="list" />
+    </div>
+    </g:if>
     <g:form action="checkout">
         <table>
             <caption>
