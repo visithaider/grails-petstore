@@ -5,7 +5,6 @@ class ItemService {
 
     static transactional = true
 
-    GeoCoderService geoCoderService
     JmsTemplate jmsTemplate
     Destination coordinatesLookupQueue
 
@@ -13,10 +12,11 @@ class ItemService {
 
     synchronized boolean tagAndSave(Item item, List<String> withTags) {
         tag item, withTags
-        item.save()
+        def saved = item.save()
         if (fetchCoordinates) {
             jmsTemplate.convertAndSend coordinatesLookupQueue, item.id.toString()
         }
+        return saved
     }
 
     /* Tag the item using the string list, creating new tags on demand.

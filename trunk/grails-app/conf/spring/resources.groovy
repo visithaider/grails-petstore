@@ -10,6 +10,8 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer
 import org.apache.activemq.pool.PooledConnectionFactory
 import org.springframework.core.io.ClassPathResource
 
+def isProduction = GU.environment == "production"
+
 beans = {
 
     shoppingCart(ShoppingCart) {bean ->
@@ -19,23 +21,21 @@ beans = {
     exportFileResource(ClassPathResource, "java_pet_store_export.xml") {
     }
 
-    switch (GU.environment) {
-        case "production":
-            connectionFactory(JndiObjectFactoryBean) {
-                jndiName = "java:/JmsXA"
-            }
-            coordinatesLookupQueue(JndiObjectFactoryBean) {
-                jndiName = "queue/CoordinatesLookupQueue"
-            }
-            break
-        case "development":
-        case "test":
-            connectionFactory(PooledConnectionFactory, "vm://localhost") {
-                maxConnections = 10
-            }
-            coordinatesLookupQueue(ActiveMQQueue, "coordinatesLookupQueue") {
-            }
-            break
+    if (isProduction) {
+        // JMS bound to JNDI
+        connectionFactory(JndiObjectFactoryBean) {
+            jndiName = "java:/JmsXA"
+        }
+        coordinatesLookupQueue(JndiObjectFactoryBean) {
+            jndiName = "queue/CoordinatesLookupQueue"
+        }
+    } else {
+        // Standalone in-VM JMS 
+        connectionFactory(PooledConnectionFactory, "vm://localhost") {
+            maxConnections = 10
+        }
+        coordinatesLookupQueue(ActiveMQQueue, "coordinatesLookupQueue") {
+        }
     }
 
     jmsTemplate(JmsTemplate) {
@@ -43,28 +43,35 @@ beans = {
         defaultDestination = ref("coordinatesLookupQueue")
     }
 
-    jmsContainer(GpsMessageListenerContainer) {
+    jmsContainer(DefaultMessageListenerContainer) {
         connectionFactory = ref("connectionFactory")
         destination = ref("coordinatesLookupQueue")
         messageListener = ref("coordinatesLookupService")
-        sessionTransacted = true
-        transactionManager = ref("transactionManager")
+        if (isProduction) {
+            // JTA JMS transactions
+            transactionManager = ref("transactionManager")
+        } else {
+            // Local JMS transactions
+            sessionTransacted = true
+        }
     }
 
-    // Expose Hibernate statistics to JMX
+    if (isProduction) {
+        // Expose Hibernate statistics to JMX
 
-    hibernateStats(StatisticsService) {
-        statisticsEnabled = true
-        sessionFactory = ref("sessionFactory")
-    }
+        hibernateStats(StatisticsService) {
+            statisticsEnabled = true
+            sessionFactory = ref("sessionFactory")
+        }
 
-    mbeanServerFactory(MBeanServerFactoryBean) {
-        locateExistingServerIfPossible = true
-    }
+        mbeanServerFactory(MBeanServerFactoryBean) {
+            locateExistingServerIfPossible = true
+        }
 
-    mbeanExporter(MBeanExporter) {
-        server = mbeanServerFactory
-        beans = ["org.hibernate:name=statistics": hibernateStats]
+        mbeanExporter(MBeanExporter) {
+            server = mbeanServerFactory
+            beans = ["org.hibernate:name=statistics": hibernateStats]
+        }
     }
 
 }

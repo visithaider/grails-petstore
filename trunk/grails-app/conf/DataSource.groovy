@@ -4,6 +4,7 @@ dataSource {
 	username = "sa"
 	password = ""
 }
+
 hibernate {
     cache {
         use_second_level_cache=true
@@ -15,7 +16,7 @@ hibernate {
 environments {
 	development {
 		dataSource {
-			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+			dbCreate = "create-drop"
 			url = "jdbc:hsqldb:mem:devDB"
 		}
 	}
@@ -29,7 +30,7 @@ environments {
         // JBossAS - JNDI data source, JTA transactions, MySQL database
         dataSource {
 			jndiName = "java:/MySqlDS"
-            dbCreate = "create-drop"
+            dbCreate = "create-drop" // Java Pet Store is imported at startup
             pooled = false
         }
         hibernate {

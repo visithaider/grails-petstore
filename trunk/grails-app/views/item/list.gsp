@@ -17,7 +17,7 @@
                                         (a == "byProduct" && c.products.any { it.id == id }) %>
                     <li class="${active ? "active" : "inactive"}">
                         <a href="${createLink(controller:"item", action:"byCategory", id:c.id)}" title="${c.name}">
-                            ${c.name} (${Item.countAllByCategory(c)})
+                            ${c.name} (${Item.countByCategory(c)})
                         </a>
                         <% if (active) { %>
                             <ul id="productList">

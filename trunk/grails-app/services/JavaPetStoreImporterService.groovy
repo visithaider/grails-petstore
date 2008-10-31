@@ -102,11 +102,13 @@ class JavaPetStoreImporterService {
 
         def startTime = System.currentTimeMillis()
 
-
         // Producer thread
         Thread.start {
             def lastItem = (itemCount ?: 0) - 1
-            petstore.items.item[0..lastItem].each { itemTag ->
+            def items = lastItem > 0 ?
+                petstore.items.item[0..lastItem] :
+                petstore.items.item    
+            items.each { itemTag ->
                 def item = importItem(itemTag)
                 def tagList = itemTag.tags.tag.collect { it.text() }
                 queue.add(new ImportQueueElement(item:item,tagList:tagList))

@@ -1,15 +1,4 @@
-// locations to search for config files that get merged into the main config
-// config files can either be Java properties files or ConfigSlurper scripts
-
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
-
-// if(System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
-grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
+grails.mime.file.extensions = true
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
                       xml: ['text/xml', 'application/xml'],
                       text: 'text-plain',
@@ -32,12 +21,14 @@ grails.enable.native2ascii = true
 // log4j configuration
 log4j {
     appender.stdout = "org.apache.log4j.ConsoleAppender"
-    appender.'stdout.layout'="org.apache.log4j.PatternLayout"
-    appender.'stdout.layout.ConversionPattern'='[%r] %c{2} %m%n'
+    appender."stdout.layout"="org.apache.log4j.PatternLayout"
+    appender."stdout.layout.ConversionPattern"="[%r] %c{2} %m%n"
+
     appender.errors = "org.apache.log4j.FileAppender"
-    appender.'errors.layout'="org.apache.log4j.PatternLayout"
-    appender.'errors.layout.ConversionPattern'='[%r] %c{2} %m%n'
-    appender.'errors.File'="stacktrace.log"
+    appender."errors.layout"="org.apache.log4j.PatternLayout"
+    appender."errors.layout.ConversionPattern"="[%r] %c{2} %m%n"
+    appender."errors.File"="${java.io.tmpdir}/stacktrace.log"
+
     rootLogger="error,stdout"
     logger {
         StackTrace="error,errors"
@@ -47,7 +38,7 @@ log4j {
         }
         org {
             springframework="info"
-            //hibernate="info"
+            hibernate="info"
             hibernate {
                 //hbm2ddl="debug"
                 //cache="debug"
@@ -128,5 +119,45 @@ def deps = [
 grails.war.dependencies = { fileset(dir: "libs") { deps.each { pattern -> include(name: pattern) } } }
 */
 
-// The following properties have been added by the Upgrade process...
+/*
+commons-beanutils-1.7.0.jar
+grails-crud-1.0.3.jar
+log4j-1.2.15.jar
+spring-2.5.4.jar
+commons-collections-3.2.jar
+grails-gorm-1.0.3.jar
+lucene-analyzers.jar
+spring-binding-2.0-m1.jar
+commons-fileupload-1.1.1.jar
+grails-spring-1.0.3.jar
+lucene-core.jar
+spring-webflow-2.0-m1.jar
+commons-io-1.4.jar
+grails-web-1.0.3.jar
+lucene-highlighter.jar
+spring-webmvc.jar
+commons-lang-2.1.jar
+grails-webflow-1.0.3.jar
+lucene-queries.jar
+standard-2.4.jar
+commons-logging-1.1.jar
+groovy-all-1.5.6.jar
+lucene-snowball.jar
+xpp3_min-1.1.3.4.O.jar
+commons-pool-1.2.jar
+jaxen-1.1-beta-11.jar
+ognl-2.6.9.jar
+xstream-1.2.1.jar
+commons-validator-1.3.0.jar
+jdbc2_0-stdext.jar
+oro-2.0.8.jar
+compass.jar
+jdom.jar
+rome-0.9.jar
+grails-core-1.0.3.jar
+jstl-2.4.jar
+sitemesh-2.3.jar
+
+ */
+
 grails.views.gsp.encoding="UTF-8"

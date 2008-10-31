@@ -47,7 +47,7 @@ class ItemController {
 
     def byCategory = {
         def category = Category.get(params.id)
-        def total = Item.countAllByCategory(category)
+        def total = Item.countByCategory(category)
         def items = Item.findAllByCategory(category, params)
         def headline = "Found ${total} pets in category '${category.name}'"
         render(view: "list", model: [itemList: items, total: total, id: params.id, headline: headline])
