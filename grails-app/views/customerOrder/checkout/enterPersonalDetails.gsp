@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="body">
-    <g:if test="${customer.hasErrors() || billingAdress?.hasErrors()}">
+    <g:if test="${customer?.hasErrors() || billingAdress?.hasErrors()}">
     <div class="errors">
         <g:renderErrors bean="${customer}" as="list" />
         <g:renderErrors bean="${billingAddress}" as="list" />

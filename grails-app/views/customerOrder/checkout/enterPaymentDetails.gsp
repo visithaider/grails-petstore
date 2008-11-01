@@ -7,37 +7,39 @@
 </head>
 <body>
 <div class="body">
+    <g:if test="${creditCard?.hasErrors()}">
+    <div class="errors">
+        <g:renderErrors bean="${creditCard}" as="list" />
+    </div>
+    </g:if>
     <g:form action="checkout">
         <table>
             <caption>Payment details</caption>
             <tbody>
                 <tr>
                     <td colspan="2">
-                        <g:radio name="card.type" value="VISA"/>
-                        VISA
+                        <g:radio name="type" value="1" checked="${creditCard.type == 1}"/> American Express
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <g:radio name="card.type" value="Mastercard"/>
-                        Mastercard
+                        <g:radio name="type" value="2" checked="${creditCard.type == 2}"/> VISA
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <g:radio name="card.type" value="American Express"/>
-                        American Express
+                        <g:radio name="type" value="4" checked="${creditCard.type == 4}"/> Mastercard
                     </td>
                 </tr>
                 <tr>
                     <td>Card number</td>
-                    <td><g:textField name="card.number"/></td>
+                    <td><g:textField name="number" value="${creditCard.number}"/></td>
                 </tr>
                 <tr>
                     <td>Expires</td>
                     <td>
-                        <g:select from="${2009..2020}" value="2009"/>
-                        <g:select from="${1..12}" value="1"/>
+                        Year: <g:select from="${2009..2020}" name="expirationYear" value="${creditCard.expirationYear}"/>
+                        Month: <g:select from="${1..12}" name="expirationMonth" value="${creditCard.expirationMonth}"/>
                     </td>
                 </tr>
             </tbody>
