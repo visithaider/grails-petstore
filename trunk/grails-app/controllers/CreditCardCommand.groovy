@@ -1,23 +1,18 @@
 import org.apache.commons.validator.CreditCardValidator
-import org.apache.commons.validator.CreditCardValidator.CreditCardType
+import static org.apache.commons.validator.CreditCardValidator.*
 
-class CreditCardCommand {
+class CreditCardCommand implements Serializable {
 
     String number
-    CreditCardType type
-    Integer expirationYear
-    Integer expirationMonth
+    Integer type, expirationYear, expirationMonth
 
-    static CreditCardValidator creditCardValidator = new CreditCardValidator(
-        CreditCardValidator.AMEX +
-        CreditCardValidator.MASTERCARD +
-        CreditCardValidator.VISA
+    private static final def creditCardValidator = new CreditCardValidator(
+        AMEX + VISA + MASTERCARD
     )
 
     static constraints = {
-        number(validator {
-            type.matches(it)
-        })
+        type(inList:[AMEX, VISA, MASTERCARD])
+        number(validator: { creditCardValidator.isValid it })
         expirationYear(min:2009, max:2020)
         expirationMonth(min:1, max:12)
     }

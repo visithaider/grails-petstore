@@ -26,14 +26,12 @@ class CustomerOrderController {
 
         enterPersonalDetails {
             on("forward") {
-                def customer = flow.customer ?: new Customer(address:new Address())
-                customer.properties = params["customer"]
-                customer.address.properties = params["customer.address"]
+                def customer = new Customer(params["customer"])
+                customer.address = new Address(params["customer.address"])
                 flow.customer = customer
 
                 if (params.separateBillingAddress) {
-                    def billingAddress = flow.order?.billingAddress ?: new Address()
-                    billingAddress.properties = params["billingAddress"]
+                    def billingAddress = new Address(params["billingAddress"])
                     flow.order.billingAddress = billingAddress
                 } else {
                     flow.order.billingAddress = null
@@ -50,15 +48,10 @@ class CustomerOrderController {
         }
 
         enterPaymentDetails {
-            on("forward") {
-                def creditCard = flow.creditCard
-                if (!creditCard) {
-                    creditCard = new CreditCardCommand()
-                    flow.creditCard = creditCard
-                }
-                creditCard.properties = params
+            on("forward") { CreditCardCommand creditCard ->
+                flow.creditCard = creditCard
 
-                if (!creditCard.validate()) {
+                if (!flow.creditCard.validate()) {
                     return error()
                 }
             }.to "reviewOrder"
