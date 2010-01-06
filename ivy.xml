@@ -2,7 +2,7 @@
 <ivy-module version="1.0">
    <info organisation="codehaus" module="grails"/>
    <dependencies>
-     <dependency org="org.apache.activemq" name="activemq-core" rev="4.1.2"/>
+     <dependency org="org.apache.activemq" name="activemq-core" rev="5.2.0"/>
    </dependencies>
 </ivy-module>		
 	

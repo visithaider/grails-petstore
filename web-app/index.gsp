@@ -4,13 +4,16 @@
 		<meta name="layout" content="main" />
         <style type="text/css">
             .par {
-                margin: 20px;
+                margin: 20px 40px;
                 width: 600px;
             }
         </style>
     </head>
     <body>
-        <h1 style="margin-left:20px">Welcome to the Grails Pet Store ${grailsApplication.metadata['app.version']}</h1>
+        <h1 class="par">Welcome to the Grails Pet Store!</h1>
+        <p class="par">
+            <img src="images/mosse_leia.jpg" alt=""/>
+        </p>
         <p class="par">
             This a <a href="http://www.grails.org">Grails</a> port of the famous <a href="https://blueprints.dev.java.net/petstore/">Pet Store</a> application.
         </p>

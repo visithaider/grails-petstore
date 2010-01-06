@@ -70,8 +70,8 @@ class ItemController {
     def save = { ItemCommand command ->
         command.handleFileUpload()
         
-        if (command.hasNoErrors() && itemService.tagAndSave(command.item, command.tagList)) {
-            def item = Item.get(command.id)
+        def item = command.item
+        if (command.hasNoErrors() && itemService.tagAndSave(item, command.tagList)) {
             flash.message = "Saved item ${item}"
             redirect(action:show,id:item.id)
         } else {

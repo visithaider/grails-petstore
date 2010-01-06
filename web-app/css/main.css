@@ -69,7 +69,7 @@ input:focus, select:focus, textarea:focus {
 
 .body {
     float: left;
-    margin: 0 15px 10px 15px;
+    margin: 0 20px;
 }
 
 /* NAVIGATION MENU */
@@ -78,7 +78,7 @@ input:focus, select:focus, textarea:focus {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
     border-style: solid none solid none;	
-    padding: 5px 12px;
+    padding: 5px 20px;
     clear: both;
 }
 
@@ -140,7 +140,6 @@ td.errors input {
 /* TABLES */
 
 table {
-    border: 1px solid #ccc;
     width: 100%
 }
 tr {
@@ -291,7 +290,7 @@ th.desc a {
 }
 
 div.logo {
-	margin: 20px 35px;
+	margin: 10px 20px 0 20px;
     float: left;
 }
 
@@ -325,7 +324,6 @@ div.logo {
     font-size: 11px;
     font-weight: bold;
     text-align: left;
-    border-bottom: 1px solid;
 }
 
 #cart table tfoot td {

@@ -12,7 +12,7 @@ class ImageStorageService implements ServletContextAware, InitializingBean, Disp
 
     static transactional = false
 
-    List allowedImageFormats = ["jpg","jpeg","gif","png"].asImmutable()
+    def allowedImageFormats = ["jpg","jpeg","gif","png"].asImmutable()
     // Better, but Java 6 only: ImageIO.getReaderFileSuffixes() as List
 
     ServletContext servletContext
