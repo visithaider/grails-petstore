@@ -8,7 +8,7 @@ class ShoppingCart implements Serializable {
     }
 
     int getItemCount() {
-        contents.values().sum() ?: 0
+        contents.values().sum() as int ?: 0
     }
 
     int getItemCount(Long id) {

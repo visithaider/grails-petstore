@@ -5,7 +5,7 @@ class ShoppingCartController {
     def add = {
         if (params.id) {
             shoppingCart.addItem(params.id.toLong())
-            flash.message = "Added ${params.id} to shopping cart"
+            flash.message = "Added this item to shopping cart"
         }
         redirect(controller:"item", action:"show", id:params.id)
     }

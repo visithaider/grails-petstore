@@ -25,7 +25,6 @@
                     <div class="message">${flash.message}</div>
                 </g:if>
                 <h1>${item.name}</h1>
-                
                 <div id="pet">
                     <table>
                         <tbody>

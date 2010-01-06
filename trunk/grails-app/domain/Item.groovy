@@ -19,7 +19,7 @@ class Item implements Serializable {
 
     static mapping = {
         cache usage:"transactional"
-        tags cache:"transactional" //, sort: tag   // Sorting will work in 1.1
+        tags cache:"transactional", cascade: delete-orphan //, sort: tag   // Sorting will work in 1.1
     }
 
     static hasMany = [tags : Tag]

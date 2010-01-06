@@ -8,43 +8,44 @@
     </head>
     <body>
 	<div id="header">
+        <% def cart = applicationContext.shoppingCart %>
+        <% if (!cart.isEmpty()) { %>
         <div id="cart">
-            <g:set var="sc" value="${applicationContext.shoppingCart}"/>
             <table>
-                <caption>Shopping cart</caption>
+                <caption>
+                    <img src="${createLinkTo(dir:"images",file:"cart.png")}" alt=""/>
+                    Shopping cart
+                </caption>
                 <tbody>
-                    <g:each in="${sc.itemIds}" var="iid">
-                        <tr>
-                            <td>${sc.getItemCount(iid)}</td>
-                            <td><g:link controller="item" action="show" id="${iid}">${Item.get(iid)?.name}</g:link></td>
-                            <td>
-                                <g:link controller="shoppingCart" action="add" id="${iid}">
-                                    <img src="${createLinkTo(dir:"images",file:"add.png")}" alt="+"/>
-                                </g:link>
-                                <g:link controller="shoppingCart" action="remove" id="${iid}">
-                                    <img src="${createLinkTo(dir:"images",file:"delete.png")}" alt="-"/>
-                                </g:link>
-                            </td>
-                        </tr>
-                    </g:each>
+                <% cart.itemIds.each { itemId -> %>
+                    <tr>
+                        <td width="1%">${cart.getItemCount(itemId)}</td>
+                        <td><g:link controller="item" action="show" id="${itemId}">${Item.get(itemId)?.name}</g:link></td>
+                        <td width="1%">
+                            <g:link controller="shoppingCart" action="add" id="${itemId}">
+                                <img src="${createLinkTo(dir:"images",file:"add.png")}" alt="+"/>
+                            </g:link>
+                            <g:link controller="shoppingCart" action="remove" id="${itemId}">
+                                <img src="${createLinkTo(dir:"images",file:"delete.png")}" alt="-"/>
+                            </g:link>
+                        </td>
+                    </tr>
+                <% } %>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="4">
-                            <% if (sc.isEmpty()) { %>
-                                <em>Empty</em>                            
-                            <% } else { %>
-                                <g:link controller="customerOrder" action="checkout">
-                                    Checkout
-                                </g:link>
-                            <% } %>
+                            <g:link controller="customerOrder" action="checkout">
+                                <img src="${createLinkTo(dir:"images",file:"cart_go.png")}" alt=""/>
+                                Checkout
+                            </g:link>
                         </td>
                     </tr>
                 </tfoot>
             </table>
         </div>
-
-        <div class="logo"><img src="${createLinkTo(dir:'images',file:'gps_logo.png')}" alt="Grails" /></div>
+        <% } %>
+        <div class="logo"><img src="${createLinkTo(dir:'images',file:'nylogo.png')}" alt="Grails" /></div>
         <div class="nav">
             <div id="searchableForm">
                 <g:form url='[controller: "item", action: "search"]' name="searchableForm" method="get">
@@ -60,5 +61,5 @@
         </div>
 	</div><!-- end header -->
         <g:layoutBody />
-    </body>	
+    </body>
 </html>

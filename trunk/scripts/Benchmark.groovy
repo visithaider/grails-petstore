@@ -33,7 +33,7 @@ n.times {
         }
     }
 }
-println "Jobs submitted in ${(System.currentTimeMillis() - startTime)/1000.0} s"
+println "${n} jobs submitted in ${(System.currentTimeMillis() - startTime)/1000.0} s"
 
 executor.shutdown()
 executor.awaitTermination(30, TimeUnit.SECONDS)

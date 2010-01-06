@@ -5,7 +5,6 @@ import org.hibernate.jmx.StatisticsService
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jmx.export.MBeanExporter
 import org.springframework.jmx.support.MBeanServerFactoryBean
-import org.springframework.jndi.JndiObjectFactoryBean
 import org.springframework.jms.listener.DefaultMessageListenerContainer
 import org.apache.activemq.pool.PooledConnectionFactory
 import org.springframework.core.io.ClassPathResource
@@ -14,28 +13,17 @@ def isProduction = GU.environment == "production"
 
 beans = {
 
-    shoppingCart(ShoppingCart) {bean ->
+    shoppingCart(ShoppingCart) { bean ->
         bean.scope = "session"
     }
 
-    exportFileResource(ClassPathResource, "java_pet_store_export.xml") {
+    exportFileResource(ClassPathResource, "java_pet_store_export.xml") {}
+
+    connectionFactory(PooledConnectionFactory, "vm://localhost?broker.persistent=false&broker.useJmx=true") {
+        maxConnections = 10
     }
 
-    if (isProduction) {
-        // JMS bound to JNDI
-        connectionFactory(JndiObjectFactoryBean) {
-            jndiName = "java:/JmsXA"
-        }
-        coordinatesLookupQueue(JndiObjectFactoryBean) {
-            jndiName = "queue/CoordinatesLookupQueue"
-        }
-    } else {
-        // Standalone in-VM JMS 
-        connectionFactory(PooledConnectionFactory, "vm://localhost") {
-            maxConnections = 10
-        }
-        coordinatesLookupQueue(ActiveMQQueue, "coordinatesLookupQueue") {
-        }
+    coordinatesLookupQueue(ActiveMQQueue, "coordinatesLookupQueue") {
     }
 
     jmsTemplate(JmsTemplate) {
@@ -47,13 +35,7 @@ beans = {
         connectionFactory = ref("connectionFactory")
         destination = ref("coordinatesLookupQueue")
         messageListener = ref("coordinatesLookupService")
-        if (isProduction) {
-            // JTA JMS transactions
-            transactionManager = ref("transactionManager")
-        } else {
-            // Local JMS transactions
-            sessionTransacted = true
-        }
+        sessionTransacted = true
     }
 
     if (isProduction) {

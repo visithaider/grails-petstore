@@ -38,8 +38,7 @@ class CustomerOrderController {
                 }
 
                 if (!flow.customer.validate() ||
-                    (flow.order.billingAddress &&
-                    !flow.order.billingAddress.validate())) {
+                    (flow.order.billingAddress && !flow.order.billingAddress.validate())) {
                     return error()
                 }
             }.to "enterPaymentDetails"
@@ -72,6 +71,7 @@ class CustomerOrderController {
                 def order = flow.order
                 def customer = flow.customer
                 order.customer = customer
+                // TODO save customer, interact with payment system and probably send confirmation email
                 if (order.save()) {
                     shoppingCart.contents.clear()
                 } else {
