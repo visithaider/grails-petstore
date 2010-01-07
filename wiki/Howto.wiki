@@ -1,6 +1,21 @@
 #summary How to get going
 #labels Featured
 
+Current SVN HEAD (0.3-snapshot):
+ 
+ * Get Grails 1.2.0
+ * Get Searchable plugin:
+
+    grails install-plugin searchable 0.5.5
+
+ * Get Feeds plugin:
+
+    grails install-plugin feeds 1.5
+
+ * Go!
+
+
+
 These instructions apply to GPS 0.2.
 
   * Get Grails 1.0.2
