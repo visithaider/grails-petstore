@@ -1,3 +1,4 @@
+<%@ page import="gps.Item" %>
 <html>
     <head>
         <title><g:layoutTitle default="Grails Pet Store" /></title>
