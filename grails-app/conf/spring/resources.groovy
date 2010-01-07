@@ -8,6 +8,7 @@ import org.springframework.jmx.support.MBeanServerFactoryBean
 import org.springframework.jms.listener.DefaultMessageListenerContainer
 import org.apache.activemq.pool.PooledConnectionFactory
 import org.springframework.core.io.ClassPathResource
+import gps.ShoppingCart
 
 def isProduction = GU.environment == "production"
 
@@ -17,7 +18,7 @@ beans = {
         bean.scope = "session"
     }
 
-    exportFileResource(ClassPathResource, "java_pet_store_export.xml") {}
+    exportFileResource(ClassPathResource, "gps/java_pet_store_export.xml") {}
 
     connectionFactory(PooledConnectionFactory, "vm://localhost?broker.persistent=false&broker.useJmx=true") {
         maxConnections = 10

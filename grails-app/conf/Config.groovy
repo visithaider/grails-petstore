@@ -18,36 +18,17 @@ grails.views.default.codec="none" // none, html, base64
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
+
 // log4j configuration
-log4j {
-    appender.stdout = "org.apache.log4j.ConsoleAppender"
-    appender."stdout.layout"="org.apache.log4j.PatternLayout"
-    appender."stdout.layout.ConversionPattern"="[%r] %c{2} %m%n"
 
-    appender.errors = "org.apache.log4j.FileAppender"
-    appender."errors.layout"="org.apache.log4j.PatternLayout"
-    appender."errors.layout.ConversionPattern"="[%r] %c{2} %m%n"
-    appender."errors.File"="\${java.io.tempdir}/stacktrace.log"
-
-    rootLogger="error,stdout"
-    logger {                                                 
-        StackTrace="error,errors"
-        grails="info"
-        grails {
-            app="debug"
-        }
-        org {
-            springframework="warn"
-            hibernate="warn"
-            hibernate {
-                //hbm2ddl="debug"
-                //cache="debug"
-                //SQL="debug"
-            }
-        }
-    }
-    additivity.StackTrace=false
+log4j = {
+  root {
+      error()
+      additivity = true
+  }
+  debug 'grails.app'
 }
+
 
 // WAR dependency config
 grails.war.dependencies = [
@@ -93,7 +74,6 @@ grails.war.java5.dependencies = [
 
 environments {
     development {
-        jpsImport.maxItems = 10
     }
     production {
     }
