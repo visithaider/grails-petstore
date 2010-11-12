@@ -3,7 +3,7 @@
 
 Current SVN HEAD (0.3-snapshot):
  
- * Get Grails 1.2.0
+ * Get Grails 1.3.5
  * Get Searchable plugin:
 
     grails install-plugin searchable 0.5.5
